@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BE
 {
-    public class Usuario
+    public class Usuario //representa la entidad Usuario de la base de datos 
     {
         public int Id { get; set; }
 

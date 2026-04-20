@@ -49,6 +49,10 @@
       <Project>{c6511024-b170-4940-93e1-db812ad2c5b5}</Project>
       <Name>BE</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MPP\MPP.csproj">
+      <Project>{a0036926-3294-44ec-8d82-35858d6f5cdc}</Project>
+      <Name>MPP</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

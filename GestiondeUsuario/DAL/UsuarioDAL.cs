@@ -4,7 +4,8 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BE;   
+using BE;
+using MPP;
 
 namespace DAL
 {
@@ -28,11 +29,7 @@ namespace DAL
 
                 if (reader.Read())
                 {
-                    usuario = new Usuario();
-                    usuario.Id = Convert.ToInt32(reader["Id"]);
-                    usuario.Nombre = reader["Nombre"].ToString();
-                    usuario.Email = reader["Email"].ToString();
-                    usuario.Contraseña = reader["Contraseña"].ToString();
+                    usuario = UsuarioMPP.MapearAUsuario(reader);
                 }
             }
 
@@ -45,9 +42,7 @@ namespace DAL
             {
                 string query = "INSERT INTO Usuarios (Nombre, Email, Contraseña) VALUES (@Nombre, @Email, @Contraseña)";
                 SqlCommand cmd = new SqlCommand(query, con);
-                cmd.Parameters.AddWithValue("@Nombre", u.Nombre);
-                cmd.Parameters.AddWithValue("@Email", u.Email);
-                cmd.Parameters.AddWithValue("@Contraseña", u.Contraseña);
+                UsuarioMPP.MapearParametros(cmd, u);
 
                 con.Open();
                 int filas = cmd.ExecuteNonQuery();

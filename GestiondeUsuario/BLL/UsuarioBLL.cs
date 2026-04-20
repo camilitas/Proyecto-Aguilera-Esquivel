@@ -10,7 +10,7 @@ namespace BLL
 {
     public class UsuarioBLL
     {
-        private static UsuarioBLL _instancia;
+        private static UsuarioBLL _instancia; //patron singleton para asegurar que solo haya una instancia de UsuarioBLL en toda la aplicación
 
         public static UsuarioBLL Instancia
         {

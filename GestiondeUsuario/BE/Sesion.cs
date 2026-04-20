@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BE
 {
-    public class Sesion
+    public class Sesion //clase sesion para almacenar información de la sesión activa del usuario
     {
         public int IdUsuario { get; set; }
 
