@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BLL;
+using Servicios;
 
 namespace GestiondeUsuario
 {
@@ -34,7 +35,7 @@ namespace GestiondeUsuario
             try
             {
 
-                bool acceso = UsuarioBLL.Instancia.Login(txtEmail.Text, txtContraseña.Text); // Verifica credenciales en BD y retorna true si usuario existe, false si no
+                bool acceso = UsuarioServicio.Instancia.Login(txtEmail.Text, txtContraseña.Text); // Verifica credenciales en BD y retorna true si usuario existe, false si no
 
                 if (acceso)
                 {

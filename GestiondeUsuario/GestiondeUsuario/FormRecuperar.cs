@@ -1,5 +1,6 @@
 ﻿using BE;
 using BLL;
+using Servicios;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -52,7 +53,7 @@ namespace GestiondeUsuario
             }
 
             // Llamada a BLL
-            bool ok = UsuarioBLL.Instancia.RecuperarContraseña(
+            bool ok = UsuarioServicio.Instancia.RecuperarContraseña(
                 txtEmail.Text,
                 txtContraseñaActual.Text,
                 txtNuevaPass.Text

@@ -1,4 +1,7 @@
-﻿using System;
+﻿using BE;
+using BLL;
+using Servicios;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,8 +10,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using BE;
-using BLL;
 
 
 namespace GestiondeUsuario
@@ -60,7 +61,7 @@ namespace GestiondeUsuario
                 // FechaCreacion y Activo los asigna MPP automaticamente
             };
 
-            bool resultado = UsuarioBLL.Instancia.CrearUsuario(nuevo);  // le pedimos a la BLL que procese la creacion (valida + encripta + guarda)
+            bool resultado = UsuarioServicio.Instancia.CrearUsuario(nuevo);  // le pedimos a la BLL que procese la creacion (valida + encripta + guarda)
 
             if (resultado)
             {
