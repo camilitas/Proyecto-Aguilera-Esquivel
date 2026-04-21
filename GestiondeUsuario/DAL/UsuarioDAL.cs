@@ -19,7 +19,7 @@ namespace DAL
 
             using (SqlConnection con = new SqlConnection(connectionString))
             {
-                string query = "SELECT * FROM Usuarios WHERE Email = @Email AND Contraseña = @Contraseña";
+                string query = "SELECT * FROM Usuarios WHERE Email = @Email AND Contraseña = @Contraseña"; //consulta SQL para obtener un usuario que coincida con el email y la contraseña proporcionados. Utiliza parámetros para evitar inyecciones SQL.
                 SqlCommand cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@Email", email);
                 cmd.Parameters.AddWithValue("@Contraseña", contraseña);
@@ -40,13 +40,13 @@ namespace DAL
         {
             using (SqlConnection con = new SqlConnection(connectionString))
             {
-                string query = "INSERT INTO Usuarios (Nombre, Email, Contraseña) VALUES (@Nombre, @Email, @Contraseña)";
+                string query = "INSERT INTO Usuarios (Nombre, Email, Contraseña, DNI, FechaCreacion, Activo) VALUES (@Nombre, @Email, @Contraseña, @DNI, @FechaCreacion, @Activo)";
                 SqlCommand cmd = new SqlCommand(query, con);
-                UsuarioMPP.MapearParametros(cmd, u);
+                UsuarioMPP.MapearParametros(cmd, u); // se encarga de asignar cada campo del objeto Usuario a su parámetro SQL
 
                 con.Open();
-                int filas = cmd.ExecuteNonQuery();
-                return filas > 0;
+                int filas = cmd.ExecuteNonQuery(); //ejecuta el INSERT y devuelve cuantas filas se insertaron
+                return filas > 0;  //si se inserto al menos 1 fila, fue exitoso
             }
         }
     }

@@ -18,7 +18,9 @@ namespace MPP
                 Nombre = reader["Nombre"].ToString(),
                 Email = reader["Email"].ToString(),
                 Contraseña = reader["Contraseña"].ToString(),
-                FechaCreacion = Convert.ToDateTime(reader["FechaCreacion"])
+                DNI = Convert.ToInt32(reader["DNI"]),
+                FechaCreacion = Convert.ToDateTime(reader["FechaCreacion"]),
+                Activo = Convert.ToBoolean(reader["Activo"])
             };
         }
 
@@ -28,8 +30,9 @@ namespace MPP
             cmd.Parameters.AddWithValue("@Nombre", u.Nombre);
             cmd.Parameters.AddWithValue("@Email", u.Email);
             cmd.Parameters.AddWithValue("@Contraseña", u.Contraseña);
+            cmd.Parameters.AddWithValue("@DNI", u.DNI);
             cmd.Parameters.AddWithValue("@FechaCreacion", u.FechaCreacion);
-
+            cmd.Parameters.AddWithValue("@Activo", true);
         }
     }
 }

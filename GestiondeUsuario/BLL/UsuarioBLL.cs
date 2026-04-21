@@ -36,6 +36,7 @@ namespace BLL
             return false;
         }
 
+        // validaciones: ningun campo puede estar vacio
         public bool CrearUsuario(Usuario nuevoUsuario)
         {
             if (string.IsNullOrEmpty(nuevoUsuario.Nombre))
@@ -45,8 +46,11 @@ namespace BLL
             if (string.IsNullOrEmpty(nuevoUsuario.Contraseña))
                 return false;
 
+            // antes de guardar, encriptamos la contraseña
+            // a partir de aca el objeto ya tiene la contraseña encriptada
             nuevoUsuario.Contraseña = EncriptadorBLL.Encriptar(nuevoUsuario.Contraseña); //encripta la contraseña del nuevo usuario utilizando el método Encriptar de la clase EncriptadorBLL. Esto asegura que la contraseña se almacene de forma segura en la base de datos.
 
+            //le pedimos a dal que inserte el nuevo usuario en la bd
             UsuarioDAL dal = new UsuarioDAL();
             return dal.Insertar(nuevoUsuario);
         }

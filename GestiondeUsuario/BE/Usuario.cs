@@ -16,6 +16,10 @@ namespace BE
 
         public string Contraseña { get; set; }
 
+        public int DNI { get; set; }
+
         public DateTime FechaCreacion { get; set; }
+
+        public bool Activo { get; set; }
     }
 }
