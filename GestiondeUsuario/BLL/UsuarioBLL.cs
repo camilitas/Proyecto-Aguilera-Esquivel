@@ -27,7 +27,13 @@ namespace BLL
             string contraseñaEncriptada = EncriptadorBLL.Encriptar(contraseña); //encripta la contraseña ingresada por el usuario utilizando el método Encriptar de la clase EncriptadorBLL. Esto asegura que la contraseña se compare de forma segura con la versión encriptada almacenada en la base de datos.
             UsuarioDAL dal = new UsuarioDAL();
             Usuario usuario = dal.ObtenerPorEmailYContraseña(email, contraseñaEncriptada);
-            return usuario != null;
+            
+            if (usuario != null)
+            {
+                SessionManagerBLL.Instancia.IniciarSesion(usuario); //si el usuario existe, inicia la sesión utilizando el método IniciarSesion de la clase SessionManagerBLL. Esto almacena la información del usuario en la sesión activa de la aplicación.
+                return true;
+            }
+            return false;
         }
 
         public bool CrearUsuario(Usuario nuevoUsuario)
