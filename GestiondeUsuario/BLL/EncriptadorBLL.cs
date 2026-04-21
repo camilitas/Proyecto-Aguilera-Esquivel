@@ -23,5 +23,16 @@ namespace BLL
                 return resultado.ToString(); //devuelve el hash encriptado como una cadena de texto. El resultado es una cadena hexadecimal que representa el hash de la contraseña. (64 caracteres)
             }
         }
+
+        public static bool ContraseñaSegura(string contraseña)
+        {
+            if (contraseña.Length < 8) // Verifica que la contraseña tenga al menos 8 caracteres
+                return false;
+            if (!contraseña.Any(char.IsUpper)) // Verifica que la contraseña contenga al menos una letra mayúscula
+                return false;
+            if (!contraseña.Any(char.IsDigit)) // Verifica que la contraseña contenga al menos un número
+                return false;
+            return true;
+        }
     }
 }

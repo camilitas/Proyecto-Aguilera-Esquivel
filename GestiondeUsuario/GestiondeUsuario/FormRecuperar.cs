@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace GestiondeUsuario
 {
@@ -44,9 +45,16 @@ namespace GestiondeUsuario
                 return;
             }
 
+            if(!EncriptadorBLL.ContraseñaSegura(txtNuevaPass.Text))
+            {
+                MessageBox.Show("La contraseña debe tener al menos 8 caracteres, incluyendo mayúsculas, minúsculas y números.", "Contraseña insegura", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             // Llamada a BLL
             bool ok = UsuarioBLL.Instancia.RecuperarContraseña(
                 txtEmail.Text,
+                txtContraseñaActual.Text,
                 txtNuevaPass.Text
             );
 
@@ -61,7 +69,7 @@ namespace GestiondeUsuario
             }
             else
             {
-                MessageBox.Show("No se encontró el usuario.", "Error",
+                MessageBox.Show("Email o contraseña actual incorrectos.", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

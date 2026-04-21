@@ -44,6 +44,12 @@ namespace GestiondeUsuario
                 return;
             }
 
+            if (!EncriptadorBLL.ContraseñaSegura(txtContraseña.Text))
+            {
+                MessageBox.Show("La contraseña debe tener al menos 8 caracteres, incluyendo mayúsculas, minúsculas y números.", "Contraseña insegura", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             // creamos el objeto Usuario con los datos del formulario
             Usuario nuevo = new Usuario
             {

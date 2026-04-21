@@ -10,7 +10,7 @@ namespace DAL
    
         public class BitacoraDAL
         {
-            private string connectionString = "TU_CONNECTION_STRING";
+            private string connectionString = "Data Source=DESKTOP-FEJ1OE8\\SQLEXPRESS;Initial Catalog=GestionUsuarios;Integrated Security=True";
 
             public void Guardar(string usuario, string accion)
             {

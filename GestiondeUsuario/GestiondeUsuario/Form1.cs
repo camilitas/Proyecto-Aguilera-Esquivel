@@ -27,24 +27,31 @@ namespace GestiondeUsuario
         {
             if (string.IsNullOrEmpty(txtEmail.Text) || string.IsNullOrEmpty(txtContraseña.Text))
             {
-                MessageBox.Show("Completá todos los campos.", "Atención",
+                MessageBox.Show("Completa todos los campos.", "Atencion",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
-            bool acceso = UsuarioBLL.Instancia.Login(txtEmail.Text, txtContraseña.Text); // Verifica credenciales en BD y retorna true si usuario existe, false si no
-
-            if (acceso)
+            try
             {
-                MessageBox.Show("¡Bienvenido!", "Éxito",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-                new FormPrincipal().Show();
-                this.Hide();
+
+                bool acceso = UsuarioBLL.Instancia.Login(txtEmail.Text, txtContraseña.Text); // Verifica credenciales en BD y retorna true si usuario existe, false si no
+
+                if (acceso)
+                {
+                    MessageBox.Show("¡Bienvenido!", "Exito",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    new FormPrincipal().Show();
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Email o contraseña incorrectos.", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            else
+            catch(Exception ex)
             {
-                MessageBox.Show("Email o contraseña incorrectos.", "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message + "\nConsulte con el administrador.", "Cuenta bloqueada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

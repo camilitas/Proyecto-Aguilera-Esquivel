@@ -36,6 +36,8 @@
             this.txtConfirmarPass = new System.Windows.Forms.TextBox();
             this.btnVolver = new System.Windows.Forms.Button();
             this.btnRecuperar = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtContraseñaActual = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // lblNuevaContraseña
@@ -79,6 +81,7 @@
             // 
             this.txtNuevaPass.Location = new System.Drawing.Point(16, 125);
             this.txtNuevaPass.Name = "txtNuevaPass";
+            this.txtNuevaPass.PasswordChar = '•';
             this.txtNuevaPass.Size = new System.Drawing.Size(215, 20);
             this.txtNuevaPass.TabIndex = 6;
             this.txtNuevaPass.UseSystemPasswordChar = true;
@@ -87,6 +90,7 @@
             // 
             this.txtConfirmarPass.Location = new System.Drawing.Point(240, 125);
             this.txtConfirmarPass.Name = "txtConfirmarPass";
+            this.txtConfirmarPass.PasswordChar = '•';
             this.txtConfirmarPass.Size = new System.Drawing.Size(215, 20);
             this.txtConfirmarPass.TabIndex = 7;
             this.txtConfirmarPass.UseSystemPasswordChar = true;
@@ -111,11 +115,32 @@
             this.btnRecuperar.UseVisualStyleBackColor = true;
             this.btnRecuperar.Click += new System.EventHandler(this.btnRecuperar_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(236, 43);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(145, 20);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Contraseña Actual:";
+            // 
+            // txtContraseñaActual
+            // 
+            this.txtContraseñaActual.Location = new System.Drawing.Point(240, 66);
+            this.txtContraseñaActual.Name = "txtContraseñaActual";
+            this.txtContraseñaActual.PasswordChar = '•';
+            this.txtContraseñaActual.Size = new System.Drawing.Size(215, 20);
+            this.txtContraseñaActual.TabIndex = 11;
+            this.txtContraseñaActual.UseSystemPasswordChar = true;
+            // 
             // FormRecuperar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(473, 280);
+            this.Controls.Add(this.txtContraseñaActual);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnRecuperar);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.txtConfirmarPass);
@@ -142,5 +167,7 @@
         private System.Windows.Forms.TextBox txtConfirmarPass;
         private System.Windows.Forms.Button btnVolver;
         private System.Windows.Forms.Button btnRecuperar;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtContraseñaActual;
     }
 }

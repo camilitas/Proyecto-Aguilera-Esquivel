@@ -35,8 +35,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
             this.lblRecuperar = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,6 +61,7 @@
             // 
             this.txtContraseña.Location = new System.Drawing.Point(204, 107);
             this.txtContraseña.Name = "txtContraseña";
+            this.txtContraseña.PasswordChar = '•';
             this.txtContraseña.Size = new System.Drawing.Size(166, 26);
             this.txtContraseña.TabIndex = 2;
             this.txtContraseña.TextChanged += new System.EventHandler(this.txtContraseña_TextChanged);
@@ -111,16 +112,6 @@
             this.panel1.Size = new System.Drawing.Size(378, 227);
             this.panel1.TabIndex = 8;
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(123, 37);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(121, 24);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Bienvenido!";
-            // 
             // lblRecuperar
             // 
             this.lblRecuperar.AutoSize = true;
@@ -131,6 +122,16 @@
             this.lblRecuperar.TabIndex = 8;
             this.lblRecuperar.Text = "Recuperar Contraseña";
             this.lblRecuperar.Click += new System.EventHandler(this.lblRecuperar_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(123, 37);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(121, 24);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Bienvenido!";
             // 
             // Form1
             // 

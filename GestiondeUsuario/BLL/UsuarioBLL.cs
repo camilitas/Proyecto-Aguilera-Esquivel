@@ -68,13 +68,17 @@ namespace BLL
             }
         }
 
-        public bool RecuperarContraseña(string email, string nuevaPass)
+        public bool RecuperarContraseña(string email, string nuevaPass, string contraseñaActual)
         {
             UsuarioDAL dal = new UsuarioDAL();
 
             Usuario usuario = dal.ObtenerPorEmail(email);
 
             if (usuario == null)
+                return false;
+
+            // Verificamos que la contraseña actual sea correcta
+            if (usuario.Contraseña != EncriptadorBLL.Encriptar(contraseñaActual))
                 return false;
 
             usuario.Contraseña = EncriptadorBLL.Encriptar(nuevaPass);
