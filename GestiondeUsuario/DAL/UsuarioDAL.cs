@@ -11,7 +11,7 @@ namespace DAL
 {
     public class UsuarioDAL
     {
-        private string connectionString = "Server=.;Database=GestionUsuarios;Trusted_Connection=True;";
+        private string connectionString = "Data Source=DESKTOP-FEJ1OE8\\SQLEXPRESS;Initial Catalog=GestionUsuarios;Integrated Security=True";
 
         public Usuario ObtenerPorEmailYContraseña(string email, string contraseña)
         {

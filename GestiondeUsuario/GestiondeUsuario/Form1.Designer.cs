@@ -51,14 +51,14 @@
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(196, 107);
+            this.txtEmail.Location = new System.Drawing.Point(17, 108);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(166, 26);
             this.txtEmail.TabIndex = 1;
             // 
             // txtContraseña
             // 
-            this.txtContraseña.Location = new System.Drawing.Point(14, 107);
+            this.txtContraseña.Location = new System.Drawing.Point(204, 107);
             this.txtContraseña.Name = "txtContraseña";
             this.txtContraseña.Size = new System.Drawing.Size(166, 26);
             this.txtContraseña.TabIndex = 2;

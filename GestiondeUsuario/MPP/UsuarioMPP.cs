@@ -1,10 +1,11 @@
-﻿using System;
+﻿using BE;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BE;
 
 namespace MPP
 {
@@ -31,7 +32,7 @@ namespace MPP
             cmd.Parameters.AddWithValue("@Email", u.Email);
             cmd.Parameters.AddWithValue("@Contraseña", u.Contraseña);
             cmd.Parameters.AddWithValue("@DNI", u.DNI);
-            cmd.Parameters.AddWithValue("@FechaCreacion", u.FechaCreacion);
+            cmd.Parameters.Add("@FechaCreacion", SqlDbType.DateTime).Value = DateTime.UtcNow;
             cmd.Parameters.AddWithValue("@Activo", true);
         }
     }

@@ -48,7 +48,7 @@
             // txtNombre
             // 
             this.txtNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombre.Location = new System.Drawing.Point(14, 135);
+            this.txtNombre.Location = new System.Drawing.Point(14, 76);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(192, 26);
             this.txtNombre.TabIndex = 0;
@@ -56,7 +56,7 @@
             // txtEmail
             // 
             this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEmail.Location = new System.Drawing.Point(212, 184);
+            this.txtEmail.Location = new System.Drawing.Point(212, 76);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(192, 26);
             this.txtEmail.TabIndex = 1;
@@ -64,7 +64,7 @@
             // txtDNI
             // 
             this.txtDNI.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDNI.Location = new System.Drawing.Point(14, 76);
+            this.txtDNI.Location = new System.Drawing.Point(14, 135);
             this.txtDNI.Name = "txtDNI";
             this.txtDNI.Size = new System.Drawing.Size(192, 26);
             this.txtDNI.TabIndex = 2;
@@ -72,7 +72,7 @@
             // txtContraseña
             // 
             this.txtContraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtContraseña.Location = new System.Drawing.Point(212, 76);
+            this.txtContraseña.Location = new System.Drawing.Point(212, 135);
             this.txtContraseña.Name = "txtContraseña";
             this.txtContraseña.Size = new System.Drawing.Size(192, 26);
             this.txtContraseña.TabIndex = 3;
@@ -91,7 +91,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(215, 53);
+            this.label2.Location = new System.Drawing.Point(217, 53);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(52, 20);
             this.label2.TabIndex = 5;
@@ -111,7 +111,7 @@
             // 
             this.Contraseña.AutoSize = true;
             this.Contraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Contraseña.Location = new System.Drawing.Point(208, 105);
+            this.Contraseña.Location = new System.Drawing.Point(214, 113);
             this.Contraseña.Name = "Contraseña";
             this.Contraseña.Size = new System.Drawing.Size(96, 20);
             this.Contraseña.TabIndex = 7;
@@ -120,7 +120,7 @@
             // txtConfirmarContraseña
             // 
             this.txtConfirmarContraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtConfirmarContraseña.Location = new System.Drawing.Point(212, 131);
+            this.txtConfirmarContraseña.Location = new System.Drawing.Point(212, 186);
             this.txtConfirmarContraseña.Name = "txtConfirmarContraseña";
             this.txtConfirmarContraseña.Size = new System.Drawing.Size(192, 26);
             this.txtConfirmarContraseña.TabIndex = 8;
@@ -161,7 +161,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(208, 161);
+            this.label4.Location = new System.Drawing.Point(212, 164);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(169, 20);
             this.label4.TabIndex = 12;
