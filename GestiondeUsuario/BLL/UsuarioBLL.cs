@@ -24,16 +24,62 @@ namespace BLL
 
         public bool Login(string email, string contraseña)
         {
-            string contraseñaEncriptada = EncriptadorBLL.Encriptar(contraseña); //encripta la contraseña ingresada por el usuario utilizando el método Encriptar de la clase EncriptadorBLL. Esto asegura que la contraseña se compare de forma segura con la versión encriptada almacenada en la base de datos.
+            string passEnc = EncriptadorBLL.Encriptar(contraseña);
+
             UsuarioDAL dal = new UsuarioDAL();
-            Usuario usuario = dal.ObtenerPorEmailYContraseña(email, contraseñaEncriptada);
-            
-            if (usuario != null)
+            BitacoraDAL bitacora = new BitacoraDAL();
+
+            Usuario usuario = dal.ObtenerPorEmail(email);
+
+            if (usuario == null)
             {
-                SessionManagerBLL.Instancia.IniciarSesion(usuario); //si el usuario existe, inicia la sesión utilizando el método IniciarSesion de la clase SessionManagerBLL. Esto almacena la información del usuario en la sesión activa de la aplicación.
+                bitacora.Guardar(email, "Login fallido - usuario no existe");
+                return false;
+            }
+
+            if (usuario.Bloqueado)
+            {
+                bitacora.Guardar(email, "Intento en cuenta bloqueada");
+                throw new Exception("Usuario bloqueado");
+            }
+
+            if (usuario.Contraseña == passEnc)
+            {
+                usuario.IntentosFallidos = 0;
+                dal.ActualizarIntentos(usuario);
+
+                SessionManagerBLL.Instancia.IniciarSesion(usuario);
+
+                bitacora.Guardar(email, "Login exitoso");
                 return true;
             }
-            return false;
+            else
+            {
+                usuario.IntentosFallidos++;
+
+                if (usuario.IntentosFallidos >= 3)
+                    usuario.Bloqueado = true;
+
+                dal.ActualizarIntentos(usuario);
+
+                bitacora.Guardar(email, "Login fallido");
+
+                return false;
+            }
+        }
+
+        public bool RecuperarContraseña(string email, string nuevaPass)
+        {
+            UsuarioDAL dal = new UsuarioDAL();
+
+            Usuario usuario = dal.ObtenerPorEmail(email);
+
+            if (usuario == null)
+                return false;
+
+            usuario.Contraseña = EncriptadorBLL.Encriptar(nuevaPass);
+
+            return dal.ActualizarContraseña(usuario);
         }
 
         // validaciones: ningun campo puede estar vacio

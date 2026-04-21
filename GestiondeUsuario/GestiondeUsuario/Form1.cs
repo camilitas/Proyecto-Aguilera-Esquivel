@@ -63,5 +63,11 @@ namespace GestiondeUsuario
         {
 
         }
+
+        private void lblRecuperar_Click(object sender, EventArgs e)
+        {
+            new FormRecuperar().Show();
+            this.Hide();
+        }
     }
 }

@@ -36,6 +36,56 @@ namespace DAL
             return usuario;
         }
 
+        public Usuario ObtenerPorEmail(string email)
+        {
+            Usuario usuario = null;
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                string query = "SELECT * FROM Usuarios WHERE Email = @Email";
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@Email", email);
+
+                con.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                    usuario = UsuarioMPP.MapearAUsuario(reader);
+            }
+            return usuario;
+        }
+
+        public void ActualizarIntentos(Usuario u)
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                string query = "UPDATE Usuarios SET IntentosFallidos=@Intentos, Bloqueado=@Bloqueado WHERE Id=@Id";
+                SqlCommand cmd = new SqlCommand(query, con);
+
+                cmd.Parameters.AddWithValue("@Intentos", u.IntentosFallidos);
+                cmd.Parameters.AddWithValue("@Bloqueado", u.Bloqueado);
+                cmd.Parameters.AddWithValue("@Id", u.Id);
+
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public bool ActualizarContraseña(Usuario u)
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                string query = "UPDATE Usuarios SET Contraseña=@Pass WHERE Id=@Id";
+                SqlCommand cmd = new SqlCommand(query, con);
+
+                cmd.Parameters.AddWithValue("@Pass", u.Contraseña);
+                cmd.Parameters.AddWithValue("@Id", u.Id);
+
+                con.Open();
+                return cmd.ExecuteNonQuery() > 0;
+            }
+        }
+
         public bool Insertar(Usuario u)
         {
             using (SqlConnection con = new SqlConnection(connectionString))

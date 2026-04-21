@@ -21,5 +21,8 @@ namespace BE
         public DateTime FechaCreacion { get; set; }
 
         public bool Activo { get; set; }
+
+        public int IntentosFallidos { get; set; }
+        public bool Bloqueado { get; set; }
     }
 }

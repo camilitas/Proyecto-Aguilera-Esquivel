@@ -21,11 +21,13 @@ namespace MPP
                 Contraseña = reader["Contraseña"].ToString(),
                 DNI = Convert.ToInt32(reader["DNI"]),
                 FechaCreacion = Convert.ToDateTime(reader["FechaCreacion"]),
-                Activo = Convert.ToBoolean(reader["Activo"])
+                Activo = Convert.ToBoolean(reader["Activo"]),
+                IntentosFallidos = Convert.ToInt32(reader["IntentosFallidos"]),
+                Bloqueado = Convert.ToBoolean(reader["Bloqueado"])
             };
         }
 
-             // Convierte un Usuario en parámetros SQL (del programa hacia la BD)
+        // Convierte un Usuario en parámetros SQL (del programa hacia la BD)
         public static void MapearParametros(SqlCommand cmd, Usuario u)
         {
             cmd.Parameters.AddWithValue("@Nombre", u.Nombre);
