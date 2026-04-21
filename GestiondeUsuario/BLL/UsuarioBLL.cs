@@ -24,8 +24,9 @@ namespace BLL
 
         public bool Login(string email, string contraseña)
         {
+            string contraseñaEncriptada = EncriptadorBLL.Encriptar(contraseña); //encripta la contraseña ingresada por el usuario utilizando el método Encriptar de la clase EncriptadorBLL. Esto asegura que la contraseña se compare de forma segura con la versión encriptada almacenada en la base de datos.
             UsuarioDAL dal = new UsuarioDAL();
-            Usuario usuario = dal.ObtenerPorEmailYContraseña(email, contraseña);
+            Usuario usuario = dal.ObtenerPorEmailYContraseña(email, contraseñaEncriptada);
             return usuario != null;
         }
 
@@ -35,6 +36,10 @@ namespace BLL
                 return false;
             if (string.IsNullOrEmpty(nuevoUsuario.Email))
                 return false;
+            if (string.IsNullOrEmpty(nuevoUsuario.Contraseña))
+                return false;
+
+            nuevoUsuario.Contraseña = EncriptadorBLL.Encriptar(nuevoUsuario.Contraseña); //encripta la contraseña del nuevo usuario utilizando el método Encriptar de la clase EncriptadorBLL. Esto asegura que la contraseña se almacene de forma segura en la base de datos.
 
             UsuarioDAL dal = new UsuarioDAL();
             return dal.Insertar(nuevoUsuario);
