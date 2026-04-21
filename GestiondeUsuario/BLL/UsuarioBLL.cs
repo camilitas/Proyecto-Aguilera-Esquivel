@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BE;
 using DAL;
+using Servicios;
 
 namespace BLL
 {
@@ -48,7 +49,7 @@ namespace BLL
                 usuario.IntentosFallidos = 0;
                 dal.ActualizarIntentos(usuario);
 
-                SessionManagerBLL.Instancia.IniciarSesion(usuario);
+                SessionManager.Instancia.IniciarSesion(usuario);
 
                 bitacora.Guardar(email, "Login exitoso");
                 return true;

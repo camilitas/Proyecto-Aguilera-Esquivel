@@ -5,21 +5,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BLL
+namespace Servicios
 {
-    public class SessionManagerBLL
+    public class SessionManager
     {
-        private static SessionManagerBLL _instancia; //guarda el unico objeto de esta clase (patron Singleton, igual que en UsuarioBLL)
-        private Usuario _usuarioActivo; //guarda la informacion del usuario que ha iniciado sesion. Es privada para que solo pueda ser accedida a traves de los metodos publicos de esta clase.
-
-        private SessionManagerBLL() { }
-
-        public static SessionManagerBLL Instancia
+        private static SessionManager _instancia; //guarda el unico objeto de esta clase (patron Singleton, igual que en UsuarioBLL)
+        private Usuario _usuarioActivo;//guarda la informacion del usuario que ha iniciado sesion. Es privada para que solo pueda ser accedida a traves de los metodos publicos de esta clase.
+        private SessionManager() { }
+        public static SessionManager Instancia
         {
             get
             {
                 if (_instancia == null)
-                    _instancia = new SessionManagerBLL();
+                    _instancia = new SessionManager();
                 return _instancia;
             }
         }
@@ -31,7 +29,7 @@ namespace BLL
 
         public void CerrarSesion()
         {
-            _usuarioActivo = null;  //"Olvida" al usuario activo poniendolo en null
+            _usuarioActivo = null;//"Olvida" al usuario activo poniendolo en null
         }
 
         public Usuario ObtenerUsuarioActivo()
@@ -41,7 +39,7 @@ namespace BLL
 
         public bool HaySesionActiva()
         {
-            return _usuarioActivo != null; 
+            return _usuarioActivo != null;
         }
     }
 }

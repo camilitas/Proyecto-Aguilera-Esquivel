@@ -43,7 +43,6 @@
   <ItemGroup>
     <Compile Include="EncriptadorBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SessionManagerBLL.cs" />
     <Compile Include="UsuarioBLL.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -54,6 +53,10 @@
     <ProjectReference Include="..\DAL\DAL.csproj">
       <Project>{d82eb7d4-5aca-4cb0-a3a3-939237e1c005}</Project>
       <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Servicios\Servicios.csproj">
+      <Project>{62d7ff82-53e7-41c4-bfdc-3eb3c51fc1d9}</Project>
+      <Name>Servicios</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

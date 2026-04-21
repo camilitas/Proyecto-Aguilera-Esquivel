@@ -22,7 +22,7 @@ namespace GestiondeUsuario
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            UsuarioServicio.Instancia.CerrarSesion(); // Limpiamos la sesion activa
+            SessionManager.Instancia.CerrarSesion(); // Limpiamos la sesion activa
 
             //volvemos al login
             new Form1().Show();
@@ -31,7 +31,7 @@ namespace GestiondeUsuario
 
         private void FormPrincipal_Load(object sender, EventArgs e)
         {
-            Usuario usuario = UsuarioServicio.Instancia.ObtenerUsuarioActivo(); // Obtenemos el usuario activo desde el SessionManager 
+            Usuario usuario = SessionManager.Instancia.ObtenerUsuarioActivo(); // Obtenemos el usuario activo desde el SessionManager 
             lblBienvenida.Text = "Bienvenida, " + usuario.Nombre + "!"; //mostramos su nombre en el label de bienvenida
         }
     }

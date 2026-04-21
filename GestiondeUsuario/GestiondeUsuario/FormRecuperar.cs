@@ -53,7 +53,7 @@ namespace GestiondeUsuario
             }
 
             // Llamada a BLL
-            bool ok = UsuarioServicio.Instancia.RecuperarContraseña(
+            bool ok = UsuarioBLL.Instancia.RecuperarContraseña(
                 txtEmail.Text,
                 txtContraseñaActual.Text,
                 txtNuevaPass.Text

@@ -35,7 +35,7 @@ namespace GestiondeUsuario
             try
             {
 
-                bool acceso = UsuarioServicio.Instancia.Login(txtEmail.Text, txtContraseña.Text); // Verifica credenciales en BD y retorna true si usuario existe, false si no
+                bool acceso = UsuarioBLL.Instancia.Login(txtEmail.Text, txtContraseña.Text); // Verifica credenciales en BD y retorna true si usuario existe, false si no
 
                 if (acceso)
                 {

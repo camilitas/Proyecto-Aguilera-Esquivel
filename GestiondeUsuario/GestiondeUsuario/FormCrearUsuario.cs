@@ -61,7 +61,7 @@ namespace GestiondeUsuario
                 // FechaCreacion y Activo los asigna MPP automaticamente
             };
 
-            bool resultado = UsuarioServicio.Instancia.CrearUsuario(nuevo);  // le pedimos a la BLL que procese la creacion (valida + encripta + guarda)
+            bool resultado = UsuarioBLL.Instancia.CrearUsuario(nuevo);  // le pedimos a la BLL que procese la creacion (valida + encripta + guarda)
 
             if (resultado)
             {
