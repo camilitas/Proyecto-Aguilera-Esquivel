@@ -56,9 +56,9 @@
             this.lblEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEmail.Location = new System.Drawing.Point(12, 32);
             this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(48, 20);
+            this.lblEmail.Size = new System.Drawing.Size(37, 20);
             this.lblEmail.TabIndex = 2;
-            this.lblEmail.Text = "Email";
+            this.lblEmail.Text = "DNI";
             // 
             // lblConfirmarContraseña
             // 

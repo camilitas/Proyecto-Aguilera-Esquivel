@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Servicios;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BE;
-using MPP;
 
 namespace DAL
 {
@@ -13,46 +13,110 @@ namespace DAL
     {
         private string connectionString = "Data Source=DESKTOP-FEJ1OE8\\SQLEXPRESS;Initial Catalog=GestionUsuarios;Integrated Security=True";
 
-        public Usuario ObtenerPorEmailYContraseña(string email, string contraseña)
+        private Usuario MapearUsuario(SqlDataReader reader)
         {
-            Usuario usuario = null;
-
-            using (SqlConnection con = new SqlConnection(connectionString))
+            return new Usuario()
             {
-                string query = "SELECT * FROM Usuarios WHERE Email = @Email AND Contraseña = @Contraseña"; //consulta SQL para obtener un usuario que coincida con el email y la contraseña proporcionados. Utiliza parámetros para evitar inyecciones SQL.
-                SqlCommand cmd = new SqlCommand(query, con);
-                cmd.Parameters.AddWithValue("@Email", email);
-                cmd.Parameters.AddWithValue("@Contraseña", contraseña);
-
-                con.Open();
-                SqlDataReader reader = cmd.ExecuteReader();
-
-                if (reader.Read())
-                {
-                    usuario = UsuarioMPP.MapearAUsuario(reader);
-                }
-            }
-
-            return usuario;
+                Id = Convert.ToInt32(reader["Id"]),
+                Nombre = reader["Nombre"].ToString(),
+                Apellido = reader["Apellido"].ToString(),
+                Email = reader["Email"].ToString(),
+                Contraseña = reader["Contraseña"].ToString(),
+                DNI = Convert.ToInt32(reader["DNI"]),
+                FechaCreacion = Convert.ToDateTime(reader["FechaCreacion"]),
+                Activo = Convert.ToBoolean(reader["Activo"]),
+                IntentosFallidos = Convert.ToInt32(reader["IntentosFallidos"]),
+                Bloqueado = Convert.ToBoolean(reader["Bloqueado"]),
+                Rol = reader["Rol"].ToString(),
+                PrimerIngreso = Convert.ToBoolean(reader["PrimerIngreso"])
+            };
         }
 
         public Usuario ObtenerPorEmail(string email)
         {
             Usuario usuario = null;
-
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 string query = "SELECT * FROM Usuarios WHERE Email = @Email";
                 SqlCommand cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@Email", email);
-
                 con.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
-
                 if (reader.Read())
-                    usuario = UsuarioMPP.MapearAUsuario(reader);
+                    usuario = MapearUsuario(reader);
             }
             return usuario;
+        }
+        public List<Usuario> ObtenerTodos()
+        {
+            List<Usuario> lista = new List<Usuario>();
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                string query = "SELECT * FROM Usuarios";
+                SqlCommand cmd = new SqlCommand(query, con);
+                con.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                    lista.Add(MapearUsuario(reader));
+            }
+            return lista;
+        }
+
+        public List<Usuario> ObtenerActivos()
+        {
+            List<Usuario> lista = new List<Usuario>();
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                string query = "SELECT * FROM Usuarios WHERE Activo = 1";
+                SqlCommand cmd = new SqlCommand(query, con);
+                con.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                    lista.Add(MapearUsuario(reader));
+            }
+            return lista;
+        }
+
+        public bool Modificar(Usuario u)
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                string query = @"UPDATE Usuarios SET 
+                Nombre=@Nombre, Apellido=@Apellido, Email=@Email, DNI=@DNI, Rol=@Rol
+                WHERE Id=@Id";
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@Nombre", u.Nombre);
+                cmd.Parameters.AddWithValue("@Apellido", u.Apellido);
+                cmd.Parameters.AddWithValue("@Email", u.Email);
+                cmd.Parameters.AddWithValue("@DNI", u.DNI);
+                cmd.Parameters.AddWithValue("@Rol", u.Rol);
+                cmd.Parameters.AddWithValue("@Id", u.Id);
+                con.Open();
+                return cmd.ExecuteNonQuery() > 0;
+            }
+        }
+
+        public bool Deshabilitar(int id)
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                string query = "UPDATE Usuarios SET Activo=0 WHERE Id=@Id";
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@Id", id);
+                con.Open();
+                return cmd.ExecuteNonQuery() > 0;
+            }
+        }
+        public bool Desbloquear(int id)
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                string query = "UPDATE Usuarios SET Bloqueado=0, IntentosFallidos=0 WHERE Id=@Id";
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@Id", id);
+                con.Open();
+                return cmd.ExecuteNonQuery() > 0;
+            }
         }
 
         public void ActualizarIntentos(Usuario u)
@@ -61,11 +125,9 @@ namespace DAL
             {
                 string query = "UPDATE Usuarios SET IntentosFallidos=@Intentos, Bloqueado=@Bloqueado WHERE Id=@Id";
                 SqlCommand cmd = new SqlCommand(query, con);
-
                 cmd.Parameters.AddWithValue("@Intentos", u.IntentosFallidos);
                 cmd.Parameters.AddWithValue("@Bloqueado", u.Bloqueado);
                 cmd.Parameters.AddWithValue("@Id", u.Id);
-
                 con.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -75,12 +137,11 @@ namespace DAL
         {
             using (SqlConnection con = new SqlConnection(connectionString))
             {
-                string query = "UPDATE Usuarios SET Contraseña=@Pass WHERE Id=@Id";
+                string query = "UPDATE Usuarios SET Contraseña=@Pass, PrimerIngreso=@PrimerIngreso WHERE Id=@Id";
                 SqlCommand cmd = new SqlCommand(query, con);
-
                 cmd.Parameters.AddWithValue("@Pass", u.Contraseña);
+                cmd.Parameters.AddWithValue("@PrimerIngreso", u.PrimerIngreso);
                 cmd.Parameters.AddWithValue("@Id", u.Id);
-
                 con.Open();
                 return cmd.ExecuteNonQuery() > 0;
             }
@@ -90,13 +151,22 @@ namespace DAL
         {
             using (SqlConnection con = new SqlConnection(connectionString))
             {
-                string query = "INSERT INTO Usuarios (Nombre, Email, Contraseña, DNI, FechaCreacion, Activo) VALUES (@Nombre, @Email, @Contraseña, @DNI, @FechaCreacion, @Activo)";
+                string query = @"INSERT INTO Usuarios 
+                (Nombre, Apellido, Email, Contraseña, DNI, FechaCreacion, Activo, Rol, PrimerIngreso, IntentosFallidos, Bloqueado) 
+                VALUES 
+                (@Nombre, @Apellido, @Email, @Contraseña, @DNI, @FechaCreacion, @Activo, @Rol, @PrimerIngreso, 0, 0)";
                 SqlCommand cmd = new SqlCommand(query, con);
-                UsuarioMPP.MapearParametros(cmd, u); // se encarga de asignar cada campo del objeto Usuario a su parámetro SQL
-
+                cmd.Parameters.AddWithValue("@Nombre", u.Nombre);
+                cmd.Parameters.AddWithValue("@Apellido", u.Apellido);
+                cmd.Parameters.AddWithValue("@Email", u.Email);
+                cmd.Parameters.AddWithValue("@Contraseña", u.Contraseña);
+                cmd.Parameters.AddWithValue("@DNI", u.DNI);
+                cmd.Parameters.Add("@FechaCreacion", SqlDbType.DateTime).Value = DateTime.UtcNow;
+                cmd.Parameters.AddWithValue("@Activo", true);
+                cmd.Parameters.AddWithValue("@Rol", u.Rol);
+                cmd.Parameters.AddWithValue("@PrimerIngreso", true);
                 con.Open();
-                int filas = cmd.ExecuteNonQuery(); //ejecuta el INSERT y devuelve cuantas filas se insertaron
-                return filas > 0;  //si se inserto al menos 1 fila, fue exitoso
+                return cmd.ExecuteNonQuery() > 0;
             }
         }
     }

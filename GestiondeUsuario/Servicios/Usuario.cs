@@ -4,13 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BE
+namespace Servicios
 {
     public class Usuario //representa la entidad Usuario de la base de datos 
     {
         public int Id { get; set; }
 
         public string Nombre { get; set; }
+
+        public string Apellido { get; set; }
 
         public string Email { get; set; }
 
@@ -24,5 +26,9 @@ namespace BE
 
         public int IntentosFallidos { get; set; }
         public bool Bloqueado { get; set; }
+
+        public string Rol { get; set; }
+
+        public bool PrimerIngreso { get; set; }
     }
 }

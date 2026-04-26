@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BE
+namespace Servicios
 {
     public class Sesion //clase sesion para almacenar información de la sesión activa del usuario
     {
