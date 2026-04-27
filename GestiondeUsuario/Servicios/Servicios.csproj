@@ -42,8 +42,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bitacora.cs" />
+    <Compile Include="IComponentePermiso.cs" />
     <Compile Include="IGestorEventos.cs" />
     <Compile Include="IObservador.cs" />
+    <Compile Include="Perfil.cs" />
+    <Compile Include="Permiso.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sesion.cs" />
     <Compile Include="SessionManager.cs" />
