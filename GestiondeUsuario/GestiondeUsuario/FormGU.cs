@@ -45,7 +45,6 @@ namespace GestiondeUsuario
 
         private void CargarGrilla()
         {
-            UsuarioBLL bll = new UsuarioBLL();
             List<Usuario> lista;
 
             if (rbActivos.Checked)
@@ -56,7 +55,7 @@ namespace GestiondeUsuario
             dgvUsuarios.DataSource = null;
             dgvUsuarios.AutoGenerateColumns = true;
             dgvUsuarios.DataSource = lista;
-            // Ocultamos columnas sensibles o innecesarias
+
             dgvUsuarios.Columns["Contraseña"].Visible = false;
             dgvUsuarios.Columns["IntentosFallidos"].Visible = false;
             dgvUsuarios.Columns["FechaCreacion"].Visible = false;

@@ -11,7 +11,7 @@ namespace DAL
 {
     public class UsuarioDAL
     {
-        private string connectionString = "Data Source=DESKTOP-FEJ1OE8\\SQLEXPRESS;Initial Catalog=GestionUsuarios;Integrated Security=True";
+        private string connectionString = ConexionDAL.ConnectionString;
 
         private Usuario MapearUsuario(SqlDataReader reader)
         {

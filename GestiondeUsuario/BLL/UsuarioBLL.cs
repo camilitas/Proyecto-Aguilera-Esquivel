@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DAL;
 using Servicios;
 
@@ -10,7 +7,9 @@ namespace BLL
 {
     public class UsuarioBLL
     {
-        private static UsuarioBLL _instancia; //patron singleton para asegurar que solo haya una instancia de UsuarioBLL en toda la aplicación
+        private static UsuarioBLL _instancia;
+
+        private UsuarioBLL() { } // constructor privado — corregido del original
 
         public static UsuarioBLL Instancia
         {
@@ -26,18 +25,19 @@ namespace BLL
         {
             string passEnc = EncriptadorBLL.Encriptar(contraseña);
             UsuarioDAL dal = new UsuarioDAL();
-            BitacoraDAL bitacora = new BitacoraDAL();
             Usuario usuario = dal.ObtenerPorNombreUsuario(nombreUsuario);
 
             if (usuario == null)
             {
-                bitacora.Guardar(nombreUsuario, "Login fallido - usuario no existe");
+                GestorEventosBLL.Instancia.Notificar(nombreUsuario,
+                    "Login fallido - usuario no existe", "Usuarios", 1);
                 return false;
             }
 
             if (usuario.Bloqueado)
             {
-                bitacora.Guardar(nombreUsuario, "Intento en cuenta bloqueada");
+                GestorEventosBLL.Instancia.Notificar(nombreUsuario,
+                    "Intento en cuenta bloqueada", "Usuarios", 1);
                 throw new Exception("Usuario bloqueado");
             }
 
@@ -46,9 +46,8 @@ namespace BLL
                 usuario.IntentosFallidos = 0;
                 dal.ActualizarIntentos(usuario);
                 SessionManager.Instancia.IniciarSesion(usuario);
-                bitacora.Guardar(nombreUsuario, "Login exitoso");
-
-                // Si es primer ingreso devolvemos true pero marcamos la flag
+                GestorEventosBLL.Instancia.Notificar(nombreUsuario,
+                    "Login", "Usuarios", 1);
                 return true;
             }
             else
@@ -59,9 +58,8 @@ namespace BLL
                     usuario.Bloqueado = true;
 
                 dal.ActualizarIntentos(usuario);
-
-                bitacora.Guardar(nombreUsuario, "Login fallido");
-
+                GestorEventosBLL.Instancia.Notificar(nombreUsuario,
+                    "Login fallido", "Usuarios", 1);
                 return false;
             }
         }
@@ -69,7 +67,6 @@ namespace BLL
         public bool CambiarContraseña(int dni, string contraseñaActual, string nuevaPass)
         {
             UsuarioDAL dal = new UsuarioDAL();
-            BitacoraDAL bitacora = new BitacoraDAL();
 
             Usuario usuario = dal.ObtenerPorDNI(dni);
             if (usuario == null)
@@ -83,12 +80,12 @@ namespace BLL
             bool ok = dal.ActualizarContraseña(usuario);
 
             if (ok)
-                bitacora.Guardar(usuario.NombreUsuario, "Cambio de contraseña exitoso");
+                GestorEventosBLL.Instancia.Notificar(usuario.NombreUsuario,
+                    "Cambiar Clave", "Usuarios", 2);
 
             return ok;
         }
 
-        // validaciones: ningun campo puede estar vacio
         public bool CrearUsuario(Usuario nuevoUsuario)
         {
             if (string.IsNullOrEmpty(nuevoUsuario.Nombre))
@@ -98,55 +95,92 @@ namespace BLL
             if (string.IsNullOrEmpty(nuevoUsuario.Contraseña))
                 return false;
 
-            // antes de guardar, encriptamos la contraseña
-            // a partir de aca el objeto ya tiene la contraseña encriptada
-            nuevoUsuario.Contraseña = EncriptadorBLL.Encriptar(nuevoUsuario.Contraseña); //encripta la contraseña del nuevo usuario utilizando el método Encriptar de la clase EncriptadorBLL. Esto asegura que la contraseña se almacene de forma segura en la base de datos.
+            nuevoUsuario.Contraseña = EncriptadorBLL.Encriptar(nuevoUsuario.Contraseña);
 
-            //le pedimos a dal que inserte el nuevo usuario en la bd
             UsuarioDAL dal = new UsuarioDAL();
-            return dal.Insertar(nuevoUsuario);
+            bool ok = dal.Insertar(nuevoUsuario);
+
+            if (ok)
+                GestorEventosBLL.Instancia.Notificar(
+                    SessionManager.Instancia.ObtenerUsuarioActivo()?.NombreUsuario ?? "Admin",
+                    "Crear Usuario", "Usuarios", 2);
+
+            return ok;
         }
+
         public List<Usuario> ObtenerTodos()
         {
             UsuarioDAL dal = new UsuarioDAL();
             return dal.ObtenerTodos();
         }
+
         public List<Usuario> ObtenerActivos()
         {
             UsuarioDAL dal = new UsuarioDAL();
             return dal.ObtenerActivos();
         }
+
         public bool Modificar(Usuario u)
         {
             UsuarioDAL dal = new UsuarioDAL();
-            return dal.Modificar(u);
+            bool ok = dal.Modificar(u);
+
+            if (ok)
+                GestorEventosBLL.Instancia.Notificar(
+                    SessionManager.Instancia.ObtenerUsuarioActivo()?.NombreUsuario ?? "Admin",
+                    "Modificar Usuario", "Usuarios", 3);
+
+            return ok;
         }
+
         public bool Deshabilitar(int id)
         {
             UsuarioDAL dal = new UsuarioDAL();
-            BitacoraDAL bitacora = new BitacoraDAL();
             bool ok = dal.Deshabilitar(id);
+
             if (ok)
-                bitacora.Guardar("Admin", "Usuario deshabilitado - Id: " + id);
+                GestorEventosBLL.Instancia.Notificar(
+                    SessionManager.Instancia.ObtenerUsuarioActivo()?.NombreUsuario ?? "Admin",
+                    "Deshabilitar Usuario", "Usuarios", 2);
+
             return ok;
         }
+
         public bool Habilitar(int id)
         {
             UsuarioDAL dal = new UsuarioDAL();
-            BitacoraDAL bitacora = new BitacoraDAL();
             bool ok = dal.Habilitar(id);
+
             if (ok)
-                bitacora.Guardar("Admin", "Usuario habilitado - Id: " + id);
+                GestorEventosBLL.Instancia.Notificar(
+                    SessionManager.Instancia.ObtenerUsuarioActivo()?.NombreUsuario ?? "Admin",
+                    "Habilitar Usuario", "Usuarios", 2);
+
             return ok;
         }
+
         public bool Desbloquear(int id)
         {
             UsuarioDAL dal = new UsuarioDAL();
-            BitacoraDAL bitacora = new BitacoraDAL();
             bool ok = dal.Desbloquear(id);
+
             if (ok)
-                bitacora.Guardar("Admin", "Usuario desbloqueado - Id: " + id);
+                GestorEventosBLL.Instancia.Notificar(
+                    SessionManager.Instancia.ObtenerUsuarioActivo()?.NombreUsuario ?? "Admin",
+                    "Bloquear Usuario", "Usuarios", 1);
+
             return ok;
+        }
+
+        public void Logout()
+        {
+            string nombreUsuario = SessionManager.Instancia
+                .ObtenerUsuarioActivo()?.NombreUsuario ?? "Desconocido";
+
+            GestorEventosBLL.Instancia.Notificar(nombreUsuario,
+                "Logout", "Usuarios", 1);
+
+            SessionManager.Instancia.CerrarSesion();
         }
     }
 }
