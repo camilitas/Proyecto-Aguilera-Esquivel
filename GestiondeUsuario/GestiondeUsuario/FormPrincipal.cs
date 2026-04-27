@@ -19,15 +19,6 @@ namespace GestiondeUsuario
             InitializeComponent();
         }
 
-        private void btnLogout_Click(object sender, EventArgs e)
-        {
-            SessionManager.Instancia.CerrarSesion(); // Limpiamos la sesion activa
-
-            //volvemos al login
-            new Form1().Show();
-            this.Close();
-        }
-
         private void FormPrincipal_Load(object sender, EventArgs e)
         {
             Usuario usuario = SessionManager.Instancia.ObtenerUsuarioActivo(); // Obtenemos el usuario activo desde el SessionManager 
@@ -58,9 +49,14 @@ namespace GestiondeUsuario
 
         private void cerrarSesionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SessionManager.Instancia.CerrarSesion();
-            new Form1().Show();
-            this.Close();
+            DialogResult confirm = MessageBox.Show( "¿Estás segura que querés cerrar sesión?", "Cerrar sesión", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (confirm == DialogResult.Yes)
+            {
+                SessionManager.Instancia.CerrarSesion();
+                new Form1().Show();
+                this.Close();
+            }
         }
 
         private void gestionDeUsuariosToolStripMenuItem_Click(object sender, EventArgs e)

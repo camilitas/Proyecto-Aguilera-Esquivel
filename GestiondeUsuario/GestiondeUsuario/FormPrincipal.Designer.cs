@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.btnLogout = new System.Windows.Forms.Button();
             this.lblBienvenida = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.usuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,16 +58,6 @@
             this.label1.Size = new System.Drawing.Size(222, 24);
             this.label1.TabIndex = 0;
             this.label1.Text = "Bienvenido al Sistema!";
-            // 
-            // btnLogout
-            // 
-            this.btnLogout.Location = new System.Drawing.Point(684, 415);
-            this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(104, 23);
-            this.btnLogout.TabIndex = 1;
-            this.btnLogout.Text = "Cerrar Sesion";
-            this.btnLogout.UseVisualStyleBackColor = true;
-            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
             // lblBienvenida
             // 
@@ -206,7 +195,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.lblBienvenida);
-            this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -223,7 +211,6 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.Label lblBienvenida;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem usuarioToolStripMenuItem;
