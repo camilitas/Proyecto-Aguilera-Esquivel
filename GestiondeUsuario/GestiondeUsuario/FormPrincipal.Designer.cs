@@ -32,20 +32,20 @@
             this.lblBienvenida = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.usuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.iniciarSesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cambiarContraseñaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cambiarIdiomaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cerrarSesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuAdmin = new System.Windows.Forms.ToolStripMenuItem();
+            this.gestionDeUsuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gestionDePerfilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bitacoraEventosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gestionRespaldoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuMaestro = new System.Windows.Forms.ToolStripMenuItem();
             this.menuVenta = new System.Windows.Forms.ToolStripMenuItem();
             this.menuCompras = new System.Windows.Forms.ToolStripMenuItem();
             this.menuReporte = new System.Windows.Forms.ToolStripMenuItem();
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.iniciarSesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cambiarContraseñaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cambiarIdiomaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cerrarSesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gestionDeUsuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gestionDePerfilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.bitacoraEventosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gestionRespaldoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -95,6 +95,34 @@
             this.usuarioToolStripMenuItem.Name = "usuarioToolStripMenuItem";
             this.usuarioToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.usuarioToolStripMenuItem.Text = "Usuario";
+            this.usuarioToolStripMenuItem.Click += new System.EventHandler(this.usuarioToolStripMenuItem_Click);
+            // 
+            // iniciarSesionToolStripMenuItem
+            // 
+            this.iniciarSesionToolStripMenuItem.Name = "iniciarSesionToolStripMenuItem";
+            this.iniciarSesionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.iniciarSesionToolStripMenuItem.Text = "Iniciar sesion";
+            this.iniciarSesionToolStripMenuItem.Click += new System.EventHandler(this.iniciarSesionToolStripMenuItem_Click);
+            // 
+            // cambiarContraseñaToolStripMenuItem
+            // 
+            this.cambiarContraseñaToolStripMenuItem.Name = "cambiarContraseñaToolStripMenuItem";
+            this.cambiarContraseñaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cambiarContraseñaToolStripMenuItem.Text = "Cambiar contraseña";
+            this.cambiarContraseñaToolStripMenuItem.Click += new System.EventHandler(this.cambiarContraseñaToolStripMenuItem_Click);
+            // 
+            // cambiarIdiomaToolStripMenuItem
+            // 
+            this.cambiarIdiomaToolStripMenuItem.Name = "cambiarIdiomaToolStripMenuItem";
+            this.cambiarIdiomaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cambiarIdiomaToolStripMenuItem.Text = "Cambiar idioma";
+            // 
+            // cerrarSesionToolStripMenuItem
+            // 
+            this.cerrarSesionToolStripMenuItem.Name = "cerrarSesionToolStripMenuItem";
+            this.cerrarSesionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cerrarSesionToolStripMenuItem.Text = "Cerrar sesion";
+            this.cerrarSesionToolStripMenuItem.Click += new System.EventHandler(this.cerrarSesionToolStripMenuItem_Click);
             // 
             // menuAdmin
             // 
@@ -106,6 +134,32 @@
             this.menuAdmin.Name = "menuAdmin";
             this.menuAdmin.Size = new System.Drawing.Size(55, 20);
             this.menuAdmin.Text = "Admin";
+            // 
+            // gestionDeUsuariosToolStripMenuItem
+            // 
+            this.gestionDeUsuariosToolStripMenuItem.Name = "gestionDeUsuariosToolStripMenuItem";
+            this.gestionDeUsuariosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.gestionDeUsuariosToolStripMenuItem.Text = "Gestion de usuarios";
+            this.gestionDeUsuariosToolStripMenuItem.Click += new System.EventHandler(this.gestionDeUsuariosToolStripMenuItem_Click);
+            // 
+            // gestionDePerfilesToolStripMenuItem
+            // 
+            this.gestionDePerfilesToolStripMenuItem.Name = "gestionDePerfilesToolStripMenuItem";
+            this.gestionDePerfilesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.gestionDePerfilesToolStripMenuItem.Text = "Gestion de perfiles";
+            // 
+            // bitacoraEventosToolStripMenuItem
+            // 
+            this.bitacoraEventosToolStripMenuItem.Name = "bitacoraEventosToolStripMenuItem";
+            this.bitacoraEventosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.bitacoraEventosToolStripMenuItem.Text = "Bitacora eventos";
+            this.bitacoraEventosToolStripMenuItem.Click += new System.EventHandler(this.bitacoraEventosToolStripMenuItem_Click);
+            // 
+            // gestionRespaldoToolStripMenuItem
+            // 
+            this.gestionRespaldoToolStripMenuItem.Name = "gestionRespaldoToolStripMenuItem";
+            this.gestionRespaldoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.gestionRespaldoToolStripMenuItem.Text = "Gestion respaldo";
             // 
             // menuMaestro
             // 
@@ -136,58 +190,6 @@
             this.ayudaToolStripMenuItem.Name = "ayudaToolStripMenuItem";
             this.ayudaToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
             this.ayudaToolStripMenuItem.Text = "Ayuda";
-            // 
-            // iniciarSesionToolStripMenuItem
-            // 
-            this.iniciarSesionToolStripMenuItem.Name = "iniciarSesionToolStripMenuItem";
-            this.iniciarSesionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.iniciarSesionToolStripMenuItem.Text = "Iniciar sesion";
-            this.iniciarSesionToolStripMenuItem.Click += new System.EventHandler(this.iniciarSesionToolStripMenuItem_Click);
-            // 
-            // cambiarContraseñaToolStripMenuItem
-            // 
-            this.cambiarContraseñaToolStripMenuItem.Name = "cambiarContraseñaToolStripMenuItem";
-            this.cambiarContraseñaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.cambiarContraseñaToolStripMenuItem.Text = "Cambiar contraseña";
-            this.cambiarContraseñaToolStripMenuItem.Click += new System.EventHandler(this.cambiarContraseñaToolStripMenuItem_Click);
-            // 
-            // cambiarIdiomaToolStripMenuItem
-            // 
-            this.cambiarIdiomaToolStripMenuItem.Name = "cambiarIdiomaToolStripMenuItem";
-            this.cambiarIdiomaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.cambiarIdiomaToolStripMenuItem.Text = "Cambiar idioma";
-            // 
-            // cerrarSesionToolStripMenuItem
-            // 
-            this.cerrarSesionToolStripMenuItem.Name = "cerrarSesionToolStripMenuItem";
-            this.cerrarSesionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.cerrarSesionToolStripMenuItem.Text = "Cerrar sesion";
-            this.cerrarSesionToolStripMenuItem.Click += new System.EventHandler(this.cerrarSesionToolStripMenuItem_Click);
-            // 
-            // gestionDeUsuariosToolStripMenuItem
-            // 
-            this.gestionDeUsuariosToolStripMenuItem.Name = "gestionDeUsuariosToolStripMenuItem";
-            this.gestionDeUsuariosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.gestionDeUsuariosToolStripMenuItem.Text = "Gestion de usuarios";
-            this.gestionDeUsuariosToolStripMenuItem.Click += new System.EventHandler(this.gestionDeUsuariosToolStripMenuItem_Click);
-            // 
-            // gestionDePerfilesToolStripMenuItem
-            // 
-            this.gestionDePerfilesToolStripMenuItem.Name = "gestionDePerfilesToolStripMenuItem";
-            this.gestionDePerfilesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.gestionDePerfilesToolStripMenuItem.Text = "Gestion de perfiles";
-            // 
-            // bitacoraEventosToolStripMenuItem
-            // 
-            this.bitacoraEventosToolStripMenuItem.Name = "bitacoraEventosToolStripMenuItem";
-            this.bitacoraEventosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.bitacoraEventosToolStripMenuItem.Text = "Bitacora eventos";
-            // 
-            // gestionRespaldoToolStripMenuItem
-            // 
-            this.gestionRespaldoToolStripMenuItem.Name = "gestionRespaldoToolStripMenuItem";
-            this.gestionRespaldoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.gestionRespaldoToolStripMenuItem.Text = "Gestion respaldo";
             // 
             // FormPrincipal
             // 

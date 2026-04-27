@@ -21,16 +21,15 @@ namespace GestiondeUsuario
 
         private void FormPrincipal_Load(object sender, EventArgs e)
         {
-            Usuario usuario = SessionManager.Instancia.ObtenerUsuarioActivo(); // Obtenemos el usuario activo desde el SessionManager 
-            lblBienvenida.Text = "Bienvenida, " + usuario.Nombre + "!"; //mostramos su nombre en el label de bienvenida
+            Usuario usuario = SessionManager.Instancia.ObtenerUsuarioActivo();
+            lblBienvenida.Text = "Bienvenido, " + usuario.Nombre + "!";
 
-            bool esAdmin = usuario.Rol == "Admin";
-            menuAdmin.Enabled = esAdmin;
-
-            menuMaestro.Enabled = esAdmin;
-            menuVenta.Enabled = esAdmin;
-            menuCompras.Enabled = esAdmin;
-            menuReporte.Enabled = esAdmin;
+            // Composite: permisos según perfil
+            menuAdmin.Enabled = PerfilBLL.Instancia.TienePermiso(usuario.Rol, "GestionUsuarios");
+            menuMaestro.Enabled = PerfilBLL.Instancia.TienePermiso(usuario.Rol, "GestionUsuarios");
+            menuVenta.Enabled = PerfilBLL.Instancia.TienePermiso(usuario.Rol, "GestionUsuarios");
+            menuCompras.Enabled = PerfilBLL.Instancia.TienePermiso(usuario.Rol, "GestionUsuarios");
+            menuReporte.Enabled = PerfilBLL.Instancia.TienePermiso(usuario.Rol, "VerBitacora");
         }
 
         private void iniciarSesionToolStripMenuItem_Click(object sender, EventArgs e)
@@ -49,11 +48,13 @@ namespace GestiondeUsuario
 
         private void cerrarSesionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult confirm = MessageBox.Show( "¿Estás segura que querés cerrar sesión?", "Cerrar sesión", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult confirm = MessageBox.Show(
+               "¿Estás seguro que querés cerrar sesión?",
+               "Cerrar sesión", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (confirm == DialogResult.Yes)
             {
-                SessionManager.Instancia.CerrarSesion();
+                UsuarioBLL.Instancia.Logout(); // usa el método que registra en bitácora
                 new Form1().Show();
                 this.Close();
             }
@@ -62,6 +63,17 @@ namespace GestiondeUsuario
         private void gestionDeUsuariosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new FormGU().Show();
+            this.Hide();
+        }
+
+        private void usuarioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bitacoraEventosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new FormBitacora().Show();
             this.Hide();
         }
     }
