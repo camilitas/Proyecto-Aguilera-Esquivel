@@ -31,7 +31,7 @@
             this.lblNuevaContraseña = new System.Windows.Forms.Label();
             this.lblEmail = new System.Windows.Forms.Label();
             this.lblConfirmarContraseña = new System.Windows.Forms.Label();
-            this.txtEmail = new System.Windows.Forms.TextBox();
+            this.txtDNI = new System.Windows.Forms.TextBox();
             this.txtNuevaPass = new System.Windows.Forms.TextBox();
             this.txtConfirmarPass = new System.Windows.Forms.TextBox();
             this.btnVolver = new System.Windows.Forms.Button();
@@ -70,12 +70,12 @@
             this.lblConfirmarContraseña.TabIndex = 4;
             this.lblConfirmarContraseña.Text = "Confirmar Contraseña";
             // 
-            // txtEmail
+            // txtDNI
             // 
-            this.txtEmail.Location = new System.Drawing.Point(16, 55);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(100, 20);
-            this.txtEmail.TabIndex = 5;
+            this.txtDNI.Location = new System.Drawing.Point(16, 55);
+            this.txtDNI.Name = "txtDNI";
+            this.txtDNI.Size = new System.Drawing.Size(100, 20);
+            this.txtDNI.TabIndex = 5;
             // 
             // txtNuevaPass
             // 
@@ -145,7 +145,7 @@
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.txtConfirmarPass);
             this.Controls.Add(this.txtNuevaPass);
-            this.Controls.Add(this.txtEmail);
+            this.Controls.Add(this.txtDNI);
             this.Controls.Add(this.lblConfirmarContraseña);
             this.Controls.Add(this.lblNuevaContraseña);
             this.Controls.Add(this.lblEmail);
@@ -162,7 +162,7 @@
         private System.Windows.Forms.Label lblNuevaContraseña;
         private System.Windows.Forms.Label lblEmail;
         private System.Windows.Forms.Label lblConfirmarContraseña;
-        private System.Windows.Forms.TextBox txtEmail;
+        private System.Windows.Forms.TextBox txtDNI;
         private System.Windows.Forms.TextBox txtNuevaPass;
         private System.Windows.Forms.TextBox txtConfirmarPass;
         private System.Windows.Forms.Button btnVolver;

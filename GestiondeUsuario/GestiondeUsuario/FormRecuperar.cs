@@ -1,5 +1,4 @@
-﻿using BE;
-using BLL;
+﻿using BLL;
 using Servicios;
 using System;
 using System.Collections.Generic;
@@ -29,7 +28,7 @@ namespace GestiondeUsuario
         private void btnRecuperar_Click(object sender, EventArgs e)
         {
             // Validación: campos vacíos
-            if (string.IsNullOrEmpty(txtEmail.Text) ||
+            if (string.IsNullOrEmpty(txtDNI.Text) ||
                 string.IsNullOrEmpty(txtNuevaPass.Text) ||
                 string.IsNullOrEmpty(txtConfirmarPass.Text))
             {
@@ -53,8 +52,8 @@ namespace GestiondeUsuario
             }
 
             // Llamada a BLL
-            bool ok = UsuarioBLL.Instancia.RecuperarContraseña(
-                txtEmail.Text,
+            bool ok = UsuarioBLL.Instancia.CambiarContraseña(
+                Convert.ToInt32(txtDNI.Text),
                 txtContraseñaActual.Text,
                 txtNuevaPass.Text
             );
@@ -70,7 +69,7 @@ namespace GestiondeUsuario
             }
             else
             {
-                MessageBox.Show("Email o contraseña actual incorrectos.", "Error",
+                MessageBox.Show("DNI o contraseña actual incorrectos.", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

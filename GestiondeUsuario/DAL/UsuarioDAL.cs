@@ -20,6 +20,7 @@ namespace DAL
                 Id = Convert.ToInt32(reader["Id"]),
                 Nombre = reader["Nombre"].ToString(),
                 Apellido = reader["Apellido"].ToString(),
+                NombreUsuario = reader["NombreUsuario"].ToString(),
                 Email = reader["Email"].ToString(),
                 Contraseña = reader["Contraseña"].ToString(),
                 DNI = Convert.ToInt32(reader["DNI"]),
@@ -31,15 +32,14 @@ namespace DAL
                 PrimerIngreso = Convert.ToBoolean(reader["PrimerIngreso"])
             };
         }
-
-        public Usuario ObtenerPorEmail(string email)
+        public Usuario ObtenerPorNombreUsuario(string nombreUsuario)
         {
             Usuario usuario = null;
             using (SqlConnection con = new SqlConnection(connectionString))
             {
-                string query = "SELECT * FROM Usuarios WHERE Email = @Email";
+                string query = "SELECT * FROM Usuarios WHERE NombreUsuario = @NombreUsuario";
                 SqlCommand cmd = new SqlCommand(query, con);
-                cmd.Parameters.AddWithValue("@Email", email);
+                cmd.Parameters.AddWithValue("@NombreUsuario", nombreUsuario);
                 con.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
@@ -47,6 +47,7 @@ namespace DAL
             }
             return usuario;
         }
+
         public List<Usuario> ObtenerTodos()
         {
             List<Usuario> lista = new List<Usuario>();
@@ -152,15 +153,16 @@ namespace DAL
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 string query = @"INSERT INTO Usuarios 
-                (Nombre, Apellido, Email, Contraseña, DNI, FechaCreacion, Activo, Rol, PrimerIngreso, IntentosFallidos, Bloqueado) 
-                VALUES 
-                (@Nombre, @Apellido, @Email, @Contraseña, @DNI, @FechaCreacion, @Activo, @Rol, @PrimerIngreso, 0, 0)";
+            (Nombre, Apellido, Email, Contraseña, DNI, NombreUsuario, FechaCreacion, Activo, Rol, PrimerIngreso, IntentosFallidos, Bloqueado) 
+            VALUES 
+            (@Nombre, @Apellido, @Email, @Contraseña, @DNI, @NombreUsuario, @FechaCreacion, @Activo, @Rol, @PrimerIngreso, 0, 0)";
                 SqlCommand cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@Nombre", u.Nombre);
                 cmd.Parameters.AddWithValue("@Apellido", u.Apellido);
                 cmd.Parameters.AddWithValue("@Email", u.Email);
                 cmd.Parameters.AddWithValue("@Contraseña", u.Contraseña);
                 cmd.Parameters.AddWithValue("@DNI", u.DNI);
+                cmd.Parameters.AddWithValue("@NombreUsuario", u.Apellido + u.DNI.ToString());
                 cmd.Parameters.Add("@FechaCreacion", SqlDbType.DateTime).Value = DateTime.UtcNow;
                 cmd.Parameters.AddWithValue("@Activo", true);
                 cmd.Parameters.AddWithValue("@Rol", u.Rol);
@@ -168,6 +170,21 @@ namespace DAL
                 con.Open();
                 return cmd.ExecuteNonQuery() > 0;
             }
+        }
+        public Usuario ObtenerPorDNI(int dni)
+        {
+            Usuario usuario = null;
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                string query = "SELECT * FROM Usuarios WHERE DNI = @DNI";
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@DNI", dni);
+                con.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                    usuario = MapearUsuario(reader);
+            }
+            return usuario;
         }
     }
 }

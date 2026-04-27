@@ -26,40 +26,51 @@ namespace GestiondeUsuario
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtEmail.Text) || string.IsNullOrEmpty(txtContraseña.Text))
+            if (string.IsNullOrEmpty(txtNombreUsuario.Text) || string.IsNullOrEmpty(txtContraseña.Text))
             {
-                MessageBox.Show("Completa todos los campos.", "Atencion",
+                MessageBox.Show("Completá todos los campos.", "Atención",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             try
             {
 
-                bool acceso = UsuarioBLL.Instancia.Login(txtEmail.Text, txtContraseña.Text); // Verifica credenciales en BD y retorna true si usuario existe, false si no
+                bool acceso = UsuarioBLL.Instancia.Login(txtNombreUsuario.Text, txtContraseña.Text);
 
                 if (acceso)
                 {
-                    MessageBox.Show("¡Bienvenido!", "Exito",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    new FormPrincipal().Show();
-                    this.Hide();
+                    Usuario usuarioActivo = SessionManager.Instancia.ObtenerUsuarioActivo();
+                    if (usuarioActivo.PrimerIngreso)
+                    {
+                        MessageBox.Show("Bienvenido! Por ser tu primer ingreso debés cambiar tu contraseña.",
+                            "Primer ingreso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        new FormRecuperar().Show();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        MessageBox.Show("¡Bienvenido!", "Éxito",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        new FormPrincipal().Show();
+                        this.Hide();
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Email o contraseña incorrectos.", "Error",
+                    MessageBox.Show("Usuario o contraseña incorrectos.", "Error",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show(ex.Message + "\nConsulte con el administrador.", "Cuenta bloqueada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(ex.Message + "\nConsulte con el administrador.", "Cuenta bloqueada",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
         private void btnRegistrarse_Click(object sender, EventArgs e)
         {
-            new FormCrearUsuario().Show();
-            this.Hide();
+            
         }
 
         private void txtContraseña_TextChanged(object sender, EventArgs e)
@@ -76,6 +87,11 @@ namespace GestiondeUsuario
         {
             new FormRecuperar().Show();
             this.Hide();
+        }
+
+        private void btnHash_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

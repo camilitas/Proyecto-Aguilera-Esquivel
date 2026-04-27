@@ -52,12 +52,6 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormCrearUsuario.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormCrearUsuario.Designer.cs">
-      <DependentUpon>FormCrearUsuario.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormGU.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,8 +75,8 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormCrearUsuario.resx">
-      <DependentUpon>FormCrearUsuario.cs</DependentUpon>
+    <EmbeddedResource Include="FormGU.resx">
+      <DependentUpon>FormGU.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPrincipal.resx">
       <DependentUpon>FormPrincipal.cs</DependentUpon>

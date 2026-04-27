@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BE;
 using DAL;
 using Servicios;
 
@@ -23,24 +22,22 @@ namespace BLL
             }
         }
 
-        public bool Login(string email, string contraseña)
+        public bool Login(string nombreUsuario, string contraseña)
         {
             string passEnc = EncriptadorBLL.Encriptar(contraseña);
-
             UsuarioDAL dal = new UsuarioDAL();
             BitacoraDAL bitacora = new BitacoraDAL();
-
-            Usuario usuario = dal.ObtenerPorEmail(email);
+            Usuario usuario = dal.ObtenerPorNombreUsuario(nombreUsuario);
 
             if (usuario == null)
             {
-                bitacora.Guardar(email, "Login fallido - usuario no existe");
+                bitacora.Guardar(nombreUsuario, "Login fallido - usuario no existe");
                 return false;
             }
 
             if (usuario.Bloqueado)
             {
-                bitacora.Guardar(email, "Intento en cuenta bloqueada");
+                bitacora.Guardar(nombreUsuario, "Intento en cuenta bloqueada");
                 throw new Exception("Usuario bloqueado");
             }
 
@@ -48,10 +45,10 @@ namespace BLL
             {
                 usuario.IntentosFallidos = 0;
                 dal.ActualizarIntentos(usuario);
-
                 SessionManager.Instancia.IniciarSesion(usuario);
+                bitacora.Guardar(nombreUsuario, "Login exitoso");
 
-                bitacora.Guardar(email, "Login exitoso");
+                // Si es primer ingreso devolvemos true pero marcamos la flag
                 return true;
             }
             else
@@ -63,28 +60,32 @@ namespace BLL
 
                 dal.ActualizarIntentos(usuario);
 
-                bitacora.Guardar(email, "Login fallido");
+                bitacora.Guardar(nombreUsuario, "Login fallido");
 
                 return false;
             }
         }
 
-        public bool RecuperarContraseña(string email, string nuevaPass, string contraseñaActual)
+        public bool CambiarContraseña(int dni, string contraseñaActual, string nuevaPass)
         {
             UsuarioDAL dal = new UsuarioDAL();
+            BitacoraDAL bitacora = new BitacoraDAL();
 
-            Usuario usuario = dal.ObtenerPorEmail(email);
-
+            Usuario usuario = dal.ObtenerPorDNI(dni);
             if (usuario == null)
                 return false;
 
-            // Verificamos que la contraseña actual sea correcta
             if (usuario.Contraseña != EncriptadorBLL.Encriptar(contraseñaActual))
                 return false;
 
             usuario.Contraseña = EncriptadorBLL.Encriptar(nuevaPass);
+            usuario.PrimerIngreso = false;
+            bool ok = dal.ActualizarContraseña(usuario);
 
-            return dal.ActualizarContraseña(usuario);
+            if (ok)
+                bitacora.Guardar(usuario.NombreUsuario, "Cambio de contraseña exitoso");
+
+            return ok;
         }
 
         // validaciones: ningun campo puede estar vacio
@@ -104,6 +105,39 @@ namespace BLL
             //le pedimos a dal que inserte el nuevo usuario en la bd
             UsuarioDAL dal = new UsuarioDAL();
             return dal.Insertar(nuevoUsuario);
+        }
+        public List<Usuario> ObtenerTodos()
+        {
+            UsuarioDAL dal = new UsuarioDAL();
+            return dal.ObtenerTodos();
+        }
+        public List<Usuario> ObtenerActivos()
+        {
+            UsuarioDAL dal = new UsuarioDAL();
+            return dal.ObtenerActivos();
+        }
+        public bool Modificar(Usuario u)
+        {
+            UsuarioDAL dal = new UsuarioDAL();
+            return dal.Modificar(u);
+        }
+        public bool Deshabilitar(int id)
+        {
+            UsuarioDAL dal = new UsuarioDAL();
+            BitacoraDAL bitacora = new BitacoraDAL();
+            bool ok = dal.Deshabilitar(id);
+            if (ok)
+                bitacora.Guardar("Admin", "Usuario deshabilitado - Id: " + id);
+            return ok;
+        }
+        public bool Desbloquear(int id)
+        {
+            UsuarioDAL dal = new UsuarioDAL();
+            BitacoraDAL bitacora = new BitacoraDAL();
+            bool ok = dal.Desbloquear(id);
+            if (ok)
+                bitacora.Guardar("Admin", "Usuario desbloqueado - Id: " + id);
+            return ok;
         }
     }
 }

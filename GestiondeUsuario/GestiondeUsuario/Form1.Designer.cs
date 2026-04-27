@@ -29,20 +29,18 @@
         private void InitializeComponent()
         {
             this.btnLogin = new System.Windows.Forms.Button();
-            this.txtEmail = new System.Windows.Forms.TextBox();
+            this.txtNombreUsuario = new System.Windows.Forms.TextBox();
             this.txtContraseña = new System.Windows.Forms.TextBox();
-            this.btnRegistrarse = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.lblRecuperar = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(58, 173);
+            this.btnLogin.Location = new System.Drawing.Point(127, 160);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(125, 42);
             this.btnLogin.TabIndex = 0;
@@ -50,12 +48,12 @@
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
-            // txtEmail
+            // txtNombreUsuario
             // 
-            this.txtEmail.Location = new System.Drawing.Point(17, 108);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(166, 26);
-            this.txtEmail.TabIndex = 1;
+            this.txtNombreUsuario.Location = new System.Drawing.Point(17, 108);
+            this.txtNombreUsuario.Name = "txtNombreUsuario";
+            this.txtNombreUsuario.Size = new System.Drawing.Size(166, 26);
+            this.txtNombreUsuario.TabIndex = 1;
             // 
             // txtContraseña
             // 
@@ -65,17 +63,6 @@
             this.txtContraseña.Size = new System.Drawing.Size(166, 26);
             this.txtContraseña.TabIndex = 2;
             this.txtContraseña.TextChanged += new System.EventHandler(this.txtContraseña_TextChanged);
-            // 
-            // btnRegistrarse
-            // 
-            this.btnRegistrarse.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegistrarse.Location = new System.Drawing.Point(204, 173);
-            this.btnRegistrarse.Name = "btnRegistrarse";
-            this.btnRegistrarse.Size = new System.Drawing.Size(125, 42);
-            this.btnRegistrarse.TabIndex = 4;
-            this.btnRegistrarse.Text = "Registrarse";
-            this.btnRegistrarse.UseVisualStyleBackColor = true;
-            this.btnRegistrarse.Click += new System.EventHandler(this.btnRegistrarse_Click);
             // 
             // label1
             // 
@@ -98,10 +85,8 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.lblRecuperar);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.txtEmail);
-            this.panel1.Controls.Add(this.btnRegistrarse);
+            this.panel1.Controls.Add(this.txtNombreUsuario);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.btnLogin);
             this.panel1.Controls.Add(this.txtContraseña);
@@ -111,17 +96,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(378, 227);
             this.panel1.TabIndex = 8;
-            // 
-            // lblRecuperar
-            // 
-            this.lblRecuperar.AutoSize = true;
-            this.lblRecuperar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRecuperar.Location = new System.Drawing.Point(201, 136);
-            this.lblRecuperar.Name = "lblRecuperar";
-            this.lblRecuperar.Size = new System.Drawing.Size(143, 16);
-            this.lblRecuperar.TabIndex = 8;
-            this.lblRecuperar.Text = "Recuperar Contraseña";
-            this.lblRecuperar.Click += new System.EventHandler(this.lblRecuperar_Click);
             // 
             // label3
             // 
@@ -151,14 +125,12 @@
         #endregion
 
         private System.Windows.Forms.Button btnLogin;
-        private System.Windows.Forms.TextBox txtEmail;
+        private System.Windows.Forms.TextBox txtNombreUsuario;
         private System.Windows.Forms.TextBox txtContraseña;
-        private System.Windows.Forms.Button btnRegistrarse;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label lblRecuperar;
     }
 }
 
