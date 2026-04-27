@@ -54,7 +54,7 @@
             // 
             this.lblEmail.AutoSize = true;
             this.lblEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmail.Location = new System.Drawing.Point(12, 32);
+            this.lblEmail.Location = new System.Drawing.Point(12, 43);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(37, 20);
             this.lblEmail.TabIndex = 2;
@@ -72,9 +72,9 @@
             // 
             // txtDNI
             // 
-            this.txtDNI.Location = new System.Drawing.Point(16, 55);
+            this.txtDNI.Location = new System.Drawing.Point(240, 66);
             this.txtDNI.Name = "txtDNI";
-            this.txtDNI.Size = new System.Drawing.Size(100, 20);
+            this.txtDNI.Size = new System.Drawing.Size(215, 20);
             this.txtDNI.TabIndex = 5;
             // 
             // txtNuevaPass
@@ -129,7 +129,7 @@
             // 
             // txtContraseñaActual
             // 
-            this.txtContraseñaActual.Location = new System.Drawing.Point(240, 66);
+            this.txtContraseñaActual.Location = new System.Drawing.Point(16, 66);
             this.txtContraseñaActual.Name = "txtContraseñaActual";
             this.txtContraseñaActual.PasswordChar = '•';
             this.txtContraseñaActual.Size = new System.Drawing.Size(215, 20);

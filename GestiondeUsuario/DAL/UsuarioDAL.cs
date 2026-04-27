@@ -108,6 +108,17 @@ namespace DAL
                 return cmd.ExecuteNonQuery() > 0;
             }
         }
+        public bool Habilitar(int id)
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                string query = "UPDATE Usuarios SET Activo=1 WHERE Id=@Id";
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@Id", id);
+                con.Open();
+                return cmd.ExecuteNonQuery() > 0;
+            }
+        }
         public bool Desbloquear(int id)
         {
             using (SqlConnection con = new SqlConnection(connectionString))

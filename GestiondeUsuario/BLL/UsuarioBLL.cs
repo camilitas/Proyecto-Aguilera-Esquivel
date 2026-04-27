@@ -130,6 +130,15 @@ namespace BLL
                 bitacora.Guardar("Admin", "Usuario deshabilitado - Id: " + id);
             return ok;
         }
+        public bool Habilitar(int id)
+        {
+            UsuarioDAL dal = new UsuarioDAL();
+            BitacoraDAL bitacora = new BitacoraDAL();
+            bool ok = dal.Habilitar(id);
+            if (ok)
+                bitacora.Guardar("Admin", "Usuario habilitado - Id: " + id);
+            return ok;
+        }
         public bool Desbloquear(int id)
         {
             UsuarioDAL dal = new UsuarioDAL();

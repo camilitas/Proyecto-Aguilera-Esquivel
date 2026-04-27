@@ -80,6 +80,8 @@ namespace GestiondeUsuario
             txtApellido.BackColor = Color.White;
             txtNombreUsuario.BackColor = Color.White;
             txtCorreo.BackColor = Color.White;
+
+            btnDeshabilitar.Text = "Deshabilitar"; // resetea el texto
         }
         private void LimpiarCampos()
         {
@@ -91,36 +93,7 @@ namespace GestiondeUsuario
             cmbRol.SelectedIndex = 0;
             rbSi.Checked = true;
         }
-        private void dgvUsuarios_SelectionChanged(object sender, EventArgs e)
-        {
-            if (dgvUsuarios.SelectedRows.Count == 0) return;
-
-            // Cargamos los datos del usuario seleccionado en los campos
-            DataGridViewRow fila = dgvUsuarios.SelectedRows[0];
-            _idSeleccionado = Convert.ToInt32(fila.Cells["Id"].Value);
-            txtDNI.Text = fila.Cells["DNI"].Value.ToString();
-            txtNombre.Text = fila.Cells["Nombre"].Value.ToString();
-            txtApellido.Text = fila.Cells["Apellido"].Value.ToString();
-            txtNombreUsuario.Text = fila.Cells["NombreUsuario"].Value.ToString();
-            txtCorreo.Text = fila.Cells["Email"].Value.ToString();
-            cmbRol.SelectedItem = fila.Cells["Rol"].Value.ToString();
-            bool activo = Convert.ToBoolean(fila.Cells["Activo"].Value);
-            rbSi.Checked = activo;
-            rbNo.Checked = !activo;
-            lblModo.Text = "Modo Modificar";
-
-            // Bloqueamos los campos que no se pueden modificar
-            txtDNI.ReadOnly = true;
-            txtNombre.ReadOnly = true;
-            txtApellido.ReadOnly = true;
-            txtNombreUsuario.ReadOnly = true;
-            txtDNI.BackColor = Color.LightGray;
-            txtNombre.BackColor = Color.LightGray;
-            txtApellido.BackColor = Color.LightGray;
-            txtNombreUsuario.BackColor = Color.LightGray;
-        }
-
-
+       
         private void dgvUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -220,16 +193,30 @@ namespace GestiondeUsuario
                 return;
             }
 
+            bool estaActivo = btnDeshabilitar.Text == "Deshabilitar";
+            string accion = estaActivo ? "deshabilitar" : "habilitar";
+
             DialogResult confirm = MessageBox.Show(
-                "¿Estás segura que querés deshabilitar este usuario?",
+                "¿Queres " + accion + " este usuario?",
                 "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (confirm == DialogResult.Yes)
             {
-                bool ok = UsuarioBLL.Instancia.Deshabilitar(_idSeleccionado);
+                bool ok;
+                if (estaActivo)
+                {
+                    ok = UsuarioBLL.Instancia.Deshabilitar(_idSeleccionado);
+                    lblModo.Text = "Modo Deshabilitar";
+                }
+                else
+                {
+                    ok = UsuarioBLL.Instancia.Habilitar(_idSeleccionado);
+                    lblModo.Text = "Modo Habilitar";
+                }
+
                 if (ok)
                 {
-                    MessageBox.Show("Usuario deshabilitado.", "Éxito",
+                    MessageBox.Show("Usuario " + accion + "do exitosamente.", "Éxito",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                     CargarGrilla();
                     MostrarModoAgregar();
@@ -245,6 +232,8 @@ namespace GestiondeUsuario
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
+            lblModo.Text = "Modo Desbloquear";
 
             bool ok = UsuarioBLL.Instancia.Desbloquear(_idSeleccionado);
             if (ok)
@@ -274,7 +263,7 @@ namespace GestiondeUsuario
         private void dgvUsuarios_SelectionChanged_1(object sender, EventArgs e)
         {
             if (dgvUsuarios.SelectedRows.Count == 0) return;
-
+            // Cargamos los datos del usuario seleccionado en los campos
             DataGridViewRow fila = dgvUsuarios.SelectedRows[0];
             _idSeleccionado = Convert.ToInt32(fila.Cells["Id"].Value);
             txtDNI.Text = fila.Cells["DNI"].Value.ToString();
@@ -286,10 +275,13 @@ namespace GestiondeUsuario
             bool activo = Convert.ToBoolean(fila.Cells["Activo"].Value);
             rbSi.Checked = activo;
             rbNo.Checked = !activo;
-
-            // Solo muestra los datos, no habilita edición todavía
-            HabilitarEdicion(false);
             lblModo.Text = "Usuario seleccionado";
+
+            // Cambia el texto del botón según estado
+            btnDeshabilitar.Text = activo ? "Deshabilitar" : "Habilitar";
+
+            // Campos bloqueados hasta que se clickee Modificar
+            HabilitarEdicion(false);
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -321,6 +313,13 @@ namespace GestiondeUsuario
             txtCorreo.ReadOnly = !habilitar;
             cmbRol.Enabled = habilitar;
             txtCorreo.BackColor = habilitar ? Color.White : Color.LightGray;
+        }
+
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            new FormPrincipal().Show();
+            this.Close();
+
         }
     }
 }

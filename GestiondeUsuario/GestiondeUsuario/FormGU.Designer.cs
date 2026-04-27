@@ -54,6 +54,7 @@
             this.rbNo = new System.Windows.Forms.RadioButton();
             this.label8 = new System.Windows.Forms.Label();
             this.lblModo = new System.Windows.Forms.Label();
+            this.btnVolver = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).BeginInit();
             this.SuspendLayout();
             // 
@@ -316,17 +317,29 @@
             // 
             this.lblModo.AutoSize = true;
             this.lblModo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblModo.Location = new System.Drawing.Point(459, 314);
+            this.lblModo.Location = new System.Drawing.Point(430, 314);
             this.lblModo.Name = "lblModo";
             this.lblModo.Size = new System.Drawing.Size(52, 18);
             this.lblModo.TabIndex = 26;
             this.lblModo.Text = "label9";
+            // 
+            // btnVolver
+            // 
+            this.btnVolver.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVolver.Location = new System.Drawing.Point(4, 520);
+            this.btnVolver.Name = "btnVolver";
+            this.btnVolver.Size = new System.Drawing.Size(92, 34);
+            this.btnVolver.TabIndex = 27;
+            this.btnVolver.Text = "Volver";
+            this.btnVolver.UseVisualStyleBackColor = true;
+            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
             // FormGU
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 554);
+            this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.lblModo);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.rbNo);
@@ -390,5 +403,6 @@
         private System.Windows.Forms.RadioButton rbNo;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label lblModo;
+        private System.Windows.Forms.Button btnVolver;
     }
 }

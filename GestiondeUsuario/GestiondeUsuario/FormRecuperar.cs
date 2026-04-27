@@ -76,7 +76,7 @@ namespace GestiondeUsuario
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-            new Form1().Show();
+            new FormPrincipal().Show();
             this.Close();
         }
     }
