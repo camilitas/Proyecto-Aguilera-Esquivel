@@ -128,12 +128,6 @@ namespace GestiondeUsuario
 
         private void btnAplicar_Click(object sender, EventArgs e)
         {
-            cmbLogin.SelectedIndex = 0;
-            cmbModulo.SelectedIndex = 0;
-            cmbEvento.SelectedIndex = 0;
-            cmbCriticidad.SelectedIndex = 0;
-            dtpFechaIni.Checked = false;
-            dtpFechaFin.Checked = false;
             CargarGrilla();
         }
 
@@ -147,6 +141,17 @@ namespace GestiondeUsuario
         {
             MessageBox.Show("Función de impresión no implementada aún.",
                "Imprimir", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            cmbLogin.SelectedIndex = 0;
+            cmbModulo.SelectedIndex = 0;
+            cmbEvento.SelectedIndex = 0;
+            cmbCriticidad.SelectedIndex = 0;
+            dtpFechaIni.Checked = false;
+            dtpFechaFin.Checked = false;
+            CargarGrilla();
         }
     }
 }
