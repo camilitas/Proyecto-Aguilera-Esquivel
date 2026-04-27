@@ -97,9 +97,10 @@
             // 
             // btnVolver
             // 
+            this.btnVolver.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVolver.Location = new System.Drawing.Point(88, 167);
             this.btnVolver.Name = "btnVolver";
-            this.btnVolver.Size = new System.Drawing.Size(143, 23);
+            this.btnVolver.Size = new System.Drawing.Size(118, 36);
             this.btnVolver.TabIndex = 8;
             this.btnVolver.Text = "Volver";
             this.btnVolver.UseVisualStyleBackColor = true;
@@ -107,11 +108,12 @@
             // 
             // btnRecuperar
             // 
+            this.btnRecuperar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRecuperar.Location = new System.Drawing.Point(240, 167);
             this.btnRecuperar.Name = "btnRecuperar";
-            this.btnRecuperar.Size = new System.Drawing.Size(143, 23);
+            this.btnRecuperar.Size = new System.Drawing.Size(118, 36);
             this.btnRecuperar.TabIndex = 9;
-            this.btnRecuperar.Text = "Recuperar";
+            this.btnRecuperar.Text = "Cambiar";
             this.btnRecuperar.UseVisualStyleBackColor = true;
             this.btnRecuperar.Click += new System.EventHandler(this.btnRecuperar_Click);
             // 
@@ -138,7 +140,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(473, 280);
+            this.ClientSize = new System.Drawing.Size(482, 269);
             this.Controls.Add(this.txtContraseñaActual);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnRecuperar);

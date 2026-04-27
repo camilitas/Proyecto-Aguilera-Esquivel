@@ -29,6 +29,16 @@ namespace GestiondeUsuario
 
             rbActivos.Checked = true;
 
+            // Solo Email y Rol son editables
+            txtDNI.ReadOnly = true;
+            txtNombre.ReadOnly = true;
+            txtApellido.ReadOnly = true;
+            txtNombreUsuario.ReadOnly = true;
+            txtDNI.BackColor = Color.LightGray;
+            txtNombre.BackColor = Color.LightGray;
+            txtApellido.BackColor = Color.LightGray;
+            txtNombreUsuario.BackColor = Color.LightGray;
+
             MostrarModoAgregar();
             CargarGrilla();
         }
@@ -46,12 +56,30 @@ namespace GestiondeUsuario
             dgvUsuarios.DataSource = null;
             dgvUsuarios.AutoGenerateColumns = true;
             dgvUsuarios.DataSource = lista;
+            // Ocultamos columnas sensibles o innecesarias
+            dgvUsuarios.Columns["Contraseña"].Visible = false;
+            dgvUsuarios.Columns["IntentosFallidos"].Visible = false;
+            dgvUsuarios.Columns["FechaCreacion"].Visible = false;
+            dgvUsuarios.Columns["PrimerIngreso"].Visible = false;
         }
         private void MostrarModoAgregar()
         {
             LimpiarCampos();
             _idSeleccionado = -1;
             lblModo.Text = "Modo Agregar";
+
+            // Habilitamos todos los campos para agregar
+            txtDNI.ReadOnly = false;
+            txtNombre.ReadOnly = false;
+            txtApellido.ReadOnly = false;
+            txtNombreUsuario.ReadOnly = false;
+            txtCorreo.ReadOnly = false;
+            cmbRol.Enabled = true;
+            txtDNI.BackColor = Color.White;
+            txtNombre.BackColor = Color.White;
+            txtApellido.BackColor = Color.White;
+            txtNombreUsuario.BackColor = Color.White;
+            txtCorreo.BackColor = Color.White;
         }
         private void LimpiarCampos()
         {
@@ -80,6 +108,16 @@ namespace GestiondeUsuario
             rbSi.Checked = activo;
             rbNo.Checked = !activo;
             lblModo.Text = "Modo Modificar";
+
+            // Bloqueamos los campos que no se pueden modificar
+            txtDNI.ReadOnly = true;
+            txtNombre.ReadOnly = true;
+            txtApellido.ReadOnly = true;
+            txtNombreUsuario.ReadOnly = true;
+            txtDNI.BackColor = Color.LightGray;
+            txtNombre.BackColor = Color.LightGray;
+            txtApellido.BackColor = Color.LightGray;
+            txtNombreUsuario.BackColor = Color.LightGray;
         }
 
 
@@ -231,6 +269,58 @@ namespace GestiondeUsuario
         private void rbTodos_CheckedChanged(object sender, EventArgs e)
         {
             CargarGrilla();
+        }
+
+        private void dgvUsuarios_SelectionChanged_1(object sender, EventArgs e)
+        {
+            if (dgvUsuarios.SelectedRows.Count == 0) return;
+
+            DataGridViewRow fila = dgvUsuarios.SelectedRows[0];
+            _idSeleccionado = Convert.ToInt32(fila.Cells["Id"].Value);
+            txtDNI.Text = fila.Cells["DNI"].Value.ToString();
+            txtNombre.Text = fila.Cells["Nombre"].Value.ToString();
+            txtApellido.Text = fila.Cells["Apellido"].Value.ToString();
+            txtNombreUsuario.Text = fila.Cells["NombreUsuario"].Value.ToString();
+            txtCorreo.Text = fila.Cells["Email"].Value.ToString();
+            cmbRol.SelectedItem = fila.Cells["Rol"].Value.ToString();
+            bool activo = Convert.ToBoolean(fila.Cells["Activo"].Value);
+            rbSi.Checked = activo;
+            rbNo.Checked = !activo;
+
+            // Solo muestra los datos, no habilita edición todavía
+            HabilitarEdicion(false);
+            lblModo.Text = "Usuario seleccionado";
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            if (_idSeleccionado == -1)
+            {
+                MessageBox.Show("Seleccioná un usuario primero.", "Atención",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            HabilitarEdicion(true);
+            lblModo.Text = "Modo Modificar";
+        }
+
+        private void HabilitarEdicion(bool habilitar)
+        {
+            // DNI, Nombre, Apellido y NombreUsuario siempre bloqueados
+            txtDNI.ReadOnly = true;
+            txtNombre.ReadOnly = true;
+            txtApellido.ReadOnly = true;
+            txtNombreUsuario.ReadOnly = true;
+            txtDNI.BackColor = Color.LightGray;
+            txtNombre.BackColor = Color.LightGray;
+            txtApellido.BackColor = Color.LightGray;
+            txtNombreUsuario.BackColor = Color.LightGray;
+
+            // Solo Email y Rol se habilitan al modificar
+            txtCorreo.ReadOnly = !habilitar;
+            cmbRol.Enabled = habilitar;
+            txtCorreo.BackColor = habilitar ? Color.White : Color.LightGray;
         }
     }
 }
