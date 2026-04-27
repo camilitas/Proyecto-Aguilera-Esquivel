@@ -35,6 +35,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
+            this.btnHash = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -107,11 +108,22 @@
             this.label3.TabIndex = 7;
             this.label3.Text = "Bienvenido!";
             // 
+            // btnHash
+            // 
+            this.btnHash.Location = new System.Drawing.Point(318, 270);
+            this.btnHash.Name = "btnHash";
+            this.btnHash.Size = new System.Drawing.Size(87, 23);
+            this.btnHash.TabIndex = 9;
+            this.btnHash.Text = "Usuarios Base";
+            this.btnHash.UseVisualStyleBackColor = true;
+            this.btnHash.Click += new System.EventHandler(this.btnHash_Click_1);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(440, 305);
+            this.Controls.Add(this.btnHash);
             this.Controls.Add(this.panel1);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -131,6 +143,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnHash;
     }
 }
 
