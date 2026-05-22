@@ -15,6 +15,7 @@ namespace GestiondeUsuario
     public partial class FormGU : Form
     {
         private int _idSeleccionado = -1;
+        private bool _grillaCargada = false;
 
         public FormGU()
         {
