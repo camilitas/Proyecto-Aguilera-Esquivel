@@ -216,7 +216,7 @@
             // btnAgregar
             // 
             this.btnAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregar.Location = new System.Drawing.Point(630, 267);
+            this.btnAgregar.Location = new System.Drawing.Point(672, 273);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(138, 45);
             this.btnAgregar.TabIndex = 16;
@@ -227,7 +227,7 @@
             // btnModificar
             // 
             this.btnModificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModificar.Location = new System.Drawing.Point(630, 360);
+            this.btnModificar.Location = new System.Drawing.Point(672, 366);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(138, 45);
             this.btnModificar.TabIndex = 17;
@@ -238,7 +238,7 @@
             // btnDeshabilitar
             // 
             this.btnDeshabilitar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeshabilitar.Location = new System.Drawing.Point(630, 500);
+            this.btnDeshabilitar.Location = new System.Drawing.Point(672, 506);
             this.btnDeshabilitar.Name = "btnDeshabilitar";
             this.btnDeshabilitar.Size = new System.Drawing.Size(138, 45);
             this.btnDeshabilitar.TabIndex = 19;
@@ -249,7 +249,7 @@
             // btnDesbloquear
             // 
             this.btnDesbloquear.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDesbloquear.Location = new System.Drawing.Point(630, 314);
+            this.btnDesbloquear.Location = new System.Drawing.Point(672, 320);
             this.btnDesbloquear.Name = "btnDesbloquear";
             this.btnDesbloquear.Size = new System.Drawing.Size(138, 45);
             this.btnDesbloquear.TabIndex = 20;
@@ -260,7 +260,7 @@
             // btnAplicar
             // 
             this.btnAplicar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAplicar.Location = new System.Drawing.Point(630, 406);
+            this.btnAplicar.Location = new System.Drawing.Point(672, 412);
             this.btnAplicar.Name = "btnAplicar";
             this.btnAplicar.Size = new System.Drawing.Size(138, 45);
             this.btnAplicar.TabIndex = 21;
@@ -271,7 +271,7 @@
             // btnCancelar
             // 
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(630, 453);
+            this.btnCancelar.Location = new System.Drawing.Point(672, 459);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(138, 45);
             this.btnCancelar.TabIndex = 22;
@@ -317,7 +317,7 @@
             // 
             this.lblModo.AutoSize = true;
             this.lblModo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblModo.Location = new System.Drawing.Point(430, 314);
+            this.lblModo.Location = new System.Drawing.Point(348, 314);
             this.lblModo.Name = "lblModo";
             this.lblModo.Size = new System.Drawing.Size(52, 18);
             this.lblModo.TabIndex = 26;
@@ -338,7 +338,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 554);
+            this.ClientSize = new System.Drawing.Size(838, 560);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.lblModo);
             this.Controls.Add(this.label8);

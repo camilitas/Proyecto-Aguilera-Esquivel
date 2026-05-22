@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using DAL;
 using Servicios;
 
@@ -98,14 +99,23 @@ namespace BLL
             nuevoUsuario.Contraseña = Encriptador.Encriptar(nuevoUsuario.Contraseña);
 
             UsuarioDAL dal = new UsuarioDAL();
-            bool ok = dal.Insertar(nuevoUsuario);
+            try
+            {
+                bool ok = dal.Insertar(nuevoUsuario);
 
-            if (ok)
-                GestorEventosBLL.Instancia.Notificar(
-                    SessionManager.Instancia.ObtenerUsuarioActivo()?.NombreUsuario ?? "Admin",
-                    "Crear Usuario", "Usuarios", 2);
+                if (ok)
+                    GestorEventosBLL.Instancia.Notificar(
+                        SessionManager.Instancia.ObtenerUsuarioActivo()?.NombreUsuario ?? "Admin",
+                        "Crear Usuario", "Usuarios", 2);
 
-            return ok;
+                return ok;
+            }
+            catch(SqlException ex)
+            {
+                if (ex.Number == 2627)
+                    throw new Exception("Ya existe un usuario con ese DNI o Email.");
+                throw;
+            }
         }
 
         public List<Usuario> ObtenerTodos()

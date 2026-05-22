@@ -1,5 +1,4 @@
 ﻿using BLL;
-using DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +19,7 @@ namespace GestiondeUsuario
             Application.SetCompatibleTextRenderingDefault(false);
 
             // Suscribir la bitácora al gestor de eventos (Observer)
-            GestorEventosBLL.Instancia.Suscribir(new BitacoraDAL());
+            GestorEventosBLL.Instancia.InicializarObservadores();
 
             Application.Run(new Form1());
         }

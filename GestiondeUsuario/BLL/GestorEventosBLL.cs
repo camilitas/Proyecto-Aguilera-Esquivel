@@ -1,4 +1,5 @@
-﻿using Servicios;
+﻿using DAL;
+using Servicios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +32,11 @@ namespace BLL
         {
             foreach (var obs in _observadores)
                 obs.Actualizar(usuario, accion, modulo, criticidad);
+        }
+
+        public void InicializarObservadores()
+        {
+            Suscribir(new BitacoraDAL());
         }
     }
 }
