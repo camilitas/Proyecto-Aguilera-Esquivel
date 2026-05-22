@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bitacora.cs" />
+    <Compile Include="Encriptador.cs" />
     <Compile Include="IComponentePermiso.cs" />
     <Compile Include="IGestorEventos.cs" />
     <Compile Include="IObservador.cs" />

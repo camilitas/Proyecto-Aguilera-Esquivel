@@ -89,16 +89,6 @@ namespace GestiondeUsuario
             this.Hide();
         }
 
-        private void btnHash_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void btnHash_Click_1(object sender, EventArgs e)
-        {
-            string h1 = EncriptadorBLL.Encriptar("Admin1234");
-            string h2 = EncriptadorBLL.Encriptar("Base1234");
-            MessageBox.Show("Admin: " + h1 + "\nBase: " + h2);
-        }
+        
     }
 }

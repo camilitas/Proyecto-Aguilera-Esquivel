@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EncriptadorBLL.cs" />
+    <Compile Include="BitacoraBLL.cs" />
     <Compile Include="GestorEventosBLL.cs" />
     <Compile Include="PerfilBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -23,7 +23,7 @@ namespace BLL
 
         public bool Login(string nombreUsuario, string contraseña)
         {
-            string passEnc = EncriptadorBLL.Encriptar(contraseña);
+            string passEnc = Encriptador.Encriptar(contraseña);
             UsuarioDAL dal = new UsuarioDAL();
             Usuario usuario = dal.ObtenerPorNombreUsuario(nombreUsuario);
 
@@ -72,10 +72,10 @@ namespace BLL
             if (usuario == null)
                 return false;
 
-            if (usuario.Contraseña != EncriptadorBLL.Encriptar(contraseñaActual))
+            if (usuario.Contraseña != Encriptador.Encriptar(contraseñaActual))
                 return false;
 
-            usuario.Contraseña = EncriptadorBLL.Encriptar(nuevaPass);
+            usuario.Contraseña = Encriptador.Encriptar(nuevaPass);
             usuario.PrimerIngreso = false;
             bool ok = dal.ActualizarContraseña(usuario);
 
@@ -95,7 +95,7 @@ namespace BLL
             if (string.IsNullOrEmpty(nuevoUsuario.Contraseña))
                 return false;
 
-            nuevoUsuario.Contraseña = EncriptadorBLL.Encriptar(nuevoUsuario.Contraseña);
+            nuevoUsuario.Contraseña = Encriptador.Encriptar(nuevoUsuario.Contraseña);
 
             UsuarioDAL dal = new UsuarioDAL();
             bool ok = dal.Insertar(nuevoUsuario);

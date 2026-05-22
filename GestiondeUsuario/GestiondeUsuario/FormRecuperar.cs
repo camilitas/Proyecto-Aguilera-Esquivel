@@ -45,7 +45,7 @@ namespace GestiondeUsuario
                 return;
             }
 
-            if(!EncriptadorBLL.ContraseñaSegura(txtNuevaPass.Text))
+            if(!Encriptador.ContraseñaSegura(txtNuevaPass.Text))
             {
                 MessageBox.Show("La contraseña debe tener al menos 8 caracteres, incluyendo mayúsculas, minúsculas y números.", "Contraseña insegura", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;

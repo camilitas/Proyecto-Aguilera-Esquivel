@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,7 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DAL;
 
 namespace GestiondeUsuario
 {
@@ -26,11 +26,9 @@ namespace GestiondeUsuario
 
         private void CargarCombos()
         {
-            BitacoraDAL dal = new BitacoraDAL();
-
             cmbLogin.Items.Clear();
             cmbLogin.Items.Add("");
-            foreach (var l in dal.ObtenerLogins())
+            foreach (var l in BitacoraBLL.Instancia.ObtenerLogins())
                 cmbLogin.Items.Add(l);
             cmbLogin.SelectedIndex = 0;
 
@@ -61,8 +59,6 @@ namespace GestiondeUsuario
 
         private void CargarGrilla()
         {
-            BitacoraDAL dal = new BitacoraDAL();
-
             string login = cmbLogin.SelectedItem?.ToString();
             DateTime? fechaIni = dtpFechaIni.Checked ? dtpFechaIni.Value.Date : (DateTime?)null;
             DateTime? fechaFin = dtpFechaFin.Checked ? dtpFechaFin.Value.Date : (DateTime?)null;
@@ -72,8 +68,7 @@ namespace GestiondeUsuario
             if (cmbCriticidad.SelectedIndex > 0)
                 criticidad = int.Parse(cmbCriticidad.SelectedItem.ToString());
 
-            var lista = dal.ObtenerFiltrado(
-                login, fechaIni, fechaFin, modulo, evento, criticidad);
+            var lista = BitacoraBLL.Instancia.ObtenerFiltrado(login, fechaIni, fechaFin, modulo, evento, criticidad);
 
             // Proyectamos para separar Fecha y Hora en columnas distintas
             var vista = new List<object>();
@@ -152,6 +147,11 @@ namespace GestiondeUsuario
             dtpFechaIni.Checked = false;
             dtpFechaFin.Checked = false;
             CargarGrilla();
+        }
+
+        private void FormBitacora_Load_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

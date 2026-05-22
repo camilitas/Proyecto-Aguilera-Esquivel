@@ -278,6 +278,7 @@
             this.Controls.Add(this.dgvBitacora);
             this.Name = "FormBitacora";
             this.Text = "FormBitacora";
+            this.Load += new System.EventHandler(this.FormBitacora_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBitacora)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
