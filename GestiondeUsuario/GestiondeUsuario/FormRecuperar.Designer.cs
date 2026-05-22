@@ -74,7 +74,7 @@
             // 
             // txtDNI
             // 
-            this.txtDNI.Location = new System.Drawing.Point(240, 44);
+            this.txtDNI.Location = new System.Drawing.Point(19, 44);
             this.txtDNI.Name = "txtDNI";
             this.txtDNI.Size = new System.Drawing.Size(215, 20);
             this.txtDNI.TabIndex = 5;
@@ -131,7 +131,7 @@
             // 
             // txtContraseñaActual
             // 
-            this.txtContraseñaActual.Location = new System.Drawing.Point(19, 44);
+            this.txtContraseñaActual.Location = new System.Drawing.Point(240, 44);
             this.txtContraseñaActual.Name = "txtContraseñaActual";
             this.txtContraseñaActual.PasswordChar = '•';
             this.txtContraseñaActual.Size = new System.Drawing.Size(215, 20);
