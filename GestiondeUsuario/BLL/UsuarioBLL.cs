@@ -188,7 +188,7 @@ namespace BLL
             if (ok)
                 GestorEventosBLL.Instancia.Notificar(
                     SessionManager.Instancia.ObtenerUsuarioActivo()?.NombreUsuario ?? "Admin",
-                    "Bloquear Usuario", "Usuarios", 1);
+                    "Desbloquear Usuario", "Usuarios", 1);
 
             return ok;
         }

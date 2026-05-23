@@ -290,12 +290,6 @@ namespace GestiondeUsuario
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if (dgvUsuarios.SelectedRows.Count == 0)
-            {
-                MessageBox.Show("Seleccioná un usuario primero.", "Atención",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
 
             DataGridViewRow fila = dgvUsuarios.SelectedRows[0];
             bool estaBloqueado = Convert.ToBoolean(fila.Cells["Bloqueado"].Value);
