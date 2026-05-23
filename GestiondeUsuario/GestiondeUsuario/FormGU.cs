@@ -15,7 +15,6 @@ namespace GestiondeUsuario
     public partial class FormGU : Form
     {
         private int _idSeleccionado = -1;
-        private bool _grillaCargada = false;
 
         public FormGU()
         {
@@ -31,10 +30,10 @@ namespace GestiondeUsuario
 
             rbActivos.Checked = true;
             CargarGrilla();
+            
 
             HabilitarBotonera();
             lblModo.Text = "Seleccioná una opción de la botonera";
-
             DeshabilitarCampos();
         }
 
@@ -83,8 +82,6 @@ namespace GestiondeUsuario
 
         private void CargarGrilla()
         {
-            _grillaCargada = false;
-
             List<Usuario> lista;
 
             if (rbActivos.Checked)
@@ -92,16 +89,28 @@ namespace GestiondeUsuario
             else
                 lista = UsuarioBLL.Instancia.ObtenerTodos();
 
+            dgvUsuarios.ReadOnly = true;
             dgvUsuarios.DataSource = null;
             dgvUsuarios.AutoGenerateColumns = true;
             dgvUsuarios.DataSource = lista;
+            dgvUsuarios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvUsuarios.AllowUserToAddRows = false;
+            dgvUsuarios.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
 
-            dgvUsuarios.Columns["Contraseña"].Visible = false;
-            dgvUsuarios.Columns["IntentosFallidos"].Visible = false;
-            dgvUsuarios.Columns["FechaCreacion"].Visible = false;
-            dgvUsuarios.Columns["PrimerIngreso"].Visible = false;
-            dgvUsuarios.Columns["Bloqueado"].Visible = false;
-            _grillaCargada = true;
+            if (dgvUsuarios.Columns.Contains("Contraseña"))
+                dgvUsuarios.Columns["Contraseña"].Visible = false;
+            if (dgvUsuarios.Columns.Contains("IntentosFallidos"))
+                dgvUsuarios.Columns["IntentosFallidos"].Visible = false;
+            if (dgvUsuarios.Columns.Contains("FechaCreacion"))
+                dgvUsuarios.Columns["FechaCreacion"].Visible = false;
+            if (dgvUsuarios.Columns.Contains("PrimerIngreso"))
+                dgvUsuarios.Columns["PrimerIngreso"].Visible = false;
+            if (dgvUsuarios.Columns.Contains("Bloqueado"))
+                dgvUsuarios.Columns["Bloqueado"].Visible = false;
+
+            _idSeleccionado = -1;
+            dgvUsuarios.ClearSelection();
+            dgvUsuarios.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells);
         }
         private void MostrarModoAgregar()
         {
@@ -114,13 +123,11 @@ namespace GestiondeUsuario
             txtDNI.ReadOnly = false;
             txtNombre.ReadOnly = false;
             txtApellido.ReadOnly = false;
-            txtNombreUsuario.ReadOnly = false;
             txtCorreo.ReadOnly = false;
             cmbRol.Enabled = true;
             txtDNI.BackColor = Color.White;
             txtNombre.BackColor = Color.White;
             txtApellido.BackColor = Color.White;
-            txtNombreUsuario.BackColor = Color.White;
             txtCorreo.BackColor = Color.White;
 
             txtNombreUsuario.ReadOnly = true;
@@ -283,6 +290,12 @@ namespace GestiondeUsuario
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            if (dgvUsuarios.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Seleccioná un usuario primero.", "Atención",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             DataGridViewRow fila = dgvUsuarios.SelectedRows[0];
             bool estaBloqueado = Convert.ToBoolean(fila.Cells["Bloqueado"].Value);
@@ -320,36 +333,51 @@ namespace GestiondeUsuario
 
         private void rbActivos_CheckedChanged(object sender, EventArgs e)
         {
-            CargarGrilla();
+            if (rbActivos.Checked)
+            {
+                CargarGrilla();
+                LimpiarCampos();
+                DeshabilitarCampos();
+                lblModo.Text = "Seleccioná una opción de la botonera";
+            }
         }
 
         private void rbTodos_CheckedChanged(object sender, EventArgs e)
         {
-            CargarGrilla();
+            if (rbTodos.Checked)
+            {
+                CargarGrilla();
+                LimpiarCampos();
+                DeshabilitarCampos();
+                lblModo.Text = "Seleccioná una opción de la botonera";
+            }
         }
 
         private void dgvUsuarios_SelectionChanged_1(object sender, EventArgs e)
         {
-            if (dgvUsuarios.SelectedRows.Count == 0) return;
-            // Cargamos los datos del usuario seleccionado en los campos
-            DataGridViewRow fila = dgvUsuarios.SelectedRows[0];
-            _idSeleccionado = Convert.ToInt32(fila.Cells["Id"].Value);
-            txtDNI.Text = fila.Cells["DNI"].Value.ToString();
-            txtNombre.Text = fila.Cells["Nombre"].Value.ToString();
-            txtApellido.Text = fila.Cells["Apellido"].Value.ToString();
-            txtNombreUsuario.Text = fila.Cells["NombreUsuario"].Value.ToString();
-            txtCorreo.Text = fila.Cells["Email"].Value.ToString();
-            cmbRol.SelectedItem = fila.Cells["Rol"].Value.ToString();
-            bool activo = Convert.ToBoolean(fila.Cells["Activo"].Value);
-            rbSi.Checked = activo;
-            rbNo.Checked = !activo;
+            try
+            {
+                if (dgvUsuarios.SelectedRows.Count == 0) return;
 
-
-            // Cambia el texto del botón según estado
-            btnDeshabilitar.Text = activo ? "Deshabilitar" : "Habilitar";
-            HabilitarEdicion(false);
-
-            lblModo.Text = "Usuario seleccionado";
+                DataGridViewRow fila = dgvUsuarios.SelectedRows[0];
+                _idSeleccionado = Convert.ToInt32(fila.Cells["Id"].Value);
+                txtDNI.Text = fila.Cells["DNI"].Value.ToString();
+                txtNombre.Text = fila.Cells["Nombre"].Value.ToString();
+                txtApellido.Text = fila.Cells["Apellido"].Value.ToString();
+                txtNombreUsuario.Text = fila.Cells["NombreUsuario"].Value.ToString();
+                txtCorreo.Text = fila.Cells["Email"].Value.ToString();
+                cmbRol.SelectedItem = fila.Cells["Rol"].Value.ToString();
+                bool activo = Convert.ToBoolean(fila.Cells["Activo"].Value);
+                rbSi.Checked = activo;
+                rbNo.Checked = !activo;
+                btnDeshabilitar.Text = activo ? "Deshabilitar" : "Habilitar";
+                HabilitarEdicion(false);
+                lblModo.Text = "Usuario seleccionado";
+            }
+            catch
+            {
+                // Ignoramos errores de índice al recargar la grilla
+            }
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -390,6 +418,12 @@ namespace GestiondeUsuario
             new FormPrincipal().Show();
             this.Close();
 
+        }
+
+        private void dgvUsuarios_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            // Suprimimos el error de índice al recargar
+             e.ThrowException = false;
         }
     }
 }
