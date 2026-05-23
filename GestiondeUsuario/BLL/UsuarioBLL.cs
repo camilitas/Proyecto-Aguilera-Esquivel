@@ -172,7 +172,13 @@ namespace BLL
         public bool Desbloquear(int id)
         {
             UsuarioDAL dal = new UsuarioDAL();
-            bool ok = dal.Desbloquear(id);
+            Usuario usuario = dal.ObtenerPorId(id);
+            if (usuario == null) return false;
+
+            // Reseteamos la contraseña a Apellido+DNI encriptada
+            string passReseteada = Encriptador.Encriptar(usuario.Apellido + usuario.DNI.ToString());
+
+            bool ok = dal.Desbloquear(id, passReseteada);
 
             if (ok)
                 GestorEventosBLL.Instancia.Notificar(

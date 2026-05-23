@@ -119,16 +119,37 @@ namespace DAL
                 return cmd.ExecuteNonQuery() > 0;
             }
         }
-        public bool Desbloquear(int id)
+        public bool Desbloquear(int id, string contraseñaReseteada)
         {
             using (SqlConnection con = new SqlConnection(connectionString))
             {
-                string query = "UPDATE Usuarios SET Bloqueado=0, IntentosFallidos=0 WHERE Id=@Id";
+                string query = @"UPDATE Usuarios SET 
+                Bloqueado=0, 
+                IntentosFallidos=0,
+                Contraseña=@Contraseña,
+                PrimerIngreso=1
+                WHERE Id=@Id";
                 SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@Contraseña", contraseñaReseteada);
                 cmd.Parameters.AddWithValue("@Id", id);
                 con.Open();
                 return cmd.ExecuteNonQuery() > 0;
             }
+        }
+        public Usuario ObtenerPorId(int id)
+        {
+            Usuario usuario = null;
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                string query = "SELECT * FROM Usuarios WHERE Id = @Id";
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@Id", id);
+                con.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                    usuario = MapearUsuario(reader);
+            }
+            return usuario;
         }
 
         public void ActualizarIntentos(Usuario u)
