@@ -24,7 +24,7 @@ namespace GestiondeUsuario
         {
             Usuario usuarioActivo = SessionManager.Instancia.ObtenerUsuarioActivo();
 
-            // Si es primer ingreso, ocultamos el botón Volver
+            // Si es primer ingreso, ocultamos el boton volver
             if (usuarioActivo != null && usuarioActivo.PrimerIngreso)
                 btnVolver.Visible = false;
             else
