@@ -22,7 +22,13 @@ namespace GestiondeUsuario
 
         private void FormRecuperar_Load(object sender, EventArgs e)
         {
+            Usuario usuarioActivo = SessionManager.Instancia.ObtenerUsuarioActivo();
 
+            // Si es primer ingreso, ocultamos el botón Volver
+            if (usuarioActivo != null && usuarioActivo.PrimerIngreso)
+                btnVolver.Visible = false;
+            else
+                btnVolver.Visible = true;
         }
 
         private void btnRecuperar_Click(object sender, EventArgs e)
