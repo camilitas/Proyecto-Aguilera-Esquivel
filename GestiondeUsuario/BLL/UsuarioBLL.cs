@@ -117,6 +117,11 @@ namespace BLL
                 throw;
             }
         }
+        public Usuario ObtenerPorNombreUsuario(string nombreUsuario)
+        {
+            UsuarioDAL dal = new UsuarioDAL();
+            return dal.ObtenerPorNombreUsuario(nombreUsuario);
+        }
 
         public List<Usuario> ObtenerTodos()
         {

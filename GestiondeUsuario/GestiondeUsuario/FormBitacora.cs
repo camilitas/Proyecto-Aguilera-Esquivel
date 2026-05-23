@@ -1,14 +1,15 @@
 ﻿using BLL;
+using Servicios;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Drawing.Printing;
 
 namespace GestiondeUsuario
 {
@@ -21,6 +22,8 @@ namespace GestiondeUsuario
 
         private void FormBitacora_Load(object sender, EventArgs e)
         {
+            dtpFechaIni.Checked = false;
+            dtpFechaFin.Checked = false;
             CargarCombos();
             CargarGrilla();
         }
@@ -111,10 +114,24 @@ namespace GestiondeUsuario
 
         private void MostrarNombreApellido()
         {
-            if (dgvBitacora.SelectedRows.Count == 0) return;
+            if(dgvBitacora.SelectedRows.Count == 0) return;
+
             var fila = dgvBitacora.SelectedRows[0];
-            txtNombre.Text = fila.Cells["_nombre"].Value?.ToString() ?? "";
-            txtApellido.Text = fila.Cells["_apellido"].Value?.ToString() ?? "";
+            string nombreUsuario = fila.Cells["Login"].Value?.ToString() ?? "";
+
+            // Traemos Nombre y Apellido con una query
+            Usuario usuario = UsuarioBLL.Instancia.ObtenerPorNombreUsuario(nombreUsuario);
+
+            if (usuario != null)
+            {
+                txtNombre.Text = usuario.Nombre;
+                txtApellido.Text = usuario.Apellido;
+            }
+            else
+            {
+                txtNombre.Text = "";
+                txtApellido.Text = "";
+            }
         }
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
@@ -124,6 +141,15 @@ namespace GestiondeUsuario
 
         private void btnAplicar_Click(object sender, EventArgs e)
         {
+            if (dtpFechaIni.Checked && dtpFechaFin.Checked)
+            {
+                if (dtpFechaIni.Value.Date > dtpFechaFin.Value.Date)
+                {
+                    MessageBox.Show("La fecha de inicio no puede ser mayor a la fecha de fin.",
+                        "Fechas invalidas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
             CargarGrilla();
         }
 

@@ -39,16 +39,17 @@ namespace DAL
             var lista = new List<Bitacora>();
             using (SqlConnection con = new SqlConnection(connectionString))
             {
-                // Por defecto últimos 3 días si no hay filtro de fecha
-                if (fechaIni == null) fechaIni = DateTime.Today.AddDays(-3);
-                if (fechaFin == null) fechaFin = DateTime.Today.AddDays(1);
-
                 string query = @"SELECT b.Id, b.Usuario, b.Accion, b.Fecha, 
-                                        b.Modulo, b.Criticidad,
-                                        u.Nombre, u.Apellido
-                                 FROM Bitacora b
-                                 LEFT JOIN Usuarios u ON b.Usuario = u.NombreUsuario
-                                 WHERE b.Fecha >= @FechaIni AND b.Fecha <= @FechaFin";
+                        b.Modulo, b.Criticidad,
+                        u.Nombre, u.Apellido
+                 FROM Bitacora b
+                 LEFT JOIN Usuarios u ON b.Usuario = u.NombreUsuario
+                 WHERE 1=1";
+
+                if (fechaIni.HasValue)
+                    query += " AND b.Fecha >= @FechaIni";
+                if (fechaFin.HasValue)
+                    query += " AND b.Fecha < DATEADD(day, 1, @FechaFin)";
 
                 if (!string.IsNullOrEmpty(login))
                     query += " AND b.Usuario = @Login";
@@ -62,8 +63,10 @@ namespace DAL
                 query += " ORDER BY b.Fecha DESC";
 
                 SqlCommand cmd = new SqlCommand(query, con);
-                cmd.Parameters.AddWithValue("@FechaIni", fechaIni.Value);
-                cmd.Parameters.AddWithValue("@FechaFin", fechaFin.Value);
+                if (fechaIni.HasValue)
+                    cmd.Parameters.AddWithValue("@FechaIni", fechaIni.Value);
+                if (fechaFin.HasValue)
+                    cmd.Parameters.AddWithValue("@FechaFin", fechaFin.Value);
                 if (!string.IsNullOrEmpty(login))
                     cmd.Parameters.AddWithValue("@Login", login);
                 if (!string.IsNullOrEmpty(modulo))
