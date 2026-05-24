@@ -9,6 +9,6 @@ namespace DAL
     public static class ConexionDAL
     {
         public static string ConnectionString =
-            "Data Source=DESKTOP-FEJ1OE8\\SQLEXPRESS;Initial Catalog=GestionUsuarios;Integrated Security=True";
+             "Data Source=.\\SQLEXPRESS;Initial Catalog=GestionUsuarios;Integrated Security=True";
     }
 }
