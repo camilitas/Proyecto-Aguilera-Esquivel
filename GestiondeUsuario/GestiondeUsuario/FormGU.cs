@@ -188,7 +188,7 @@ namespace GestiondeUsuario
                     DNI = dni,
                     Rol = cmbRol.SelectedItem.ToString(),
                     // Contraseña inicial: DNI + Nombre
-                    Contraseña = txtApellido.Text + txtDNI.Text,
+                    Contraseña = txtDNI.Text,
                     Activo = true,
                     PrimerIngreso = true
                 };

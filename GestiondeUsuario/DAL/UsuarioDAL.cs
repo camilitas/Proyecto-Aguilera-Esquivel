@@ -30,6 +30,7 @@ namespace DAL
                 Bloqueado = Convert.ToBoolean(reader["Bloqueado"]),
                 Rol = reader["Rol"].ToString(),
                 PrimerIngreso = Convert.ToBoolean(reader["PrimerIngreso"])
+                IdRol = reader["IdRol"] == DBNull.Value ? 0 : Convert.ToInt32(reader["IdRol"]),
             };
         }
         public Usuario ObtenerPorNombreUsuario(string nombreUsuario)
