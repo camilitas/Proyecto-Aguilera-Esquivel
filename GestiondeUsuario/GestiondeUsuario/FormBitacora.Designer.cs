@@ -101,6 +101,7 @@
             // 
             // cmbLogin
             // 
+            this.cmbLogin.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbLogin.FormattingEnabled = true;
             this.cmbLogin.Location = new System.Drawing.Point(88, 341);
             this.cmbLogin.Name = "cmbLogin";
@@ -109,6 +110,7 @@
             // 
             // cmbModulo
             // 
+            this.cmbModulo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbModulo.FormattingEnabled = true;
             this.cmbModulo.Location = new System.Drawing.Point(104, 384);
             this.cmbModulo.Name = "cmbModulo";
@@ -200,6 +202,7 @@
             // 
             // cmbEvento
             // 
+            this.cmbEvento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbEvento.FormattingEnabled = true;
             this.cmbEvento.Location = new System.Drawing.Point(338, 384);
             this.cmbEvento.Name = "cmbEvento";
@@ -217,6 +220,7 @@
             // 
             // cmbCriticidad
             // 
+            this.cmbCriticidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCriticidad.FormattingEnabled = true;
             this.cmbCriticidad.Location = new System.Drawing.Point(548, 384);
             this.cmbCriticidad.Name = "cmbCriticidad";

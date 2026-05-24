@@ -39,9 +39,6 @@ namespace GestiondeUsuario
             cmbModulo.Items.Clear();
             cmbModulo.Items.Add("");
             cmbModulo.Items.Add("Usuarios");
-            cmbModulo.Items.Add("Ventas");
-            cmbModulo.Items.Add("Compras");
-            cmbModulo.Items.Add("Maestro");
             cmbModulo.SelectedIndex = 0;
 
             cmbEvento.Items.Clear();
@@ -50,8 +47,13 @@ namespace GestiondeUsuario
             cmbEvento.Items.Add("Logout");
             cmbEvento.Items.Add("Cambiar Clave");
             cmbEvento.Items.Add("Crear Usuario");
-            cmbEvento.Items.Add("Bloquear Usuario");
+            cmbEvento.Items.Add("Modificar Usuario");
+            cmbEvento.Items.Add("Deshabilitar Usuario");
+            cmbEvento.Items.Add("Habilitar Usuario");
+            cmbEvento.Items.Add("Desbloquear Usuario");
             cmbEvento.Items.Add("Login fallido");
+            cmbEvento.Items.Add("Login fallido - usuario no existe");
+            cmbEvento.Items.Add("Intento en cuenta bloqueada");
             cmbEvento.SelectedIndex = 0;
 
             cmbCriticidad.Items.Clear();
