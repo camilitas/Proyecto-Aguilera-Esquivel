@@ -76,6 +76,10 @@ namespace BLL
             if (usuario.Contraseña != Encriptador.Encriptar(contraseñaActual))
                 return false;
 
+            // Nueva: no permitir la misma contraseña
+            if (usuario.Contraseña == Encriptador.Encriptar(nuevaPass))
+                throw new Exception("La nueva contraseña no puede ser igual a la actual.");
+
             usuario.Contraseña = Encriptador.Encriptar(nuevaPass);
             usuario.PrimerIngreso = false;
             bool ok = dal.ActualizarContraseña(usuario);

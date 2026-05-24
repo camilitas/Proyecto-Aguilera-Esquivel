@@ -58,26 +58,32 @@ namespace GestiondeUsuario
             }
 
             // Llamada a BLL
-            bool ok = UsuarioBLL.Instancia.CambiarContraseña(
-                Convert.ToInt32(txtDNI.Text),
-                txtContraseñaActual.Text,
-                txtNuevaPass.Text
-            );
-
-            if (ok)
+            try
             {
-                MessageBox.Show("Contraseña actualizada correctamente.", "Éxito",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                // Volver al login
-                new Form1().Show();
-                this.Close();
+                bool ok = UsuarioBLL.Instancia.CambiarContraseña(
+                    Convert.ToInt32(txtDNI.Text),
+                    txtContraseñaActual.Text,
+                    txtNuevaPass.Text
+                );
+                if (ok)
+                {
+                    MessageBox.Show("Contraseña actualizada correctamente.", "Éxito",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    new Form1().Show();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("DNI o contraseña actual incorrectos.", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("DNI o contraseña actual incorrectos.", "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
