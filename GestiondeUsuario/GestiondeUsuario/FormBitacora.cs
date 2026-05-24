@@ -24,8 +24,16 @@ namespace GestiondeUsuario
         {
             dtpFechaIni.Checked = false;
             dtpFechaFin.Checked = false;
-            CargarCombos();
-            CargarGrilla();
+            try
+            {
+                CargarCombos();
+                CargarGrilla();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar la bitácora: " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void CargarCombos()
@@ -228,15 +236,23 @@ namespace GestiondeUsuario
 
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
-            cmbLogin.SelectedIndex = 0;
-            cmbModulo.SelectedIndex = 0;
-            cmbEvento.SelectedIndex = 0;
-            cmbCriticidad.SelectedIndex = 0;
-            dtpFechaIni.Checked = false;
-            dtpFechaIni.Value = DateTime.Today; // resetea la fecha
-            dtpFechaFin.Checked = false;
-            dtpFechaFin.Value = DateTime.Today; // resetea la fecha
-            CargarGrilla();
+            try
+            {
+                cmbLogin.SelectedIndex = 0;
+                cmbModulo.SelectedIndex = 0;
+                cmbEvento.SelectedIndex = 0;
+                cmbCriticidad.SelectedIndex = 0;
+                dtpFechaIni.Checked = false;
+                dtpFechaIni.Value = DateTime.Today;
+                dtpFechaFin.Checked = false;
+                dtpFechaFin.Value = DateTime.Today;
+                CargarGrilla();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al limpiar filtros: " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
