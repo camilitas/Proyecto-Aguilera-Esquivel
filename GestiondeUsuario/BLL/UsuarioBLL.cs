@@ -54,10 +54,8 @@ namespace BLL
             else
             {
                 usuario.IntentosFallidos++;
-
                 if (usuario.IntentosFallidos >= 3)
                     usuario.Bloqueado = true;
-
                 dal.ActualizarIntentos(usuario);
                 GestorEventosBLL.Instancia.Notificar(nombreUsuario,
                     "Login fallido", "Usuarios", 1);
@@ -68,15 +66,12 @@ namespace BLL
         public bool CambiarContraseña(int dni, string contraseñaActual, string nuevaPass)
         {
             UsuarioDAL dal = new UsuarioDAL();
-
             Usuario usuario = dal.ObtenerPorDNI(dni);
-            if (usuario == null)
-                return false;
+            if (usuario == null) return false;
 
             if (usuario.Contraseña != Encriptador.Encriptar(contraseñaActual))
                 return false;
 
-            // Nueva: no permitir la misma contraseña
             if (usuario.Contraseña == Encriptador.Encriptar(nuevaPass))
                 throw new Exception("La nueva contraseña no puede ser igual a la actual.");
 
@@ -87,34 +82,29 @@ namespace BLL
             if (ok)
                 GestorEventosBLL.Instancia.Notificar(usuario.NombreUsuario,
                     "Cambiar Clave", "Usuarios", 2);
-
             return ok;
         }
 
         public bool CrearUsuario(Usuario nuevoUsuario)
         {
-            if (string.IsNullOrEmpty(nuevoUsuario.Nombre))
-                return false;
-            if (string.IsNullOrEmpty(nuevoUsuario.Email))
-                return false;
-            if (string.IsNullOrEmpty(nuevoUsuario.Contraseña))
-                return false;
+            if (string.IsNullOrEmpty(nuevoUsuario.Nombre)) return false;
+            if (string.IsNullOrEmpty(nuevoUsuario.Email)) return false;
+            if (string.IsNullOrEmpty(nuevoUsuario.Contraseña)) return false;
 
-            nuevoUsuario.Contraseña = Encriptador.Encriptar(nuevoUsuario.Contraseña);
+            // Contraseña inicial = solo DNI
+            nuevoUsuario.Contraseña = Encriptador.Encriptar(nuevoUsuario.DNI.ToString());
 
             UsuarioDAL dal = new UsuarioDAL();
             try
             {
                 bool ok = dal.Insertar(nuevoUsuario);
-
                 if (ok)
                     GestorEventosBLL.Instancia.Notificar(
                         SessionManager.Instancia.ObtenerUsuarioActivo()?.NombreUsuario ?? "Admin",
-                        "Crear Usuario", "Usuarios", 2);
-
+                        "Crear Usuario", "Administrador", 2);
                 return ok;
             }
-            catch(SqlException ex)
+            catch (SqlException ex)
             {
                 if (ex.Number == 2627)
                     throw new Exception("Ya existe un usuario con ese DNI o Email.");
@@ -143,12 +133,10 @@ namespace BLL
         {
             UsuarioDAL dal = new UsuarioDAL();
             bool ok = dal.Modificar(u);
-
             if (ok)
                 GestorEventosBLL.Instancia.Notificar(
                     SessionManager.Instancia.ObtenerUsuarioActivo()?.NombreUsuario ?? "Admin",
-                    "Modificar Usuario", "Usuarios", 3);
-
+                    "Modificar Usuario", "Administrador", 3);
             return ok;
         }
 
@@ -156,12 +144,10 @@ namespace BLL
         {
             UsuarioDAL dal = new UsuarioDAL();
             bool ok = dal.Deshabilitar(id);
-
             if (ok)
                 GestorEventosBLL.Instancia.Notificar(
                     SessionManager.Instancia.ObtenerUsuarioActivo()?.NombreUsuario ?? "Admin",
-                    "Deshabilitar Usuario", "Usuarios", 2);
-
+                    "Deshabilitar Usuario", "Administrador", 2);
             return ok;
         }
 
@@ -169,12 +155,10 @@ namespace BLL
         {
             UsuarioDAL dal = new UsuarioDAL();
             bool ok = dal.Habilitar(id);
-
             if (ok)
                 GestorEventosBLL.Instancia.Notificar(
                     SessionManager.Instancia.ObtenerUsuarioActivo()?.NombreUsuario ?? "Admin",
-                    "Habilitar Usuario", "Usuarios", 2);
-
+                    "Habilitar Usuario", "Administrador", 2);
             return ok;
         }
 
@@ -184,16 +168,13 @@ namespace BLL
             Usuario usuario = dal.ObtenerPorId(id);
             if (usuario == null) return false;
 
-            // Reseteamos la contraseña a Apellido+DNI encriptada
-            string passReseteada = Encriptador.Encriptar(usuario.Apellido + usuario.DNI.ToString());
-
+            string passReseteada = Encriptador.Encriptar(usuario.DNI.ToString());
             bool ok = dal.Desbloquear(id, passReseteada);
 
             if (ok)
                 GestorEventosBLL.Instancia.Notificar(
                     SessionManager.Instancia.ObtenerUsuarioActivo()?.NombreUsuario ?? "Admin",
-                    "Desbloquear Usuario", "Usuarios", 1);
-
+                    "Desbloquear Usuario", "Administrador", 1);
             return ok;
         }
 
@@ -201,10 +182,8 @@ namespace BLL
         {
             string nombreUsuario = SessionManager.Instancia
                 .ObtenerUsuarioActivo()?.NombreUsuario ?? "Desconocido";
-
             GestorEventosBLL.Instancia.Notificar(nombreUsuario,
                 "Logout", "Usuarios", 1);
-
             SessionManager.Instancia.CerrarSesion();
         }
     }
