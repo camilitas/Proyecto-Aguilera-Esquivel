@@ -187,12 +187,12 @@ namespace GestiondeUsuario
                     Email = txtCorreo.Text,
                     DNI = dni,
                     Rol = cmbRol.SelectedItem.ToString(),
-                    // Contraseña inicial: DNI + Nombre
+                    IdRol = cmbRol.SelectedItem.ToString() == "Admin" ? 1 : 2,
                     Contraseña = txtDNI.Text,
                     Activo = true,
                     PrimerIngreso = true
                 };
-            try
+                try
                 {
                     bool ok = UsuarioBLL.Instancia.CrearUsuario(nuevo);
 

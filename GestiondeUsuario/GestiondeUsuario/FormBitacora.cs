@@ -27,6 +27,17 @@ namespace GestiondeUsuario
             try
             {
                 CargarCombos();
+
+                // Si es usuario General bloqueamos login y lo forzamos a ver solo el suyo
+                string rol = SessionManager.Instancia.ObtenerUsuarioActivo()?.Rol ?? "General";
+                if (rol != "Admin")
+                {
+                    string nombreUsuario = SessionManager.Instancia
+                        .ObtenerUsuarioActivo()?.NombreUsuario ?? "";
+                    cmbLogin.SelectedItem = nombreUsuario;
+                    cmbLogin.Enabled = false;
+                }
+
                 CargarGrilla();
             }
             catch (Exception ex)
@@ -38,32 +49,54 @@ namespace GestiondeUsuario
 
         private void CargarCombos()
         {
+            cmbLogin.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbModulo.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbEvento.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbCriticidad.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            // Login
             cmbLogin.Items.Clear();
             cmbLogin.Items.Add("");
             foreach (var l in BitacoraBLL.Instancia.ObtenerLogins())
                 cmbLogin.Items.Add(l);
             cmbLogin.SelectedIndex = 0;
 
+            // Módulo según rol
             cmbModulo.Items.Clear();
             cmbModulo.Items.Add("");
-            cmbModulo.Items.Add("Usuarios");
+            string rol = SessionManager.Instancia.ObtenerUsuarioActivo()?.Rol ?? "General";
+            if (rol == "Admin")
+            {
+                cmbModulo.Items.Add("Administrador");
+                cmbModulo.Items.Add("Usuarios");
+            }
+            else
+            {
+                // Usuario general solo ve su propio módulo
+                cmbModulo.Items.Add("Usuarios");
+            }
             cmbModulo.SelectedIndex = 0;
 
+            // Eventos
             cmbEvento.Items.Clear();
             cmbEvento.Items.Add("");
+            if (rol == "Admin")
+            {
+                cmbEvento.Items.Add("Crear Usuario");
+                cmbEvento.Items.Add("Modificar Usuario");
+                cmbEvento.Items.Add("Deshabilitar Usuario");
+                cmbEvento.Items.Add("Habilitar Usuario");
+                cmbEvento.Items.Add("Desbloquear Usuario");
+            }
             cmbEvento.Items.Add("Login");
             cmbEvento.Items.Add("Logout");
             cmbEvento.Items.Add("Cambiar Clave");
-            cmbEvento.Items.Add("Crear Usuario");
-            cmbEvento.Items.Add("Modificar Usuario");
-            cmbEvento.Items.Add("Deshabilitar Usuario");
-            cmbEvento.Items.Add("Habilitar Usuario");
-            cmbEvento.Items.Add("Desbloquear Usuario");
             cmbEvento.Items.Add("Login fallido");
             cmbEvento.Items.Add("Login fallido - usuario no existe");
             cmbEvento.Items.Add("Intento en cuenta bloqueada");
             cmbEvento.SelectedIndex = 0;
 
+            // Criticidad
             cmbCriticidad.Items.Clear();
             cmbCriticidad.Items.Add("");
             for (int i = 1; i <= 5; i++)
