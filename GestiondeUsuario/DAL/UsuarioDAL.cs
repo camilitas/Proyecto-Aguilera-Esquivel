@@ -29,8 +29,8 @@ namespace DAL
                 IntentosFallidos = Convert.ToInt32(reader["IntentosFallidos"]),
                 Bloqueado = Convert.ToBoolean(reader["Bloqueado"]),
                 Rol = reader["Rol"].ToString(),
-                PrimerIngreso = Convert.ToBoolean(reader["PrimerIngreso"])
                 IdRol = reader["IdRol"] == DBNull.Value ? 0 : Convert.ToInt32(reader["IdRol"]),
+                PrimerIngreso = Convert.ToBoolean(reader["PrimerIngreso"])
             };
         }
         public Usuario ObtenerPorNombreUsuario(string nombreUsuario)
@@ -186,9 +186,11 @@ namespace DAL
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 string query = @"INSERT INTO Usuarios 
-            (Nombre, Apellido, Email, Contraseña, DNI, NombreUsuario, FechaCreacion, Activo, Rol, PrimerIngreso, IntentosFallidos, Bloqueado) 
+            (Nombre, Apellido, Email, Contraseña, DNI, NombreUsuario, 
+             FechaCreacion, Activo, Rol, IdRol, PrimerIngreso, IntentosFallidos, Bloqueado) 
             VALUES 
-            (@Nombre, @Apellido, @Email, @Contraseña, @DNI, @NombreUsuario, @FechaCreacion, @Activo, @Rol, @PrimerIngreso, 0, 0)";
+            (@Nombre, @Apellido, @Email, @Contraseña, @DNI, @NombreUsuario,
+             @FechaCreacion, @Activo, @Rol, @IdRol, @PrimerIngreso, 0, 0)";
                 SqlCommand cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@Nombre", u.Nombre);
                 cmd.Parameters.AddWithValue("@Apellido", u.Apellido);
@@ -199,6 +201,7 @@ namespace DAL
                 cmd.Parameters.Add("@FechaCreacion", SqlDbType.DateTime).Value = DateTime.UtcNow;
                 cmd.Parameters.AddWithValue("@Activo", true);
                 cmd.Parameters.AddWithValue("@Rol", u.Rol);
+                cmd.Parameters.AddWithValue("@IdRol", u.IdRol == 0 ? (object)DBNull.Value : u.IdRol);
                 cmd.Parameters.AddWithValue("@PrimerIngreso", true);
                 con.Open();
                 return cmd.ExecuteNonQuery() > 0;
