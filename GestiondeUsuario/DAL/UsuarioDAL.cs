@@ -109,12 +109,17 @@ namespace DAL
                 return cmd.ExecuteNonQuery() > 0;
             }
         }
-        public bool Habilitar(int id)
+        public bool Habilitar(int id, string contraseñaReseteada)
         {
             using (SqlConnection con = new SqlConnection(connectionString))
             {
-                string query = "UPDATE Usuarios SET Activo=1 WHERE Id=@Id";
+                string query = @"UPDATE Usuarios SET 
+                Activo=1,
+                Contraseña=@Contraseña,
+                PrimerIngreso=1
+                WHERE Id=@Id";
                 SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@Contraseña", contraseñaReseteada);
                 cmd.Parameters.AddWithValue("@Id", id);
                 con.Open();
                 return cmd.ExecuteNonQuery() > 0;

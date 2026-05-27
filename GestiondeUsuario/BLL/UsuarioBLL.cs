@@ -154,7 +154,13 @@ namespace BLL
         public bool Habilitar(int id)
         {
             UsuarioDAL dal = new UsuarioDAL();
-            bool ok = dal.Habilitar(id);
+            Usuario usuario = dal.ObtenerPorId(id);
+            if (usuario == null) return false;
+
+            // Reseteamos contraseña
+            string passReseteada = Encriptador.Encriptar(usuario.DNI.ToString());
+
+            bool ok = dal.Habilitar(id, passReseteada);
             if (ok)
                 GestorEventosBLL.Instancia.Notificar(
                     SessionManager.Instancia.ObtenerUsuarioActivo()?.NombreUsuario ?? "Admin",
