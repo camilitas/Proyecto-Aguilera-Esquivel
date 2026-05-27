@@ -98,7 +98,7 @@ namespace GestiondeUsuario
 
             // Criticidad
             cmbCriticidad.Items.Clear();
-            cmbCriticidad.Items.Add("");
+            cmbCriticidad.Items.Add("Todas");
             for (int i = 1; i <= 5; i++)
                 cmbCriticidad.Items.Add(i.ToString());
             cmbCriticidad.SelectedIndex = 0;
@@ -114,7 +114,6 @@ namespace GestiondeUsuario
             int? criticidad = null;
             if (cmbCriticidad.SelectedIndex > 0)
                 criticidad = int.Parse(cmbCriticidad.SelectedItem.ToString());
-
             var lista = BitacoraBLL.Instancia.ObtenerFiltrado(login, fechaIni, fechaFin, modulo, evento, criticidad);
 
             // Proyectamos para separar Fecha y Hora en columnas distintas

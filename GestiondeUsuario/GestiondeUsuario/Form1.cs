@@ -89,6 +89,6 @@ namespace GestiondeUsuario
             this.Hide();
         }
 
-        
+       
     }
 }
