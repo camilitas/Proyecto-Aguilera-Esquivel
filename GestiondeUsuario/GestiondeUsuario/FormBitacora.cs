@@ -15,6 +15,8 @@ namespace GestiondeUsuario
 {
     public partial class FormBitacora : Form
     {
+        private float _printY = 50;
+        private int _printRowIndex = 0;
         public FormBitacora()
         {
             InitializeComponent();
@@ -203,6 +205,8 @@ namespace GestiondeUsuario
 
         private void btnImprimir_Click(object sender, EventArgs e)
         {
+            _printY = 50;
+            _printRowIndex = 0;
             PrintDocument pd = new PrintDocument();
             pd.PrintPage += new PrintPageEventHandler(ImprimirBitacora);
 
@@ -213,57 +217,53 @@ namespace GestiondeUsuario
 
         private void ImprimirBitacora(object sender, PrintPageEventArgs e)
         {
-            float y = 50;
             float x = 40;
             Font fontTitulo = new Font("Arial", 14, FontStyle.Bold);
             Font fontHeader = new Font("Arial", 9, FontStyle.Bold);
             Font fontData = new Font("Arial", 8);
 
-            // Titulo
-            e.Graphics.DrawString("Bitácora de Eventos", fontTitulo, Brushes.Black, x, y);
-            y += 30;
-
-            // Fecha de impresion
-            e.Graphics.DrawString("Fecha: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm"),
-                fontData, Brushes.Black, x, y);
-            y += 25;
-
-            // Headers
-            e.Graphics.DrawString("Login", fontHeader, Brushes.Black, x, y);
-            e.Graphics.DrawString("Fecha", fontHeader, Brushes.Black, x + 120, y);
-            e.Graphics.DrawString("Hora", fontHeader, Brushes.Black, x + 200, y);
-            e.Graphics.DrawString("Módulo", fontHeader, Brushes.Black, x + 260, y);
-            e.Graphics.DrawString("Evento", fontHeader, Brushes.Black, x + 350, y);
-            e.Graphics.DrawString("Criticidad", fontHeader, Brushes.Black, x + 500, y);
-            y += 20;
-
-            // Linea separadora
-            e.Graphics.DrawLine(Pens.Black, x, y, 760, y);
-            y += 10;
-
-            // Datos de la grilla
-            foreach (DataGridViewRow fila in dgvBitacora.Rows)
+            // Titulo y header solo en la primera pagina
+            if (_printRowIndex == 0)
             {
-                if (y > e.PageBounds.Height - 50)
+                e.Graphics.DrawString("Bitácora de Eventos", fontTitulo, Brushes.Black, x, _printY);
+                _printY += 30;
+                e.Graphics.DrawString("Fecha: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm"),
+                    fontData, Brushes.Black, x, _printY);
+                _printY += 25;
+
+                e.Graphics.DrawString("Login", fontHeader, Brushes.Black, x, _printY);
+                e.Graphics.DrawString("Fecha", fontHeader, Brushes.Black, x + 120, _printY);
+                e.Graphics.DrawString("Hora", fontHeader, Brushes.Black, x + 200, _printY);
+                e.Graphics.DrawString("Módulo", fontHeader, Brushes.Black, x + 260, _printY);
+                e.Graphics.DrawString("Evento", fontHeader, Brushes.Black, x + 350, _printY);
+                e.Graphics.DrawString("Criticidad", fontHeader, Brushes.Black, x + 500, _printY);
+                _printY += 20;
+                e.Graphics.DrawLine(Pens.Black, x, _printY, 760, _printY);
+                _printY += 10;
+            }
+
+            // Imprimir filas desde donde quedamos
+            while (_printRowIndex < dgvBitacora.Rows.Count)
+            {
+                if (_printY > e.PageBounds.Height - 50)
                 {
                     e.HasMorePages = true;
+                    _printY = 40; // reset Y para la nueva página
                     return;
                 }
 
-                e.Graphics.DrawString(fila.Cells["Login"].Value?.ToString() ?? "",
-                    fontData, Brushes.Black, x, y);
-                e.Graphics.DrawString(fila.Cells["Fecha"].Value?.ToString() ?? "",
-                    fontData, Brushes.Black, x + 120, y);
-                e.Graphics.DrawString(fila.Cells["Hora"].Value?.ToString() ?? "",
-                    fontData, Brushes.Black, x + 200, y);
-                e.Graphics.DrawString(fila.Cells["Modulo"].Value?.ToString() ?? "",
-                    fontData, Brushes.Black, x + 260, y);
-                e.Graphics.DrawString(fila.Cells["Evento"].Value?.ToString() ?? "",
-                    fontData, Brushes.Black, x + 350, y);
-                e.Graphics.DrawString(fila.Cells["Criticidad"].Value?.ToString() ?? "",
-                    fontData, Brushes.Black, x + 500, y);
-                y += 18;
+                var fila = dgvBitacora.Rows[_printRowIndex];
+                e.Graphics.DrawString(fila.Cells["Login"].Value?.ToString() ?? "", fontData, Brushes.Black, x, _printY);
+                e.Graphics.DrawString(fila.Cells["Fecha"].Value?.ToString() ?? "", fontData, Brushes.Black, x + 120, _printY);
+                e.Graphics.DrawString(fila.Cells["Hora"].Value?.ToString() ?? "", fontData, Brushes.Black, x + 200, _printY);
+                e.Graphics.DrawString(fila.Cells["Modulo"].Value?.ToString() ?? "", fontData, Brushes.Black, x + 260, _printY);
+                e.Graphics.DrawString(fila.Cells["Evento"].Value?.ToString() ?? "", fontData, Brushes.Black, x + 350, _printY);
+                e.Graphics.DrawString(fila.Cells["Criticidad"].Value?.ToString() ?? "", fontData, Brushes.Black, x + 500, _printY);
+                _printY += 18;
+                _printRowIndex++;
             }
+
+            e.HasMorePages = false;
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)
