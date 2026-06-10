@@ -1,4 +1,5 @@
 ﻿using BLL;
+using Newtonsoft.Json.Linq;
 using Servicios;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ using System.Windows.Forms;
 
 namespace GestiondeUsuario
 {
-    public partial class FormPrincipal : Form
+    public partial class FormPrincipal : Form, IObservadorIdioma
     {
         public FormPrincipal()
         {
@@ -21,6 +22,8 @@ namespace GestiondeUsuario
 
         private void FormPrincipal_Load(object sender, EventArgs e)
         {
+            GestorIdioma.Instancia.Suscribir(this);
+
             Usuario usuario = SessionManager.Instancia.ObtenerUsuarioActivo();
             lblBienvenida.Text = "Bienvenido, " + usuario.Nombre + "!";
 
@@ -30,6 +33,8 @@ namespace GestiondeUsuario
             menuVenta.Enabled = PerfilBLL.Instancia.TienePermiso(usuario.Rol, "GestionUsuarios");
             menuCompras.Enabled = PerfilBLL.Instancia.TienePermiso(usuario.Rol, "GestionUsuarios");
             menuReporte.Enabled = PerfilBLL.Instancia.TienePermiso(usuario.Rol, "VerBitacora");
+
+            GestorIdioma.Instancia.CambiarIdioma(SessionManager.Instancia.ObtenerIdioma());
         }
 
         private void iniciarSesionToolStripMenuItem_Click(object sender, EventArgs e)
@@ -87,6 +92,42 @@ namespace GestiondeUsuario
         {
             new FormGestionRoles().Show();
             this.Hide();
+        }
+
+        private void cambiarIdiomaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new FormCambiarIdioma().Show();
+            this.Hide();
+        }
+
+        public void ActualizarIdioma(JObject traducciones)
+        {
+            var t = traducciones["FormPrincipal"];
+            if (t == null) return;
+
+            lblBienvenida.Text = t["lblBienvenida"]?.ToString() + ", " +
+            SessionManager.Instancia.ObtenerUsuarioActivo()?.Nombre + "!";
+            usuarioToolStripMenuItem.Text = t["menuUsuario"]?.ToString();
+            menuAdmin.Text = t["menuAdmin"]?.ToString();
+            menuMaestro.Text = t["menuMaestro"]?.ToString();
+            menuVenta.Text = t["menuVenta"]?.ToString();
+            menuCompras.Text = t["menuCompras"]?.ToString();
+            menuReporte.Text = t["menuReporte"]?.ToString();
+            ayudaToolStripMenuItem.Text = t["menuAyuda"]?.ToString();
+            iniciarSesionToolStripMenuItem.Text = t["iniciarSesion"]?.ToString();
+            cambiarContraseñaToolStripMenuItem.Text = t["cambiarContraseña"]?.ToString();
+            cambiarIdiomaToolStripMenuItem.Text = t["cambiarIdioma"]?.ToString();
+            cerrarSesionToolStripMenuItem.Text = t["cerrarSesion"]?.ToString();
+            gestionDeUsuariosToolStripMenuItem.Text = t["gestionUsuarios"]?.ToString();
+            bitacoraEventosToolStripMenuItem.Text = t["bitacoraEventos"]?.ToString();
+            gestionDePerfilesToolStripMenuItem.Text = t["gestionPerfiles"]?.ToString();
+            gestionDeRolesToolStripMenuItem.Text = t["gestionRoles"]?.ToString();
+            gestionRespaldoToolStripMenuItem.Text = t["gestionRespaldo"]?.ToString();
+        }
+        private void FormPrincipal_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            // Desuscribirse al cerrar
+            GestorIdioma.Instancia.Desuscribir(this);
         }
     }
 }

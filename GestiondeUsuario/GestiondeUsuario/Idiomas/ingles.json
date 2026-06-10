@@ -1,0 +1,67 @@
+{
+  "Form1": {
+    "titulo": "Login",
+    "lblUsuario": "Username",
+    "lblContraseña": "Password",
+    "btnLogin": "Login",
+    "lblRecuperar": "Recover password"
+  },
+  "FormPrincipal": {
+    "lblBienvenida": "Welcome",
+    "menuUsuario": "User",
+    "menuAdmin": "Admin",
+    "menuMaestro": "Master",
+    "menuVenta": "Sales",
+    "menuCompras": "Purchases",
+    "menuReporte": "Reports",
+    "menuAyuda": "Help",
+    "iniciarSesion": "Login",
+    "cambiarContraseña": "Change Password",
+    "cambiarIdioma": "Change Language",
+    "cerrarSesion": "Logout",
+    "gestionUsuarios": "User Management",
+    "bitacoraEventos": "Event Log",
+    "gestionPerfiles": "Profile Management",
+    "gestionRoles": "Role Management",
+    "gestionRespaldo": "Backup Management"
+  },
+  "FormGU": {
+    "titulo": "User Management",
+    "lblDNI": "ID",
+    "lblNombre": "Name",
+    "lblApellido": "Last Name",
+    "lblNombreUsuario": "Username",
+    "lblCorreo": "Email",
+    "lblRol": "Role",
+    "lblActivo": "Active",
+    "btnAgregar": "Add",
+    "btnModificar": "Modify",
+    "btnDesbloquear": "Unlock",
+    "btnDeshabilitar": "Disable",
+    "btnAplicar": "Apply",
+    "btnCancelar": "Cancel",
+    "btnVolver": "Back"
+  },
+  "FormRecuperar": {
+    "titulo": "Change Password",
+    "lblDNI": "ID",
+    "lblContraseñaActual": "Current Password",
+    "lblNuevaPass": "New Password",
+    "lblConfirmarPass": "Confirm Password",
+    "btnRecuperar": "Save",
+    "btnVolver": "Back"
+  },
+  "FormBitacora": {
+    "titulo": "Event Log",
+    "lblLogin": "Login",
+    "lblFechaIni": "Start Date",
+    "lblFechaFin": "End Date",
+    "lblModulo": "Module",
+    "lblEvento": "Event",
+    "lblCriticidad": "Criticality",
+    "btnAplicar": "Apply",
+    "btnLimpiar": "Clear",
+    "btnImprimir": "Print",
+    "btnSalir": "Exit"
+  }
+}

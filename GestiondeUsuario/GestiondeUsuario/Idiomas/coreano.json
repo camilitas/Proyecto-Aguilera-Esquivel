@@ -1,0 +1,67 @@
+{
+  "Form1": {
+    "titulo": "로그인",
+    "lblUsuario": "사용자 이름",
+    "lblContraseña": "비밀번호",
+    "btnLogin": "로그인",
+    "lblRecuperar": "비밀번호 복구"
+  },
+  "FormPrincipal": {
+    "lblBienvenida": "환영합니다",
+    "menuUsuario": "사용자",
+    "menuAdmin": "관리자",
+    "menuMaestro": "마스터",
+    "menuVenta": "판매",
+    "menuCompras": "구매",
+    "menuReporte": "보고서",
+    "menuAyuda": "도움말",
+    "iniciarSesion": "로그인",
+    "cambiarContraseña": "비밀번호 변경",
+    "cambiarIdioma": "언어 변경",
+    "cerrarSesion": "로그아웃",
+    "gestionUsuarios": "사용자 관리",
+    "bitacoraEventos": "이벤트 로그",
+    "gestionPerfiles": "프로필 관리",
+    "gestionRoles": "역할 관리",
+    "gestionRespaldo": "백업 관리"
+  },
+  "FormGU": {
+    "titulo": "사용자 관리",
+    "lblDNI": "신분증",
+    "lblNombre": "이름",
+    "lblApellido": "성",
+    "lblNombreUsuario": "사용자 이름",
+    "lblCorreo": "이메일",
+    "lblRol": "역할",
+    "lblActivo": "활성",
+    "btnAgregar": "추가",
+    "btnModificar": "수정",
+    "btnDesbloquear": "잠금 해제",
+    "btnDeshabilitar": "비활성화",
+    "btnAplicar": "적용",
+    "btnCancelar": "취소",
+    "btnVolver": "뒤로"
+  },
+  "FormRecuperar": {
+    "titulo": "비밀번호 변경",
+    "lblDNI": "신분증",
+    "lblContraseñaActual": "현재 비밀번호",
+    "lblNuevaPass": "새 비밀번호",
+    "lblConfirmarPass": "비밀번호 확인",
+    "btnRecuperar": "저장",
+    "btnVolver": "뒤로"
+  },
+  "FormBitacora": {
+    "titulo": "이벤트 로그",
+    "lblLogin": "로그인",
+    "lblFechaIni": "시작 날짜",
+    "lblFechaFin": "종료 날짜",
+    "lblModulo": "모듈",
+    "lblEvento": "이벤트",
+    "lblCriticidad": "심각도",
+    "btnAplicar": "적용",
+    "btnLimpiar": "지우기",
+    "btnImprimir": "인쇄",
+    "btnSalir": "나가기"
+  }
+}

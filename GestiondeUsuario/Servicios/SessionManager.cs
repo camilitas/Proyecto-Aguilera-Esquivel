@@ -10,6 +10,8 @@ namespace Servicios
     {
         private static SessionManager _instancia; //guarda el unico objeto de esta clase (patron Singleton, igual que en UsuarioBLL)
         private Usuario _usuarioActivo;//guarda la informacion del usuario que ha iniciado sesion. Es privada para que solo pueda ser accedida a traves de los metodos publicos de esta clase.
+        private string _idiomaActual = "español"; // idioma por defecto
+
         private SessionManager() { }
         public static SessionManager Instancia
         {
@@ -39,6 +41,15 @@ namespace Servicios
         public bool HaySesionActiva()
         {
             return _usuarioActivo != null;
+        }
+        public string ObtenerIdioma()
+        {
+            return _idiomaActual;
+        }
+
+        public void CambiarIdioma(string idioma)
+        {
+            _idiomaActual = idioma;
         }
     }
 }

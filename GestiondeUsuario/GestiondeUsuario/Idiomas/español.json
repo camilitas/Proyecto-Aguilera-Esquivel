@@ -1,0 +1,67 @@
+{
+  "Form1": {
+    "titulo": "Inicio de Sesión",
+    "lblUsuario": "Nombre de Usuario",
+    "lblContraseña": "Contraseña",
+    "btnLogin": "Ingresar",
+    "lblRecuperar": "Recuperar contraseña"
+  },
+  "FormPrincipal": {
+    "lblBienvenida": "Bienvenido",
+    "menuUsuario": "Usuario",
+    "menuAdmin": "Admin",
+    "menuMaestro": "Maestro",
+    "menuVenta": "Venta",
+    "menuCompras": "Compras",
+    "menuReporte": "Reporte",
+    "menuAyuda": "Ayuda",
+    "iniciarSesion": "Iniciar Sesión",
+    "cambiarContraseña": "Cambiar Contraseña",
+    "cambiarIdioma": "Cambiar Idioma",
+    "cerrarSesion": "Cerrar Sesión",
+    "gestionUsuarios": "Gestión de Usuarios",
+    "bitacoraEventos": "Bitácora de Eventos",
+    "gestionPerfiles": "Gestión de Perfiles",
+    "gestionRoles": "Gestión de Roles",
+    "gestionRespaldo": "Gestión de Respaldo"
+  },
+  "FormGU": {
+    "titulo": "Gestión de Usuarios",
+    "lblDNI": "DNI",
+    "lblNombre": "Nombre",
+    "lblApellido": "Apellido",
+    "lblNombreUsuario": "Nombre Usuario",
+    "lblCorreo": "Correo",
+    "lblRol": "Rol",
+    "lblActivo": "Activo",
+    "btnAgregar": "Agregar",
+    "btnModificar": "Modificar",
+    "btnDesbloquear": "Desbloquear",
+    "btnDeshabilitar": "Deshabilitar",
+    "btnAplicar": "Aplicar",
+    "btnCancelar": "Cancelar",
+    "btnVolver": "Volver"
+  },
+  "FormRecuperar": {
+    "titulo": "Cambiar Contraseña",
+    "lblDNI": "DNI",
+    "lblContraseñaActual": "Contraseña Actual",
+    "lblNuevaPass": "Nueva Contraseña",
+    "lblConfirmarPass": "Confirmar Contraseña",
+    "btnRecuperar": "Guardar",
+    "btnVolver": "Volver"
+  },
+  "FormBitacora": {
+    "titulo": "Bitácora de Eventos",
+    "lblLogin": "Login",
+    "lblFechaIni": "Fecha Inicio",
+    "lblFechaFin": "Fecha Fin",
+    "lblModulo": "Módulo",
+    "lblEvento": "Evento",
+    "lblCriticidad": "Criticidad",
+    "btnAplicar": "Aplicar",
+    "btnLimpiar": "Limpiar",
+    "btnImprimir": "Imprimir",
+    "btnSalir": "Salir"
+  }
+}

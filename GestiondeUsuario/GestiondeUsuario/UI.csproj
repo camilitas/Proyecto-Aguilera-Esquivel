@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -57,6 +60,12 @@
     </Compile>
     <Compile Include="FormBitacora.Designer.cs">
       <DependentUpon>FormBitacora.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCambiarIdioma.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCambiarIdioma.Designer.cs">
+      <DependentUpon>FormCambiarIdioma.cs</DependentUpon>
     </Compile>
     <Compile Include="FormGestionFamilias.cs">
       <SubType>Form</SubType>
@@ -96,6 +105,9 @@
     <EmbeddedResource Include="FormBitacora.resx">
       <DependentUpon>FormBitacora.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormCambiarIdioma.resx">
+      <DependentUpon>FormCambiarIdioma.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormGestionFamilias.resx">
       <DependentUpon>FormGestionFamilias.cs</DependentUpon>
     </EmbeddedResource>
@@ -120,6 +132,16 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Content Include="Idiomas\coreano.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Idiomas\español.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Idiomas\ingles.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -148,4 +170,9 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties idiomas_4español_1json__JsonSchema="https://app.gitpod.io/jsonschema/v1/automations_file.jsonschema.json" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>
