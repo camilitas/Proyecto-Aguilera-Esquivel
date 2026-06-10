@@ -76,5 +76,11 @@ namespace GestiondeUsuario
             new FormBitacora().Show();
             this.Hide();
         }
+
+        private void gestionDePerfilesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new FormGestionFamilias().Show();
+            this.Hide();
+        }
     }
 }

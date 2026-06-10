@@ -1,0 +1,325 @@
+﻿using BLL;
+using Servicios;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace GestiondeUsuario
+{
+    public partial class FormGestionFamilias : Form
+    {
+        private int _idSeleccionado = -1;
+        public FormGestionFamilias()
+        {
+            InitializeComponent();
+        }
+
+        private void FormGestionFamilias_Load(object sender, EventArgs e)
+        {
+            rbPatente.Checked = true;
+            CargarFamilias();
+            CargarDisponibles();
+            HabilitarBotonera();
+            DeshabilitarCampos();
+            lblModo.Text = "Seleccioná una opción";
+        }
+        private void HabilitarBotonera()
+        {
+            btnNuevo.Enabled = true;
+            btnModificar.Enabled = true;
+            btnEliminar.Enabled = true;
+            btnAplicar.Enabled = false;
+            btnCancelar.Enabled = false;
+        }
+        private void ModoAccion()
+        {
+            btnNuevo.Enabled = false;
+            btnModificar.Enabled = false;
+            btnEliminar.Enabled = false;
+            btnAplicar.Enabled = true;
+            btnCancelar.Enabled = true;
+        }
+        private void DeshabilitarCampos()
+        {
+            txtNombre.Enabled = false;
+            txtDescripcion.Enabled = false;
+        }
+        private void HabilitarCampos()
+        {
+            txtNombre.Enabled = true;
+            txtDescripcion.Enabled = true;
+        }
+        private void LimpiarCampos()
+        {
+            txtNombre.Text = "";
+            txtDescripcion.Text = "";
+            lstContenido.Items.Clear();
+        }
+
+        private void CargarFamilias()
+        {
+            lstFamilias.Items.Clear();
+            var lista = FamiliaBLL.Instancia.ObtenerTodos();
+            foreach (var f in lista)
+                lstFamilias.Items.Add(f);
+        }
+        private void CargarDisponibles()
+        {
+            lstDisponibles.Items.Clear();
+            if (rbPatente.Checked)
+            {
+                var patentes = PatenteBLL.Instancia.ObtenerTodos();
+                foreach (var p in patentes)
+                    lstDisponibles.Items.Add(p);
+            }
+            else
+            {
+                var familias = FamiliaBLL.Instancia.ObtenerTodos();
+                foreach (var f in familias)
+                {
+                    // No mostramos la familia seleccionada para evitar que se agregue a sí misma
+                    if (_idSeleccionado != -1 && f.Id == _idSeleccionado) continue;
+                    lstDisponibles.Items.Add(f);
+                }
+            }
+        }
+        private void CargarContenido(int idFamilia)
+        {
+            lstContenido.Items.Clear();
+            var patentes = FamiliaBLL.Instancia.ObtenerPatentes(idFamilia);
+            foreach (var p in patentes)
+                lstContenido.Items.Add("[P] " + p.Nombre);
+
+            var familias = FamiliaBLL.Instancia.ObtenerFamiliasIntegradas(idFamilia);
+            foreach (var f in familias)
+                lstContenido.Items.Add("[F] " + f.Nombre);
+        }
+
+        private void lstFamilias_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lstFamilias.SelectedItem == null) return;
+
+            var familia = (Familia)lstFamilias.SelectedItem;
+            _idSeleccionado = familia.Id;
+            txtNombre.Text = familia.Nombre;
+            txtDescripcion.Text = familia.Descripcion;
+            CargarContenido(familia.Id);
+            CargarDisponibles();
+            lblModo.Text = "Familia seleccionada";
+        }
+
+        private void btnNuevo_Click(object sender, EventArgs e)
+        {
+            _idSeleccionado = -1;
+            LimpiarCampos();
+            HabilitarCampos();
+            ModoAccion();
+            lblModo.Text = "Modo Nuevo";
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            if (_idSeleccionado == -1)
+            {
+                MessageBox.Show("Seleccioná una familia primero.", "Atención",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            HabilitarCampos();
+            ModoAccion();
+            lblModo.Text = "Modo Modificar";
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (_idSeleccionado == -1)
+            {
+                MessageBox.Show("Seleccioná una familia primero.", "Atención",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            DialogResult confirm = MessageBox.Show(
+                "¿Querés eliminar esta familia?",
+                "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (confirm == DialogResult.Yes)
+            {
+                try
+                {
+                    bool ok = FamiliaBLL.Instancia.Eliminar(_idSeleccionado);
+                    if (ok)
+                    {
+                        MessageBox.Show("Familia eliminada exitosamente.", "Éxito",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LimpiarCampos();
+                        DeshabilitarCampos();
+                        HabilitarBotonera();
+                        _idSeleccionado = -1;
+                        CargarFamilias();
+                        lblModo.Text = "Seleccioná una opción";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void btnAplicar_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtNombre.Text))
+            {
+                MessageBox.Show("El nombre es obligatorio.", "Atención",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (_idSeleccionado == -1)
+            {
+                // MODO NUEVO
+                Familia nueva = new Familia
+                {
+                    Nombre = txtNombre.Text,
+                    Descripcion = txtDescripcion.Text
+                };
+
+                bool ok = FamiliaBLL.Instancia.Insertar(nueva);
+                if (ok)
+                {
+                    MessageBox.Show("Familia creada exitosamente.", "Éxito",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    CargarFamilias();
+                    LimpiarCampos();
+                    DeshabilitarCampos();
+                    HabilitarBotonera();
+                    lblModo.Text = "Seleccioná una opción";
+                }
+            }
+            else
+            {
+                // MODO MODIFICAR
+                Familia modificada = new Familia
+                {
+                    Id = _idSeleccionado,
+                    Nombre = txtNombre.Text,
+                    Descripcion = txtDescripcion.Text
+                };
+
+                bool ok = FamiliaBLL.Instancia.Modificar(modificada);
+                if (ok)
+                {
+                    MessageBox.Show("Familia modificada exitosamente.", "Éxito",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    CargarFamilias();
+                    LimpiarCampos();
+                    DeshabilitarCampos();
+                    HabilitarBotonera();
+                    lblModo.Text = "Seleccioná una opción";
+                }
+            }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            LimpiarCampos();
+            DeshabilitarCampos();
+            HabilitarBotonera();
+            lblModo.Text = "Seleccioná una opción";
+        }
+
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            new FormPrincipal().Show();
+            this.Close();
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            if (_idSeleccionado == -1)
+            {
+                MessageBox.Show("Seleccioná una familia primero.", "Atención",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (lstDisponibles.SelectedItem == null)
+            {
+                MessageBox.Show("Seleccioná un elemento para agregar.", "Atención",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                if (rbPatente.Checked)
+                {
+                    var patente = (Patente)lstDisponibles.SelectedItem;
+                    FamiliaBLL.Instancia.AgregarPatente(_idSeleccionado, patente.Id);
+                }
+                else
+                {
+                    var familia = (Familia)lstDisponibles.SelectedItem;
+                    FamiliaBLL.Instancia.AgregarFamilia(_idSeleccionado, familia.Id);
+                }
+                CargarContenido(_idSeleccionado);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnQuitar_Click(object sender, EventArgs e)
+        {
+            if (_idSeleccionado == -1 || lstContenido.SelectedItem == null) return;
+
+            string item = lstContenido.SelectedItem.ToString();
+
+            try
+            {
+                if (item.StartsWith("[P]"))
+                {
+                    string nombre = item.Replace("[P] ", "");
+                    var patentes = FamiliaBLL.Instancia.ObtenerPatentes(_idSeleccionado);
+                    var patente = patentes.FirstOrDefault(p => p.Nombre == nombre);
+                    if (patente != null)
+                        FamiliaBLL.Instancia.EliminarPatente(_idSeleccionado, patente.Id);
+                }
+                else
+                {
+                    string nombre = item.Replace("[F] ", "");
+                    var familias = FamiliaBLL.Instancia.ObtenerFamiliasIntegradas(_idSeleccionado);
+                    var familia = familias.FirstOrDefault(f => f.Nombre == nombre);
+                    if (familia != null)
+                        FamiliaBLL.Instancia.EliminarFamiliaIntegrada(_idSeleccionado, familia.Id);
+                }
+                CargarContenido(_idSeleccionado);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void rbPatente_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbPatente.Checked) CargarDisponibles();
+        }
+
+        private void rbFamilia_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbFamilia.Checked) CargarDisponibles();
+        }
+    }
+}

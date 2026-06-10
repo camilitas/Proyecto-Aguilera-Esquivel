@@ -1,0 +1,298 @@
+﻿namespace GestiondeUsuario
+{
+    partial class FormGestionFamilias
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.label1 = new System.Windows.Forms.Label();
+            this.lstFamilias = new System.Windows.Forms.ListBox();
+            this.lstContenido = new System.Windows.Forms.ListBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lstDisponibles = new System.Windows.Forms.ListBox();
+            this.rbPatente = new System.Windows.Forms.RadioButton();
+            this.rbFamilia = new System.Windows.Forms.RadioButton();
+            this.btnAgregar = new System.Windows.Forms.Button();
+            this.btnQuitar = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtNombre = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtDescripcion = new System.Windows.Forms.TextBox();
+            this.btnNuevo = new System.Windows.Forms.Button();
+            this.btnModificar = new System.Windows.Forms.Button();
+            this.btnEliminar = new System.Windows.Forms.Button();
+            this.btnAplicar = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnVolver = new System.Windows.Forms.Button();
+            this.lblModo = new System.Windows.Forms.Label();
+            this.SuspendLayout();
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(303, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(168, 20);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Gestion de Familias";
+            // 
+            // lstFamilias
+            // 
+            this.lstFamilias.FormattingEnabled = true;
+            this.lstFamilias.Location = new System.Drawing.Point(39, 73);
+            this.lstFamilias.Name = "lstFamilias";
+            this.lstFamilias.Size = new System.Drawing.Size(219, 264);
+            this.lstFamilias.TabIndex = 2;
+            this.lstFamilias.SelectedIndexChanged += new System.EventHandler(this.lstFamilias_SelectedIndexChanged);
+            // 
+            // lstContenido
+            // 
+            this.lstContenido.FormattingEnabled = true;
+            this.lstContenido.Location = new System.Drawing.Point(291, 73);
+            this.lstContenido.Name = "lstContenido";
+            this.lstContenido.Size = new System.Drawing.Size(219, 264);
+            this.lstContenido.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(577, 48);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(152, 13);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Patentes y Familias disponibles";
+            // 
+            // lstDisponibles
+            // 
+            this.lstDisponibles.FormattingEnabled = true;
+            this.lstDisponibles.Location = new System.Drawing.Point(539, 73);
+            this.lstDisponibles.Name = "lstDisponibles";
+            this.lstDisponibles.Size = new System.Drawing.Size(219, 264);
+            this.lstDisponibles.TabIndex = 5;
+            // 
+            // rbPatente
+            // 
+            this.rbPatente.AutoSize = true;
+            this.rbPatente.Location = new System.Drawing.Point(539, 344);
+            this.rbPatente.Name = "rbPatente";
+            this.rbPatente.Size = new System.Drawing.Size(62, 17);
+            this.rbPatente.TabIndex = 6;
+            this.rbPatente.TabStop = true;
+            this.rbPatente.Text = "Patente";
+            this.rbPatente.UseVisualStyleBackColor = true;
+            this.rbPatente.CheckedChanged += new System.EventHandler(this.rbPatente_CheckedChanged);
+            // 
+            // rbFamilia
+            // 
+            this.rbFamilia.AutoSize = true;
+            this.rbFamilia.Location = new System.Drawing.Point(539, 373);
+            this.rbFamilia.Name = "rbFamilia";
+            this.rbFamilia.Size = new System.Drawing.Size(57, 17);
+            this.rbFamilia.TabIndex = 7;
+            this.rbFamilia.TabStop = true;
+            this.rbFamilia.Text = "Familia";
+            this.rbFamilia.UseVisualStyleBackColor = true;
+            this.rbFamilia.CheckedChanged += new System.EventHandler(this.rbFamilia_CheckedChanged);
+            // 
+            // btnAgregar
+            // 
+            this.btnAgregar.Location = new System.Drawing.Point(590, 404);
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Size = new System.Drawing.Size(75, 23);
+            this.btnAgregar.TabIndex = 8;
+            this.btnAgregar.Text = "Agregar";
+            this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
+            // 
+            // btnQuitar
+            // 
+            this.btnQuitar.Location = new System.Drawing.Point(681, 404);
+            this.btnQuitar.Name = "btnQuitar";
+            this.btnQuitar.Size = new System.Drawing.Size(75, 23);
+            this.btnQuitar.TabIndex = 9;
+            this.btnQuitar.Text = "Quitar";
+            this.btnQuitar.UseVisualStyleBackColor = true;
+            this.btnQuitar.Click += new System.EventHandler(this.btnQuitar_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(609, 346);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(47, 13);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Nombre:";
+            // 
+            // txtNombre
+            // 
+            this.txtNombre.Location = new System.Drawing.Point(681, 341);
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Size = new System.Drawing.Size(100, 20);
+            this.txtNombre.TabIndex = 11;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(609, 376);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(66, 13);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "Descripcion:";
+            // 
+            // txtDescripcion
+            // 
+            this.txtDescripcion.Location = new System.Drawing.Point(681, 373);
+            this.txtDescripcion.Name = "txtDescripcion";
+            this.txtDescripcion.Size = new System.Drawing.Size(100, 20);
+            this.txtDescripcion.TabIndex = 13;
+            // 
+            // btnNuevo
+            // 
+            this.btnNuevo.Location = new System.Drawing.Point(54, 357);
+            this.btnNuevo.Name = "btnNuevo";
+            this.btnNuevo.Size = new System.Drawing.Size(75, 23);
+            this.btnNuevo.TabIndex = 14;
+            this.btnNuevo.Text = "Nuevo";
+            this.btnNuevo.UseVisualStyleBackColor = true;
+            this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
+            // 
+            // btnModificar
+            // 
+            this.btnModificar.Location = new System.Drawing.Point(154, 357);
+            this.btnModificar.Name = "btnModificar";
+            this.btnModificar.Size = new System.Drawing.Size(75, 23);
+            this.btnModificar.TabIndex = 15;
+            this.btnModificar.Text = "Modificar";
+            this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.Location = new System.Drawing.Point(251, 357);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(75, 23);
+            this.btnEliminar.TabIndex = 16;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            // 
+            // btnAplicar
+            // 
+            this.btnAplicar.Location = new System.Drawing.Point(341, 357);
+            this.btnAplicar.Name = "btnAplicar";
+            this.btnAplicar.Size = new System.Drawing.Size(75, 23);
+            this.btnAplicar.TabIndex = 17;
+            this.btnAplicar.Text = "Aplicar";
+            this.btnAplicar.UseVisualStyleBackColor = true;
+            this.btnAplicar.Click += new System.EventHandler(this.btnAplicar_Click);
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Location = new System.Drawing.Point(435, 357);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelar.TabIndex = 18;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // btnVolver
+            // 
+            this.btnVolver.Location = new System.Drawing.Point(8, 419);
+            this.btnVolver.Name = "btnVolver";
+            this.btnVolver.Size = new System.Drawing.Size(75, 23);
+            this.btnVolver.TabIndex = 19;
+            this.btnVolver.Text = "Volver";
+            this.btnVolver.UseVisualStyleBackColor = true;
+            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
+            // 
+            // lblModo
+            // 
+            this.lblModo.AutoSize = true;
+            this.lblModo.Location = new System.Drawing.Point(272, 409);
+            this.lblModo.Name = "lblModo";
+            this.lblModo.Size = new System.Drawing.Size(35, 13);
+            this.lblModo.TabIndex = 20;
+            this.lblModo.Text = "label5";
+            // 
+            // FormGestionFamilias
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lblModo);
+            this.Controls.Add(this.btnVolver);
+            this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.btnAplicar);
+            this.Controls.Add(this.btnEliminar);
+            this.Controls.Add(this.btnModificar);
+            this.Controls.Add(this.btnNuevo);
+            this.Controls.Add(this.txtDescripcion);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.txtNombre);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.btnQuitar);
+            this.Controls.Add(this.btnAgregar);
+            this.Controls.Add(this.rbFamilia);
+            this.Controls.Add(this.rbPatente);
+            this.Controls.Add(this.lstDisponibles);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lstContenido);
+            this.Controls.Add(this.lstFamilias);
+            this.Controls.Add(this.label1);
+            this.Name = "FormGestionFamilias";
+            this.Text = "FormGestionFamilias";
+            this.Load += new System.EventHandler(this.FormGestionFamilias_Load);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ListBox lstFamilias;
+        private System.Windows.Forms.ListBox lstContenido;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ListBox lstDisponibles;
+        private System.Windows.Forms.RadioButton rbPatente;
+        private System.Windows.Forms.RadioButton rbFamilia;
+        private System.Windows.Forms.Button btnAgregar;
+        private System.Windows.Forms.Button btnQuitar;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtNombre;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtDescripcion;
+        private System.Windows.Forms.Button btnNuevo;
+        private System.Windows.Forms.Button btnModificar;
+        private System.Windows.Forms.Button btnEliminar;
+        private System.Windows.Forms.Button btnAplicar;
+        private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Button btnVolver;
+        private System.Windows.Forms.Label lblModo;
+    }
+}
