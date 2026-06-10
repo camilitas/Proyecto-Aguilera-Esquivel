@@ -43,9 +43,11 @@
   <ItemGroup>
     <Compile Include="Bitacora.cs" />
     <Compile Include="Encriptador.cs" />
+    <Compile Include="Familia.cs" />
     <Compile Include="IComponentePermiso.cs" />
     <Compile Include="IGestorEventos.cs" />
     <Compile Include="IObservador.cs" />
+    <Compile Include="Patente.cs" />
     <Compile Include="Perfil.cs" />
     <Compile Include="Permiso.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
