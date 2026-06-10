@@ -99,6 +99,9 @@
     <EmbeddedResource Include="FormGestionFamilias.resx">
       <DependentUpon>FormGestionFamilias.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormGestionRoles.resx">
+      <DependentUpon>FormGestionRoles.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormGU.resx">
       <DependentUpon>FormGU.cs</DependentUpon>
     </EmbeddedResource>

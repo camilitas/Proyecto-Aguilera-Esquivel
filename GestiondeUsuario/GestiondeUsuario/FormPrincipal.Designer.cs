@@ -45,6 +45,7 @@
             this.menuCompras = new System.Windows.Forms.ToolStripMenuItem();
             this.menuReporte = new System.Windows.Forms.ToolStripMenuItem();
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gestionDeRolesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -120,7 +121,8 @@
             this.gestionDeUsuariosToolStripMenuItem,
             this.gestionDePerfilesToolStripMenuItem,
             this.bitacoraEventosToolStripMenuItem,
-            this.gestionRespaldoToolStripMenuItem});
+            this.gestionRespaldoToolStripMenuItem,
+            this.gestionDeRolesToolStripMenuItem});
             this.menuAdmin.Name = "menuAdmin";
             this.menuAdmin.Size = new System.Drawing.Size(113, 19);
             this.menuAdmin.Text = "Admin";
@@ -182,6 +184,13 @@
             this.ayudaToolStripMenuItem.Size = new System.Drawing.Size(113, 19);
             this.ayudaToolStripMenuItem.Text = "Ayuda";
             // 
+            // gestionDeRolesToolStripMenuItem
+            // 
+            this.gestionDeRolesToolStripMenuItem.Name = "gestionDeRolesToolStripMenuItem";
+            this.gestionDeRolesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.gestionDeRolesToolStripMenuItem.Text = "Gestion de Roles";
+            this.gestionDeRolesToolStripMenuItem.Click += new System.EventHandler(this.gestionDeRolesToolStripMenuItem_Click);
+            // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -218,5 +227,6 @@
         private System.Windows.Forms.ToolStripMenuItem menuCompras;
         private System.Windows.Forms.ToolStripMenuItem menuReporte;
         private System.Windows.Forms.ToolStripMenuItem ayudaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gestionDeRolesToolStripMenuItem;
     }
 }

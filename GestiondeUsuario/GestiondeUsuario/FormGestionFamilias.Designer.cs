@@ -48,6 +48,8 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnVolver = new System.Windows.Forms.Button();
             this.lblModo = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -97,7 +99,7 @@
             // rbPatente
             // 
             this.rbPatente.AutoSize = true;
-            this.rbPatente.Location = new System.Drawing.Point(539, 344);
+            this.rbPatente.Location = new System.Drawing.Point(610, 358);
             this.rbPatente.Name = "rbPatente";
             this.rbPatente.Size = new System.Drawing.Size(62, 17);
             this.rbPatente.TabIndex = 6;
@@ -109,7 +111,7 @@
             // rbFamilia
             // 
             this.rbFamilia.AutoSize = true;
-            this.rbFamilia.Location = new System.Drawing.Point(539, 373);
+            this.rbFamilia.Location = new System.Drawing.Point(610, 387);
             this.rbFamilia.Name = "rbFamilia";
             this.rbFamilia.Size = new System.Drawing.Size(57, 17);
             this.rbFamilia.TabIndex = 7;
@@ -120,7 +122,7 @@
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(590, 404);
+            this.btnAgregar.Location = new System.Drawing.Point(9, 73);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(75, 23);
             this.btnAgregar.TabIndex = 8;
@@ -130,7 +132,7 @@
             // 
             // btnQuitar
             // 
-            this.btnQuitar.Location = new System.Drawing.Point(681, 404);
+            this.btnQuitar.Location = new System.Drawing.Point(100, 73);
             this.btnQuitar.Name = "btnQuitar";
             this.btnQuitar.Size = new System.Drawing.Size(75, 23);
             this.btnQuitar.TabIndex = 9;
@@ -141,7 +143,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(609, 346);
+            this.label3.Location = new System.Drawing.Point(18, 13);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(47, 13);
             this.label3.TabIndex = 10;
@@ -149,7 +151,7 @@
             // 
             // txtNombre
             // 
-            this.txtNombre.Location = new System.Drawing.Point(681, 341);
+            this.txtNombre.Location = new System.Drawing.Point(90, 10);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(100, 20);
             this.txtNombre.TabIndex = 11;
@@ -157,7 +159,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(609, 376);
+            this.label4.Location = new System.Drawing.Point(18, 45);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(66, 13);
             this.label4.TabIndex = 12;
@@ -165,7 +167,7 @@
             // 
             // txtDescripcion
             // 
-            this.txtDescripcion.Location = new System.Drawing.Point(681, 373);
+            this.txtDescripcion.Location = new System.Drawing.Point(90, 42);
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(100, 20);
             this.txtDescripcion.TabIndex = 13;
@@ -222,7 +224,7 @@
             // 
             // btnVolver
             // 
-            this.btnVolver.Location = new System.Drawing.Point(8, 419);
+            this.btnVolver.Location = new System.Drawing.Point(12, 473);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.Size = new System.Drawing.Size(75, 23);
             this.btnVolver.TabIndex = 19;
@@ -233,17 +235,31 @@
             // lblModo
             // 
             this.lblModo.AutoSize = true;
-            this.lblModo.Location = new System.Drawing.Point(272, 409);
+            this.lblModo.Location = new System.Drawing.Point(179, 413);
             this.lblModo.Name = "lblModo";
             this.lblModo.Size = new System.Drawing.Size(35, 13);
             this.lblModo.TabIndex = 20;
             this.lblModo.Text = "label5";
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.txtDescripcion);
+            this.panel1.Controls.Add(this.btnAgregar);
+            this.panel1.Controls.Add(this.btnQuitar);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.txtNombre);
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Location = new System.Drawing.Point(324, 396);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(200, 100);
+            this.panel1.TabIndex = 21;
+            // 
             // FormGestionFamilias
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 504);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.lblModo);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.btnCancelar);
@@ -251,12 +267,6 @@
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.btnNuevo);
-            this.Controls.Add(this.txtDescripcion);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.txtNombre);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.btnQuitar);
-            this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.rbFamilia);
             this.Controls.Add(this.rbPatente);
             this.Controls.Add(this.lstDisponibles);
@@ -267,6 +277,8 @@
             this.Name = "FormGestionFamilias";
             this.Text = "FormGestionFamilias";
             this.Load += new System.EventHandler(this.FormGestionFamilias_Load);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -294,5 +306,6 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnVolver;
         private System.Windows.Forms.Label lblModo;
+        private System.Windows.Forms.Panel panel1;
     }
 }

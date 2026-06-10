@@ -82,5 +82,11 @@ namespace GestiondeUsuario
             new FormGestionFamilias().Show();
             this.Hide();
         }
+
+        private void gestionDeRolesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new FormGestionRoles().Show();
+            this.Hide();
+        }
     }
 }
