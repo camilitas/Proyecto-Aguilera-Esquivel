@@ -55,7 +55,7 @@
             // lblModo
             // 
             this.lblModo.AutoSize = true;
-            this.lblModo.Location = new System.Drawing.Point(200, 410);
+            this.lblModo.Location = new System.Drawing.Point(136, 410);
             this.lblModo.Name = "lblModo";
             this.lblModo.Size = new System.Drawing.Size(35, 13);
             this.lblModo.TabIndex = 40;
@@ -63,7 +63,7 @@
             // 
             // btnVolver
             // 
-            this.btnVolver.Location = new System.Drawing.Point(6, 473);
+            this.btnVolver.Location = new System.Drawing.Point(8, 448);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.Size = new System.Drawing.Size(75, 23);
             this.btnVolver.TabIndex = 39;
@@ -123,7 +123,7 @@
             // 
             // txtDescripcion
             // 
-            this.txtDescripcion.Location = new System.Drawing.Point(410, 428);
+            this.txtDescripcion.Location = new System.Drawing.Point(91, 36);
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(100, 20);
             this.txtDescripcion.TabIndex = 33;
@@ -139,7 +139,7 @@
             // 
             // txtNombre
             // 
-            this.txtNombre.Location = new System.Drawing.Point(410, 396);
+            this.txtNombre.Location = new System.Drawing.Point(91, 8);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(100, 20);
             this.txtNombre.TabIndex = 31;
@@ -147,7 +147,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(23, 11);
+            this.label3.Location = new System.Drawing.Point(19, 13);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(47, 13);
             this.label3.TabIndex = 30;
@@ -155,7 +155,7 @@
             // 
             // btnQuitar
             // 
-            this.btnQuitar.Location = new System.Drawing.Point(104, 67);
+            this.btnQuitar.Location = new System.Drawing.Point(646, 405);
             this.btnQuitar.Name = "btnQuitar";
             this.btnQuitar.Size = new System.Drawing.Size(75, 23);
             this.btnQuitar.TabIndex = 29;
@@ -165,7 +165,7 @@
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(11, 67);
+            this.btnAgregar.Location = new System.Drawing.Point(565, 405);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(75, 23);
             this.btnAgregar.TabIndex = 28;
@@ -243,20 +243,22 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.btnAgregar);
-            this.panel1.Controls.Add(this.btnQuitar);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Location = new System.Drawing.Point(319, 392);
+            this.panel1.Controls.Add(this.txtNombre);
+            this.panel1.Controls.Add(this.txtDescripcion);
+            this.panel1.Location = new System.Drawing.Point(309, 391);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 100);
+            this.panel1.Size = new System.Drawing.Size(200, 71);
             this.panel1.TabIndex = 41;
             // 
             // FormGestionRoles
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 499);
+            this.ClientSize = new System.Drawing.Size(800, 475);
+            this.Controls.Add(this.btnQuitar);
+            this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.lblModo);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.btnCancelar);
@@ -264,8 +266,6 @@
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.btnNuevo);
-            this.Controls.Add(this.txtDescripcion);
-            this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.rbFamilia);
             this.Controls.Add(this.rbPatente);
             this.Controls.Add(this.lstDisponibles);

@@ -23,15 +23,15 @@ namespace GestiondeUsuario
 
         private void FormGU_Load(object sender, EventArgs e)
         {
-            cmbRol.Items.Clear(); // Cargamos los roles en el combo
-            cmbRol.Items.Add("General");
-            cmbRol.Items.Add("Admin");
+            cmbRol.Items.Clear(); //  Cargamos roles desde la BD en lugar de hardcodearlos
+            var roles = RolBLL.Instancia.ObtenerTodos();
+            foreach (var r in roles)
+                cmbRol.Items.Add(r.Nombre);
             cmbRol.SelectedIndex = 0;
 
             rbActivos.Checked = true;
             CargarGrilla();
             
-
             HabilitarBotonera();
             lblModo.Text = "Seleccioná una opción de la botonera";
             DeshabilitarCampos();
@@ -179,6 +179,8 @@ namespace GestiondeUsuario
 
             if (_idSeleccionado == -1)
             {
+                var roles = RolBLL.Instancia.ObtenerTodos();
+                var rolSeleccionado = roles.FirstOrDefault(r => r.Nombre == cmbRol.SelectedItem.ToString());
                 // MODO AGREGAR
                 Usuario nuevo = new Usuario()
                 {
@@ -187,8 +189,8 @@ namespace GestiondeUsuario
                     Email = txtCorreo.Text,
                     DNI = dni,
                     Rol = cmbRol.SelectedItem.ToString(),
-                    IdRol = cmbRol.SelectedItem.ToString() == "Admin" ? 1 : 2,
-                    Contraseña = txtDNI.Text,
+                    IdRol = rolSeleccionado != null ? rolSeleccionado.Id : 0,
+                    Contraseña = txtApellido.Text + txtDNI.Text,
                     Activo = true,
                     PrimerIngreso = true
                 };
@@ -216,6 +218,8 @@ namespace GestiondeUsuario
 
             else
             {
+                var roles = RolBLL.Instancia.ObtenerTodos();
+                var rolSeleccionado = roles.FirstOrDefault(r => r.Nombre == cmbRol.SelectedItem.ToString());
                 // MODO MODIFICAR
                 Usuario modificado = new Usuario()
                 {
@@ -224,7 +228,8 @@ namespace GestiondeUsuario
                     Apellido = txtApellido.Text,
                     Email = txtCorreo.Text,
                     DNI = dni,
-                    Rol = cmbRol.SelectedItem.ToString()
+                    Rol = cmbRol.SelectedItem.ToString(),
+                    IdRol = rolSeleccionado != null ? rolSeleccionado.Id : 0
                 };
 
                 bool ok = UsuarioBLL.Instancia.Modificar(modificado);

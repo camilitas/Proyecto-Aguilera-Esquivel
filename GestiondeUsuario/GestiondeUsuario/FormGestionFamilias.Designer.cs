@@ -122,7 +122,7 @@
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(9, 73);
+            this.btnAgregar.Location = new System.Drawing.Point(556, 413);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(75, 23);
             this.btnAgregar.TabIndex = 8;
@@ -132,7 +132,7 @@
             // 
             // btnQuitar
             // 
-            this.btnQuitar.Location = new System.Drawing.Point(100, 73);
+            this.btnQuitar.Location = new System.Drawing.Point(637, 413);
             this.btnQuitar.Name = "btnQuitar";
             this.btnQuitar.Size = new System.Drawing.Size(75, 23);
             this.btnQuitar.TabIndex = 9;
@@ -224,7 +224,7 @@
             // 
             // btnVolver
             // 
-            this.btnVolver.Location = new System.Drawing.Point(12, 473);
+            this.btnVolver.Location = new System.Drawing.Point(12, 454);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.Size = new System.Drawing.Size(75, 23);
             this.btnVolver.TabIndex = 19;
@@ -244,22 +244,22 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.txtDescripcion);
-            this.panel1.Controls.Add(this.btnAgregar);
-            this.panel1.Controls.Add(this.btnQuitar);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.txtNombre);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Location = new System.Drawing.Point(324, 396);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 100);
+            this.panel1.Size = new System.Drawing.Size(200, 81);
             this.panel1.TabIndex = 21;
             // 
             // FormGestionFamilias
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 504);
+            this.ClientSize = new System.Drawing.Size(800, 487);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.btnQuitar);
+            this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.lblModo);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.btnCancelar);
