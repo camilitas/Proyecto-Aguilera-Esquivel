@@ -1,4 +1,5 @@
-﻿using Servicios;
+﻿using BLL;
+using Servicios;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -40,6 +41,13 @@ namespace GestiondeUsuario
 
             string idioma = cmbIdiomas.SelectedItem.ToString();
             GestorIdioma.Instancia.CambiarIdioma(idioma);
+
+            // Registramos en bitácora
+            GestorEventosBLL.Instancia.Notificar(
+                SessionManager.Instancia.ObtenerUsuarioActivo()?.NombreUsuario ?? "Desconocido",
+                "Cambiar Idioma - " + idioma,
+                "Usuarios",
+                1);
 
             MessageBox.Show("Idioma cambiado a: " + idioma, "Éxito",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);

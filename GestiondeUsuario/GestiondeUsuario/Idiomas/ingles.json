@@ -26,7 +26,6 @@
     "gestionRespaldo": "Backup Management"
   },
   "FormGU": {
-    "titulo": "User Management",
     "lblDNI": "ID",
     "lblNombre": "Name",
     "lblApellido": "Last Name",
@@ -40,7 +39,18 @@
     "btnDeshabilitar": "Disable",
     "btnAplicar": "Apply",
     "btnCancelar": "Cancel",
-    "btnVolver": "Back"
+    "btnVolver": "Back",
+    "rbActivos": "Active",
+    "rbTodos": "All",
+    "btnHabilitar": "Enable",
+    "tituloForm": "User Management",
+    "lblModoInicial": "Select an option from the toolbar",
+    "lblModoAgregar": "Add Mode",
+    "lblModoModificar": "Modify Mode",
+    "lblModoDesbloquear": "Unlock Mode",
+    "lblModoDeshabilitar": "Disable Mode",
+    "lblModoHabilitar": "Enable Mode",
+    "lblModoSeleccionado": "User selected"
   },
   "FormRecuperar": {
     "titulo": "Change Password",

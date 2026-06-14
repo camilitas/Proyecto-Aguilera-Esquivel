@@ -26,7 +26,6 @@
     "gestionRespaldo": "Gestión de Respaldo"
   },
   "FormGU": {
-    "titulo": "Gestión de Usuarios",
     "lblDNI": "DNI",
     "lblNombre": "Nombre",
     "lblApellido": "Apellido",
@@ -40,7 +39,18 @@
     "btnDeshabilitar": "Deshabilitar",
     "btnAplicar": "Aplicar",
     "btnCancelar": "Cancelar",
-    "btnVolver": "Volver"
+    "btnVolver": "Volver",
+    "rbActivos": "Activos",
+    "rbTodos": "Todos",
+    "btnHabilitar": "Habilitar",
+    "tituloForm": "Gestión de Usuarios",
+    "lblModoInicial": "Seleccioná una opción de la botonera",
+    "lblModoAgregar": "Modo Agregar",
+    "lblModoModificar": "Modo Modificar",
+    "lblModoDesbloquear": "Modo Desbloquear",
+    "lblModoDeshabilitar": "Modo Deshabilitar",
+    "lblModoHabilitar": "Modo Habilitar",
+    "lblModoSeleccionado": "Usuario seleccionado"
   },
   "FormRecuperar": {
     "titulo": "Cambiar Contraseña",

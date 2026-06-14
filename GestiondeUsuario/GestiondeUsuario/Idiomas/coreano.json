@@ -26,7 +26,6 @@
     "gestionRespaldo": "백업 관리"
   },
   "FormGU": {
-    "titulo": "사용자 관리",
     "lblDNI": "신분증",
     "lblNombre": "이름",
     "lblApellido": "성",
@@ -40,7 +39,18 @@
     "btnDeshabilitar": "비활성화",
     "btnAplicar": "적용",
     "btnCancelar": "취소",
-    "btnVolver": "뒤로"
+    "btnVolver": "뒤로",
+    "rbActivos": "활성",
+    "rbTodos": "전체",
+    "btnHabilitar": "활성화",
+    "tituloForm": "사용자 관리",
+    "lblModoInicial": "도구 모음에서 옵션을 선택하세요",
+    "lblModoAgregar": "추가 모드",
+    "lblModoModificar": "수정 모드",
+    "lblModoDesbloquear": "잠금 해제 모드",
+    "lblModoDeshabilitar": "비활성화 모드",
+    "lblModoHabilitar": "활성화 모드",
+    "lblModoSeleccionado": "사용자 선택됨"
   },
   "FormRecuperar": {
     "titulo": "비밀번호 변경",

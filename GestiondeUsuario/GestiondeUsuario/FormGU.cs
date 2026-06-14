@@ -1,4 +1,5 @@
 ﻿using BLL;
+using Newtonsoft.Json.Linq;
 using Servicios;
 using System;
 using System.Collections.Generic;
@@ -12,9 +13,10 @@ using System.Windows.Forms;
 
 namespace GestiondeUsuario
 {
-    public partial class FormGU : Form
+    public partial class FormGU : Form, IObservadorIdioma
     {
         private int _idSeleccionado = -1;
+        private bool _usuarioActivo = false;
 
         public FormGU()
         {
@@ -23,6 +25,9 @@ namespace GestiondeUsuario
 
         private void FormGU_Load(object sender, EventArgs e)
         {
+            GestorIdioma.Instancia.Suscribir(this);
+            GestorIdioma.Instancia.CambiarIdioma(SessionManager.Instancia.ObtenerIdioma());
+
             cmbRol.Items.Clear(); //  Cargamos roles desde la BD en lugar de hardcodearlos
             var roles = RolBLL.Instancia.ObtenerTodos();
             foreach (var r in roles)
@@ -33,8 +38,13 @@ namespace GestiondeUsuario
             CargarGrilla();
             
             HabilitarBotonera();
-            lblModo.Text = "Seleccioná una opción de la botonera";
+            lblModo.Text = GestorIdioma.Instancia.Obtener("FormGU", "lblModoInicial");
             DeshabilitarCampos();
+        }
+
+        private void FormGU_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            GestorIdioma.Instancia.Desuscribir(this);
         }
 
         private void ModoAccion()
@@ -117,7 +127,7 @@ namespace GestiondeUsuario
             HabilitarCampos();
             LimpiarCampos();
             _idSeleccionado = -1;
-            lblModo.Text = "Modo Agregar";
+            lblModo.Text = GestorIdioma.Instancia.Obtener("FormGU", "lblModoAgregar");
 
             // Habilitamos todos los campos para agregar
             txtDNI.ReadOnly = false;
@@ -205,7 +215,7 @@ namespace GestiondeUsuario
                        CargarGrilla();
                        LimpiarCampos();
                        HabilitarBotonera();
-                       lblModo.Text = "Seleccioná una opción de la botonera";
+                       lblModo.Text = GestorIdioma.Instancia.Obtener("FormGU", "lblModoInicial");
                        DeshabilitarCampos();
                     }
                 }
@@ -241,7 +251,7 @@ namespace GestiondeUsuario
                     CargarGrilla();
                     LimpiarCampos();
                     HabilitarBotonera();
-                    lblModo.Text = "Seleccioná una opción de la botonera";
+                    lblModo.Text = GestorIdioma.Instancia.Obtener("FormGU", "lblModoInicial");
                     DeshabilitarCampos();
                 }
                 else
@@ -261,7 +271,7 @@ namespace GestiondeUsuario
                 return;
             }
 
-            bool estaActivo = btnDeshabilitar.Text == "Deshabilitar";
+            bool estaActivo = _usuarioActivo;
             string accion = estaActivo ? "deshabilitar" : "habilitar";
 
             DialogResult confirm = MessageBox.Show(
@@ -278,10 +288,11 @@ namespace GestiondeUsuario
                 {
                     MessageBox.Show("Usuario " + accion + "do exitosamente.", "Éxito",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    _usuarioActivo = !estaActivo;
                     CargarGrilla();
                     HabilitarBotonera();
                     LimpiarCampos();
-                    lblModo.Text = "Seleccioná una opción de la botonera";
+                    lblModo.Text = GestorIdioma.Instancia.Obtener("FormGU", "lblModoInicial");
                     DeshabilitarCampos();
                 }
             }
@@ -306,7 +317,7 @@ namespace GestiondeUsuario
                 return;
             }
 
-            lblModo.Text = "Modo Desbloquear";
+            lblModo.Text = GestorIdioma.Instancia.Obtener("FormGU", "lblModoDesbloquear");
 
             bool ok = UsuarioBLL.Instancia.Desbloquear(_idSeleccionado);
             if (ok)
@@ -316,7 +327,7 @@ namespace GestiondeUsuario
                 CargarGrilla();
                 HabilitarBotonera();
                 LimpiarCampos();
-                lblModo.Text = "Seleccioná una opción de la botonera";
+                lblModo.Text = GestorIdioma.Instancia.Obtener("FormGU", "lblModoInicial");
                 DeshabilitarCampos();
             }
         }
@@ -327,7 +338,7 @@ namespace GestiondeUsuario
             LimpiarCampos();
             HabilitarEdicion(false);
             HabilitarBotonera();
-            lblModo.Text = "Seleccioná una opción de la botonera";
+            lblModo.Text = GestorIdioma.Instancia.Obtener("FormGU", "lblModoInicial");
         }
 
         private void rbActivos_CheckedChanged(object sender, EventArgs e)
@@ -337,7 +348,7 @@ namespace GestiondeUsuario
                 CargarGrilla();
                 LimpiarCampos();
                 DeshabilitarCampos();
-                lblModo.Text = "Seleccioná una opción de la botonera";
+                lblModo.Text = GestorIdioma.Instancia.Obtener("FormGU", "lblModoInicial");
             }
         }
 
@@ -348,7 +359,7 @@ namespace GestiondeUsuario
                 CargarGrilla();
                 LimpiarCampos();
                 DeshabilitarCampos();
-                lblModo.Text = "Seleccioná una opción de la botonera";
+                lblModo.Text = GestorIdioma.Instancia.Obtener("FormGU", "lblModoInicial");
             }
         }
 
@@ -369,9 +380,12 @@ namespace GestiondeUsuario
                 bool activo = Convert.ToBoolean(fila.Cells["Activo"].Value);
                 rbSi.Checked = activo;
                 rbNo.Checked = !activo;
-                btnDeshabilitar.Text = activo ? "Deshabilitar" : "Habilitar";
+                _usuarioActivo = activo;
+                btnDeshabilitar.Text = activo
+                    ? GestorIdioma.Instancia.Obtener("FormGU", "btnDeshabilitar")
+                    : GestorIdioma.Instancia.Obtener("FormGU", "btnHabilitar");
                 HabilitarEdicion(false);
-                lblModo.Text = "Usuario seleccionado";
+                lblModo.Text = GestorIdioma.Instancia.Obtener("FormGU", "lblModoSeleccionado");
             }
             catch
             {
@@ -390,7 +404,7 @@ namespace GestiondeUsuario
             }
 
             HabilitarEdicion(true);
-            lblModo.Text = "Modo Modificar";
+            lblModo.Text = GestorIdioma.Instancia.Obtener("FormGU", "lblModoModificar");
             ModoAccion();
         }
 
@@ -423,6 +437,37 @@ namespace GestiondeUsuario
         {
             // Suprimimos el error de índice al recargar
              e.ThrowException = false;
+        }
+
+        public void ActualizarIdioma(JObject traducciones)
+        {
+            var t = traducciones["FormGU"];
+            if (t == null) return;
+
+            lblTitulo.Text = t["tituloForm"]?.ToString();
+            this.Text = t["titulo"]?.ToString();
+            lblDNI.Text = t["lblDNI"]?.ToString();
+            lblNombre.Text = t["lblNombre"]?.ToString();
+            lblApellido.Text = t["lblApellido"]?.ToString();
+            lblNombreUsuario.Text = t["lblNombreUsuario"]?.ToString();
+            lblCorreo.Text = t["lblCorreo"]?.ToString();
+            lblRol.Text = t["lblRol"]?.ToString();
+            lblActivo.Text = t["lblActivo"]?.ToString();
+            btnAgregar.Text = t["btnAgregar"]?.ToString();
+            btnModificar.Text = t["btnModificar"]?.ToString();
+            btnDesbloquear.Text = t["btnDesbloquear"]?.ToString();
+            btnAplicar.Text = t["btnAplicar"]?.ToString();
+            btnCancelar.Text = t["btnCancelar"]?.ToString();
+            btnVolver.Text = t["btnVolver"]?.ToString();
+            rbActivos.Text = t["rbActivos"]?.ToString();
+            rbTodos.Text = t["rbTodos"]?.ToString();
+            bool estaActivo = btnDeshabilitar.Text == "Deshabilitar" ||
+                  btnDeshabilitar.Text == "Disable" ||
+                  btnDeshabilitar.Text == "비활성화";
+
+            btnDeshabilitar.Text = estaActivo
+                ? t["btnDeshabilitar"]?.ToString()
+                : t["btnHabilitar"]?.ToString();
         }
     }
 }
