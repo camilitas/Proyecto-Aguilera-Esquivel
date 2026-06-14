@@ -60,9 +60,21 @@ namespace BLL
         public bool AgregarPatente(int idRol, int idPatente)
         {
             RolDAL dal = new RolDAL();
+            FamiliaDAL familiaDAL = new FamiliaDAL();
+            // Verificamos que no esté ya directo en el rol
             var patentes = dal.ObtenerPatentes(idRol);
             if (patentes.Any(p => p.Id == idPatente))
-                throw new Exception("Esta patente ya está en el rol.");
+                throw new Exception("Esta patente ya está asignada directamente al rol.");
+
+            // Verificamos que ninguna familia del rol ya tenga esa patente
+            var familias = dal.ObtenerFamilias(idRol);
+            foreach (var familia in familias)
+            {
+                var patentesDeFamilia = familiaDAL.ObtenerPatentes(familia.Id);
+                if (patentesDeFamilia.Any(p => p.Id == idPatente))
+                    throw new Exception($"La patente ya está incluida en la familia '{familia.Nombre}' que tiene este rol.");
+            }
+
             return dal.AgregarPatente(idRol, idPatente);
         }
 

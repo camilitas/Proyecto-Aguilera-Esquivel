@@ -78,11 +78,12 @@ namespace BLL
         {
             if (idFamilia == idFamiliaIntegrada)
                 throw new Exception("Una familia no puede contenerse a sí misma.");
+
             FamiliaDAL dal = new FamiliaDAL();
-            // Verificamos que no exista ya
             var familias = dal.ObtenerFamiliasIntegradas(idFamilia);
             if (familias.Any(f => f.Id == idFamiliaIntegrada))
                 throw new Exception("Esta familia ya está integrada.");
+
             return dal.AgregarFamilia(idFamilia, idFamiliaIntegrada);
         }
 
