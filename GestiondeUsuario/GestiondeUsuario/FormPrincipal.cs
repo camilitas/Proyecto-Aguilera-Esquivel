@@ -33,6 +33,12 @@ namespace GestiondeUsuario
             menuVenta.Enabled = PerfilBLL.Instancia.TienePermiso(usuario.Rol, "GestionUsuarios");
             menuCompras.Enabled = PerfilBLL.Instancia.TienePermiso(usuario.Rol, "GestionUsuarios");
             menuReporte.Enabled = PerfilBLL.Instancia.TienePermiso(usuario.Rol, "VerBitacora");
+            menuMaestro.Enabled = false;
+            menuVenta.Enabled = false;
+            menuCompras.Enabled = false;
+            menuReporte.Enabled = false;
+            menuAyuda.Enabled = false;
+            gestionRespaldoToolStripMenuItem.Enabled = false;
 
             GestorIdioma.Instancia.CambiarIdioma(SessionManager.Instancia.ObtenerIdioma());
         }
@@ -113,7 +119,7 @@ namespace GestiondeUsuario
             menuVenta.Text = t["menuVenta"]?.ToString();
             menuCompras.Text = t["menuCompras"]?.ToString();
             menuReporte.Text = t["menuReporte"]?.ToString();
-            ayudaToolStripMenuItem.Text = t["menuAyuda"]?.ToString();
+            menuAyuda.Text = t["menuAyuda"]?.ToString();
             iniciarSesionToolStripMenuItem.Text = t["iniciarSesion"]?.ToString();
             cambiarContraseñaToolStripMenuItem.Text = t["cambiarContraseña"]?.ToString();
             cambiarIdiomaToolStripMenuItem.Text = t["cambiarIdioma"]?.ToString();

@@ -30,7 +30,8 @@ namespace DAL
                 Bloqueado = Convert.ToBoolean(reader["Bloqueado"]),
                 Rol = reader["Rol"].ToString(),
                 IdRol = reader["IdRol"] == DBNull.Value ? 0 : Convert.ToInt32(reader["IdRol"]),
-                PrimerIngreso = Convert.ToBoolean(reader["PrimerIngreso"])
+                PrimerIngreso = Convert.ToBoolean(reader["PrimerIngreso"]),
+                Idioma = reader["Idioma"].ToString()
             };
         }
         public Usuario ObtenerPorNombreUsuario(string nombreUsuario)
@@ -226,6 +227,19 @@ namespace DAL
                     usuario = MapearUsuario(reader);
             }
             return usuario;
+        }
+
+        public bool ActualizarIdioma(int id, string idioma)
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                string query = "UPDATE Usuarios SET Idioma=@Idioma WHERE Id=@Id";
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@Idioma", idioma);
+                cmd.Parameters.AddWithValue("@Id", id);
+                con.Open();
+                return cmd.ExecuteNonQuery() > 0;
+            }
         }
     }
 }

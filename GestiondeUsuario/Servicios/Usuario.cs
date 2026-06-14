@@ -22,5 +22,7 @@ namespace Servicios
         public string Rol { get; set; }
         public int IdRol { get; set; }
         public bool PrimerIngreso { get; set; }
+
+        public string Idioma { get; set; }
     }
 }

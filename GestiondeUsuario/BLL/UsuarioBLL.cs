@@ -47,6 +47,7 @@ namespace BLL
                 usuario.IntentosFallidos = 0;
                 dal.ActualizarIntentos(usuario);
                 SessionManager.Instancia.IniciarSesion(usuario);
+                GestorIdioma.Instancia.CambiarIdioma(usuario.Idioma ?? "español");
                 GestorEventosBLL.Instancia.Notificar(nombreUsuario,
                     "Login", "Usuarios", 1);
                 return true;
@@ -191,6 +192,11 @@ namespace BLL
             GestorEventosBLL.Instancia.Notificar(nombreUsuario,
                 "Logout", "Usuarios", 1);
             SessionManager.Instancia.CerrarSesion();
+        }
+        public bool ActualizarIdioma(int id, string idioma)
+        {
+            UsuarioDAL dal = new UsuarioDAL();
+            return dal.ActualizarIdioma(id, idioma);
         }
     }
 }

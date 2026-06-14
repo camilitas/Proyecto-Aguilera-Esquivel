@@ -40,7 +40,16 @@ namespace GestiondeUsuario
             }
 
             string idioma = cmbIdiomas.SelectedItem.ToString();
+            if (idioma == SessionManager.Instancia.ObtenerIdioma())
+            {
+                MessageBox.Show("Ya estás usando ese idioma.", "Atención",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             GestorIdioma.Instancia.CambiarIdioma(idioma);
+
+            var usuario = SessionManager.Instancia.ObtenerUsuarioActivo();
+            UsuarioBLL.Instancia.ActualizarIdioma(usuario.Id, idioma);
 
             // Registramos en bitácora
             GestorEventosBLL.Instancia.Notificar(
