@@ -37,8 +37,7 @@ namespace BLL
 
             if (usuario.Bloqueado)
             {
-                GestorEventosBLL.Instancia.Notificar(nombreUsuario,
-                    "Intento en cuenta bloqueada", "Usuarios", 1);
+                GestorEventosBLL.Instancia.Notificar(nombreUsuario, "Intento en cuenta bloqueada", "Usuarios", 5);
                 throw new Exception("Usuario bloqueado");
             }
 
@@ -48,8 +47,7 @@ namespace BLL
                 dal.ActualizarIntentos(usuario);
                 SessionManager.Instancia.IniciarSesion(usuario);
                 GestorIdioma.Instancia.CambiarIdioma(usuario.Idioma ?? "español");
-                GestorEventosBLL.Instancia.Notificar(nombreUsuario,
-                    "Login", "Usuarios", 1);
+                GestorEventosBLL.Instancia.Notificar(nombreUsuario, "Login", "Usuarios", 1);
                 return true;
             }
             else
@@ -58,8 +56,7 @@ namespace BLL
                 if (usuario.IntentosFallidos >= 3)
                     usuario.Bloqueado = true;
                 dal.ActualizarIntentos(usuario);
-                GestorEventosBLL.Instancia.Notificar(nombreUsuario,
-                    "Login fallido", "Usuarios", 1);
+                GestorEventosBLL.Instancia.Notificar(nombreUsuario, "Login fallido", "Usuarios", 4);
                 return false;
             }
         }
@@ -81,8 +78,7 @@ namespace BLL
             bool ok = dal.ActualizarContraseña(usuario);
 
             if (ok)
-                GestorEventosBLL.Instancia.Notificar(usuario.NombreUsuario,
-                    "Cambiar Clave", "Usuarios", 2);
+                GestorEventosBLL.Instancia.Notificar(usuario.NombreUsuario, "Cambiar Clave", "Usuarios", 3);
             return ok;
         }
 
@@ -148,7 +144,7 @@ namespace BLL
             if (ok)
                 GestorEventosBLL.Instancia.Notificar(
                     SessionManager.Instancia.ObtenerUsuarioActivo()?.NombreUsuario ?? "Admin",
-                    "Deshabilitar Usuario", "Administrador", 2);
+                    "Deshabilitar Usuario", "Administrador", 3);
             return ok;
         }
 
@@ -165,7 +161,7 @@ namespace BLL
             if (ok)
                 GestorEventosBLL.Instancia.Notificar(
                     SessionManager.Instancia.ObtenerUsuarioActivo()?.NombreUsuario ?? "Admin",
-                    "Habilitar Usuario", "Administrador", 2);
+                    "Habilitar Usuario", "Administrador", 3);
             return ok;
         }
 
@@ -181,7 +177,7 @@ namespace BLL
             if (ok)
                 GestorEventosBLL.Instancia.Notificar(
                     SessionManager.Instancia.ObtenerUsuarioActivo()?.NombreUsuario ?? "Admin",
-                    "Desbloquear Usuario", "Administrador", 1);
+                    "Desbloquear Usuario", "Administrador", 4);
             return ok;
         }
 
@@ -189,8 +185,7 @@ namespace BLL
         {
             string nombreUsuario = SessionManager.Instancia
                 .ObtenerUsuarioActivo()?.NombreUsuario ?? "Desconocido";
-            GestorEventosBLL.Instancia.Notificar(nombreUsuario,
-                "Logout", "Usuarios", 1);
+            GestorEventosBLL.Instancia.Notificar(nombreUsuario, "Logout", "Usuarios", 1);
             SessionManager.Instancia.CerrarSesion();
         }
         public bool ActualizarIdioma(int id, string idioma)

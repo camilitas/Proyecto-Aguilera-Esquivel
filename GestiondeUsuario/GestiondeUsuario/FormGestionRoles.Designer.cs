@@ -204,6 +204,7 @@
             this.lstDisponibles.Name = "lstDisponibles";
             this.lstDisponibles.Size = new System.Drawing.Size(219, 264);
             this.lstDisponibles.TabIndex = 25;
+            this.lstDisponibles.SelectedIndexChanged += new System.EventHandler(this.lstDisponibles_SelectedIndexChanged);
             // 
             // label2
             // 

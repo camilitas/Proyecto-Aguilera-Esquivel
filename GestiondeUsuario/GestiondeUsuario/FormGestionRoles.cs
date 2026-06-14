@@ -318,5 +318,10 @@ namespace GestiondeUsuario
         {
             if (rbFamilia.Checked) CargarDisponibles();
         }
+
+        private void lstDisponibles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
