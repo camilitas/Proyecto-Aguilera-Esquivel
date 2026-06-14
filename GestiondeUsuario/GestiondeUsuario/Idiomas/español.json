@@ -53,7 +53,7 @@
     "lblModoSeleccionado": "Usuario seleccionado"
   },
   "FormRecuperar": {
-    "titulo": "Cambiar Contraseña",
+    "tituloForm": "Cambiar Contraseña",
     "lblDNI": "DNI",
     "lblContraseñaActual": "Contraseña Actual",
     "lblNuevaPass": "Nueva Contraseña",
@@ -62,13 +62,15 @@
     "btnVolver": "Volver"
   },
   "FormBitacora": {
-    "titulo": "Bitácora de Eventos",
+    "tituloForm": "Bitácora de Eventos",
     "lblLogin": "Login",
     "lblFechaIni": "Fecha Inicio",
     "lblFechaFin": "Fecha Fin",
     "lblModulo": "Módulo",
     "lblEvento": "Evento",
     "lblCriticidad": "Criticidad",
+    "lblNombre": "Nombre",
+    "lblApellido": "Apellido",
     "btnAplicar": "Aplicar",
     "btnLimpiar": "Limpiar",
     "btnImprimir": "Imprimir",

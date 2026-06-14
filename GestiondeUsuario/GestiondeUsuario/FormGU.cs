@@ -445,7 +445,7 @@ namespace GestiondeUsuario
             if (t == null) return;
 
             lblTitulo.Text = t["tituloForm"]?.ToString();
-            this.Text = t["titulo"]?.ToString();
+            this.Text = t["tituloForm"]?.ToString();
             lblDNI.Text = t["lblDNI"]?.ToString();
             lblNombre.Text = t["lblNombre"]?.ToString();
             lblApellido.Text = t["lblApellido"]?.ToString();

@@ -53,7 +53,7 @@
     "lblModoSeleccionado": "사용자 선택됨"
   },
   "FormRecuperar": {
-    "titulo": "비밀번호 변경",
+    "tituloForm": "비밀번호 변경",
     "lblDNI": "신분증",
     "lblContraseñaActual": "현재 비밀번호",
     "lblNuevaPass": "새 비밀번호",
@@ -62,13 +62,15 @@
     "btnVolver": "뒤로"
   },
   "FormBitacora": {
-    "titulo": "이벤트 로그",
+    "tituloForm": "이벤트 로그",
     "lblLogin": "로그인",
     "lblFechaIni": "시작 날짜",
     "lblFechaFin": "종료 날짜",
     "lblModulo": "모듈",
     "lblEvento": "이벤트",
     "lblCriticidad": "심각도",
+    "lblNombre": "이름",
+    "lblApellido": "성",
     "btnAplicar": "적용",
     "btnLimpiar": "지우기",
     "btnImprimir": "인쇄",

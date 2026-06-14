@@ -1,4 +1,5 @@
 ﻿using BLL;
+using Newtonsoft.Json.Linq;
 using Servicios;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ using System.Windows.Forms;
 
 namespace GestiondeUsuario
 {
-    public partial class FormBitacora : Form
+    public partial class FormBitacora : Form, IObservadorIdioma
     {
         private float _printY = 50;
         private int _printRowIndex = 0;
@@ -24,6 +25,8 @@ namespace GestiondeUsuario
 
         private void FormBitacora_Load(object sender, EventArgs e)
         {
+            GestorIdioma.Instancia.Suscribir(this);
+            GestorIdioma.Instancia.CambiarIdioma(SessionManager.Instancia.ObtenerIdioma());
             dtpFechaIni.Checked = false;
             dtpFechaFin.Checked = false;
             try
@@ -47,6 +50,10 @@ namespace GestiondeUsuario
                 MessageBox.Show("Error al cargar la bitácora: " + ex.Message,
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+        private void FormBitacora_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            GestorIdioma.Instancia.Desuscribir(this);
         }
 
         private void CargarCombos()
@@ -285,6 +292,27 @@ namespace GestiondeUsuario
                 MessageBox.Show("Error al limpiar filtros: " + ex.Message,
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        public void ActualizarIdioma(JObject traducciones)
+        {
+            var t = traducciones["FormBitacora"];
+            if (t == null) return;
+
+            this.Text = t["tituloForm"]?.ToString();
+            lblTitulo.Text = t["tituloForm"]?.ToString();
+            lblLogin.Text = t["lblLogin"]?.ToString();
+            lblFechaIni.Text = t["lblFechaIni"]?.ToString();
+            lblFechaFin.Text = t["lblFechaFin"]?.ToString();
+            lblModulo.Text = t["lblModulo"]?.ToString();
+            lblEvento.Text = t["lblEvento"]?.ToString();
+            lblCriticidad.Text = t["lblCriticidad"]?.ToString();
+            lblNombre.Text = t["lblNombre"]?.ToString();
+            lblApellido.Text = t["lblApellido"]?.ToString();
+            btnAplicar.Text = t["btnAplicar"]?.ToString();
+            btnLimpiar.Text = t["btnLimpiar"]?.ToString();
+            btnImprimir.Text = t["btnImprimir"]?.ToString();
+            btnSalir.Text = t["btnSalir"]?.ToString();
         }
     }
 }

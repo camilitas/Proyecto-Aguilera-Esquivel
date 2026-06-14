@@ -53,7 +53,7 @@
     "lblModoSeleccionado": "User selected"
   },
   "FormRecuperar": {
-    "titulo": "Change Password",
+    "tituloForm": "Change Password",
     "lblDNI": "ID",
     "lblContraseñaActual": "Current Password",
     "lblNuevaPass": "New Password",
@@ -62,13 +62,15 @@
     "btnVolver": "Back"
   },
   "FormBitacora": {
-    "titulo": "Event Log",
+    "tituloForm": "Event Log",
     "lblLogin": "Login",
     "lblFechaIni": "Start Date",
     "lblFechaFin": "End Date",
     "lblModulo": "Module",
     "lblEvento": "Event",
     "lblCriticidad": "Criticality",
+    "lblNombre": "Name",
+    "lblApellido": "Last Name",
     "btnAplicar": "Apply",
     "btnLimpiar": "Clear",
     "btnImprimir": "Print",

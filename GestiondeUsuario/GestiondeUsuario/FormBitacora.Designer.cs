@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.dgvBitacora = new System.Windows.Forms.DataGridView();
-            this.lblBitacora = new System.Windows.Forms.Label();
+            this.lblTitulo = new System.Windows.Forms.Label();
             this.btnSalir = new System.Windows.Forms.Button();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.txtApellido = new System.Windows.Forms.TextBox();
@@ -48,7 +48,7 @@
             this.lblCriticidad = new System.Windows.Forms.Label();
             this.cmbCriticidad = new System.Windows.Forms.ComboBox();
             this.lblFechaIni = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblFechaFin = new System.Windows.Forms.Label();
             this.dtpFechaFin = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBitacora)).BeginInit();
             this.SuspendLayout();
@@ -63,15 +63,15 @@
             this.dgvBitacora.TabIndex = 0;
             this.dgvBitacora.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
-            // lblBitacora
+            // lblTitulo
             // 
-            this.lblBitacora.AutoSize = true;
-            this.lblBitacora.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBitacora.Location = new System.Drawing.Point(33, 20);
-            this.lblBitacora.Name = "lblBitacora";
-            this.lblBitacora.Size = new System.Drawing.Size(177, 24);
-            this.lblBitacora.TabIndex = 1;
-            this.lblBitacora.Text = "Bitacora de Eventos";
+            this.lblTitulo.AutoSize = true;
+            this.lblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitulo.Location = new System.Drawing.Point(33, 20);
+            this.lblTitulo.Name = "lblTitulo";
+            this.lblTitulo.Size = new System.Drawing.Size(177, 24);
+            this.lblTitulo.TabIndex = 1;
+            this.lblTitulo.Text = "Bitacora de Eventos";
             // 
             // btnSalir
             // 
@@ -236,14 +236,14 @@
             this.lblFechaIni.TabIndex = 22;
             this.lblFechaIni.Text = "Fecha Ini";
             // 
-            // label1
+            // lblFechaFin
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(515, 346);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(54, 13);
-            this.label1.TabIndex = 24;
-            this.label1.Text = "Fecha Fin";
+            this.lblFechaFin.AutoSize = true;
+            this.lblFechaFin.Location = new System.Drawing.Point(515, 346);
+            this.lblFechaFin.Name = "lblFechaFin";
+            this.lblFechaFin.Size = new System.Drawing.Size(54, 13);
+            this.lblFechaFin.TabIndex = 24;
+            this.lblFechaFin.Text = "Fecha Fin";
             // 
             // dtpFechaFin
             // 
@@ -258,7 +258,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 492);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblFechaFin);
             this.Controls.Add(this.dtpFechaFin);
             this.Controls.Add(this.lblFechaIni);
             this.Controls.Add(this.lblCriticidad);
@@ -278,7 +278,7 @@
             this.Controls.Add(this.txtApellido);
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.btnSalir);
-            this.Controls.Add(this.lblBitacora);
+            this.Controls.Add(this.lblTitulo);
             this.Controls.Add(this.dgvBitacora);
             this.Name = "FormBitacora";
             this.Text = "FormBitacora";
@@ -292,7 +292,7 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dgvBitacora;
-        private System.Windows.Forms.Label lblBitacora;
+        private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.TextBox txtApellido;
@@ -311,7 +311,7 @@
         private System.Windows.Forms.Label lblCriticidad;
         private System.Windows.Forms.ComboBox cmbCriticidad;
         private System.Windows.Forms.Label lblFechaIni;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblFechaFin;
         private System.Windows.Forms.DateTimePicker dtpFechaFin;
     }
 }
