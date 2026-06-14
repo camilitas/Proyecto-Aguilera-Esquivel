@@ -9,10 +9,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Newtonsoft.Json.Linq;
 
 namespace GestiondeUsuario
 {
-    public partial class FormGestionFamilias : Form
+    public partial class FormGestionFamilias : Form, IObservadorIdioma
     {
         private int _idSeleccionado = -1;
         public FormGestionFamilias()
@@ -22,12 +23,19 @@ namespace GestiondeUsuario
 
         private void FormGestionFamilias_Load(object sender, EventArgs e)
         {
+            GestorIdioma.Instancia.Suscribir(this);
+            GestorIdioma.Instancia.CambiarIdioma(SessionManager.Instancia.ObtenerIdioma());
+
             rbPatente.Checked = true;
             CargarFamilias();
             CargarDisponibles();
             HabilitarBotonera();
             DeshabilitarCampos();
-            lblModo.Text = "Seleccioná una opción";
+            lblModo.Text = GestorIdioma.Instancia.Obtener("FormGestionFamilias", "lblModoInicial");
+        }
+        private void FormGestionFamilias_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            GestorIdioma.Instancia.Desuscribir(this);
         }
         private void HabilitarBotonera()
         {
@@ -111,7 +119,7 @@ namespace GestiondeUsuario
             txtDescripcion.Text = familia.Descripcion;
             CargarContenido(familia.Id);
             CargarDisponibles();
-            lblModo.Text = "Familia seleccionada";
+            lblModo.Text = GestorIdioma.Instancia.Obtener("FormGestionFamilias", "lblModoSeleccionado");
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)
@@ -120,7 +128,7 @@ namespace GestiondeUsuario
             LimpiarCampos();
             HabilitarCampos();
             ModoAccion();
-            lblModo.Text = "Modo Nuevo";
+            lblModo.Text = GestorIdioma.Instancia.Obtener("FormGestionFamilias", "lblModoNuevo");
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -133,7 +141,7 @@ namespace GestiondeUsuario
             }
             HabilitarCampos();
             ModoAccion();
-            lblModo.Text = "Modo Modificar";
+            lblModo.Text = GestorIdioma.Instancia.Obtener("FormGestionFamilias", "lblModoModificar");
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -163,7 +171,7 @@ namespace GestiondeUsuario
                         HabilitarBotonera();
                         _idSeleccionado = -1;
                         CargarFamilias();
-                        lblModo.Text = "Seleccioná una opción";
+                        lblModo.Text = GestorIdioma.Instancia.Obtener("FormGestionFamilias", "lblModoInicial");
                     }
                 }
                 catch (Exception ex)
@@ -201,7 +209,7 @@ namespace GestiondeUsuario
                     LimpiarCampos();
                     DeshabilitarCampos();
                     HabilitarBotonera();
-                    lblModo.Text = "Seleccioná una opción";
+                    lblModo.Text = GestorIdioma.Instancia.Obtener("FormGestionFamilias", "lblModoInicial");
                 }
             }
             else
@@ -223,7 +231,7 @@ namespace GestiondeUsuario
                     LimpiarCampos();
                     DeshabilitarCampos();
                     HabilitarBotonera();
-                    lblModo.Text = "Seleccioná una opción";
+                    lblModo.Text = GestorIdioma.Instancia.Obtener("FormGestionFamilias", "lblModoInicial");
                 }
             }
         }
@@ -233,7 +241,7 @@ namespace GestiondeUsuario
             LimpiarCampos();
             DeshabilitarCampos();
             HabilitarBotonera();
-            lblModo.Text = "Seleccioná una opción";
+            lblModo.Text = GestorIdioma.Instancia.Obtener("FormGestionFamilias", "lblModoInicial");
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
@@ -320,6 +328,27 @@ namespace GestiondeUsuario
         private void rbFamilia_CheckedChanged(object sender, EventArgs e)
         {
             if (rbFamilia.Checked) CargarDisponibles();
+        }
+
+        public void ActualizarIdioma(JObject traducciones)
+        {
+            var t = traducciones["FormGestionFamilias"];
+            if (t == null) return;
+
+            this.Text = t["tituloForm"]?.ToString();
+            lblPatentesDisponibles.Text = t["lblPatentesDisponibles"]?.ToString();
+            lblNombre.Text = t["lblNombre"]?.ToString();
+            lblDescripcion.Text = t["lblDescripcion"]?.ToString();
+            rbPatente.Text = t["rbPatente"]?.ToString();
+            rbFamilia.Text = t["rbFamilia"]?.ToString();
+            btnNuevo.Text = t["btnNuevo"]?.ToString();
+            btnModificar.Text = t["btnModificar"]?.ToString();
+            btnEliminar.Text = t["btnEliminar"]?.ToString();
+            btnAplicar.Text = t["btnAplicar"]?.ToString();
+            btnCancelar.Text = t["btnCancelar"]?.ToString();
+            btnAgregar.Text = t["btnAgregar"]?.ToString();
+            btnQuitar.Text = t["btnQuitar"]?.ToString();
+            btnVolver.Text = t["btnVolver"]?.ToString();
         }
     }
 }

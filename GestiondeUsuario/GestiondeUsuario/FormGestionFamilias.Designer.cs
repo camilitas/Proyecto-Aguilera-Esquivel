@@ -31,15 +31,15 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lstFamilias = new System.Windows.Forms.ListBox();
             this.lstContenido = new System.Windows.Forms.ListBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblPatentesDisponibles = new System.Windows.Forms.Label();
             this.lstDisponibles = new System.Windows.Forms.ListBox();
             this.rbPatente = new System.Windows.Forms.RadioButton();
             this.rbFamilia = new System.Windows.Forms.RadioButton();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnQuitar = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblNombre = new System.Windows.Forms.Label();
             this.txtNombre = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lblDescripcion = new System.Windows.Forms.Label();
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.btnNuevo = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
@@ -79,14 +79,14 @@
             this.lstContenido.Size = new System.Drawing.Size(219, 264);
             this.lstContenido.TabIndex = 3;
             // 
-            // label2
+            // lblPatentesDisponibles
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(577, 48);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(152, 13);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Patentes y Familias disponibles";
+            this.lblPatentesDisponibles.AutoSize = true;
+            this.lblPatentesDisponibles.Location = new System.Drawing.Point(577, 48);
+            this.lblPatentesDisponibles.Name = "lblPatentesDisponibles";
+            this.lblPatentesDisponibles.Size = new System.Drawing.Size(152, 13);
+            this.lblPatentesDisponibles.TabIndex = 4;
+            this.lblPatentesDisponibles.Text = "Patentes y Familias disponibles";
             // 
             // lstDisponibles
             // 
@@ -140,14 +140,14 @@
             this.btnQuitar.UseVisualStyleBackColor = true;
             this.btnQuitar.Click += new System.EventHandler(this.btnQuitar_Click);
             // 
-            // label3
+            // lblNombre
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(18, 13);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(47, 13);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Nombre:";
+            this.lblNombre.AutoSize = true;
+            this.lblNombre.Location = new System.Drawing.Point(18, 13);
+            this.lblNombre.Name = "lblNombre";
+            this.lblNombre.Size = new System.Drawing.Size(47, 13);
+            this.lblNombre.TabIndex = 10;
+            this.lblNombre.Text = "Nombre:";
             // 
             // txtNombre
             // 
@@ -156,14 +156,14 @@
             this.txtNombre.Size = new System.Drawing.Size(100, 20);
             this.txtNombre.TabIndex = 11;
             // 
-            // label4
+            // lblDescripcion
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(18, 45);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(66, 13);
-            this.label4.TabIndex = 12;
-            this.label4.Text = "Descripcion:";
+            this.lblDescripcion.AutoSize = true;
+            this.lblDescripcion.Location = new System.Drawing.Point(18, 45);
+            this.lblDescripcion.Name = "lblDescripcion";
+            this.lblDescripcion.Size = new System.Drawing.Size(66, 13);
+            this.lblDescripcion.TabIndex = 12;
+            this.lblDescripcion.Text = "Descripcion:";
             // 
             // txtDescripcion
             // 
@@ -244,9 +244,9 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.txtDescripcion);
-            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.lblNombre);
             this.panel1.Controls.Add(this.txtNombre);
-            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.lblDescripcion);
             this.panel1.Location = new System.Drawing.Point(324, 396);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(200, 81);
@@ -270,7 +270,7 @@
             this.Controls.Add(this.rbFamilia);
             this.Controls.Add(this.rbPatente);
             this.Controls.Add(this.lstDisponibles);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lblPatentesDisponibles);
             this.Controls.Add(this.lstContenido);
             this.Controls.Add(this.lstFamilias);
             this.Controls.Add(this.label1);
@@ -289,15 +289,15 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListBox lstFamilias;
         private System.Windows.Forms.ListBox lstContenido;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblPatentesDisponibles;
         private System.Windows.Forms.ListBox lstDisponibles;
         private System.Windows.Forms.RadioButton rbPatente;
         private System.Windows.Forms.RadioButton rbFamilia;
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Button btnQuitar;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblNombre;
         private System.Windows.Forms.TextBox txtNombre;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblDescripcion;
         private System.Windows.Forms.TextBox txtDescripcion;
         private System.Windows.Forms.Button btnNuevo;
         private System.Windows.Forms.Button btnModificar;
