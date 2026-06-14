@@ -1,4 +1,5 @@
 ﻿using BLL;
+using Newtonsoft.Json.Linq;
 using Servicios;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ using System.Windows.Forms;
 
 namespace GestiondeUsuario
 {
-    public partial class FormGestionRoles : Form
+    public partial class FormGestionRoles : Form, IObservadorIdioma
     {
         private int _idSeleccionado = -1;
         public FormGestionRoles()
@@ -22,12 +23,19 @@ namespace GestiondeUsuario
 
         private void FormGestionRoles_Load(object sender, EventArgs e)
         {
+            GestorIdioma.Instancia.Suscribir(this);
+            GestorIdioma.Instancia.CambiarIdioma(SessionManager.Instancia.ObtenerIdioma());
+
             rbPatente.Checked = true;
             CargarRoles();
             CargarDisponibles();
             HabilitarBotonera();
             DeshabilitarCampos();
-            lblModo.Text = "Seleccioná una opción";
+            lblModo.Text = GestorIdioma.Instancia.Obtener("FormGestionRoles", "lblModoInicial");
+        }
+        private void FormGestionRoles_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            GestorIdioma.Instancia.Desuscribir(this);
         }
 
         private void HabilitarBotonera()
@@ -108,7 +116,7 @@ namespace GestiondeUsuario
             txtDescripcion.Text = rol.Descripcion;
             CargarContenido(rol.Id);
             CargarDisponibles();
-            lblModo.Text = "Rol seleccionado";
+            lblModo.Text = GestorIdioma.Instancia.Obtener("FormGestionRoles", "lblModoSeleccionado");
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)
@@ -117,7 +125,7 @@ namespace GestiondeUsuario
             LimpiarCampos();
             HabilitarCampos();
             ModoAccion();
-            lblModo.Text = "Modo Nuevo";
+            lblModo.Text = GestorIdioma.Instancia.Obtener("FormGestionRoles", "lblModoNuevo");
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -130,7 +138,7 @@ namespace GestiondeUsuario
             }
             HabilitarCampos();
             ModoAccion();
-            lblModo.Text = "Modo Modificar";
+            lblModo.Text = GestorIdioma.Instancia.Obtener("FormGestionRoles", "lblModoModificar");
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -160,7 +168,7 @@ namespace GestiondeUsuario
                         HabilitarBotonera();
                         _idSeleccionado = -1;
                         CargarRoles();
-                        lblModo.Text = "Seleccioná una opción";
+                        lblModo.Text = GestorIdioma.Instancia.Obtener("FormGestionRoles", "lblModoInicial");
                     }
                 }
                 catch (Exception ex)
@@ -198,7 +206,7 @@ namespace GestiondeUsuario
                     LimpiarCampos();
                     DeshabilitarCampos();
                     HabilitarBotonera();
-                    lblModo.Text = "Seleccioná una opción";
+                    lblModo.Text = GestorIdioma.Instancia.Obtener("FormGestionRoles", "lblModoInicial");
                 }
             }
             else
@@ -220,7 +228,7 @@ namespace GestiondeUsuario
                     LimpiarCampos();
                     DeshabilitarCampos();
                     HabilitarBotonera();
-                    lblModo.Text = "Seleccioná una opción";
+                    lblModo.Text = GestorIdioma.Instancia.Obtener("FormGestionRoles", "lblModoInicial");
                 }
             }
         }
@@ -230,7 +238,7 @@ namespace GestiondeUsuario
             LimpiarCampos();
             DeshabilitarCampos();
             HabilitarBotonera();
-            lblModo.Text = "Seleccioná una opción";
+            lblModo.Text = GestorIdioma.Instancia.Obtener("FormGestionRoles", "lblModoInicial");
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
@@ -322,6 +330,27 @@ namespace GestiondeUsuario
         private void lstDisponibles_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        public void ActualizarIdioma(JObject traducciones)
+        {
+            var t = traducciones["FormGestionRoles"];
+            if (t == null) return;
+
+            this.Text = t["tituloForm"]?.ToString();
+            lblPatentesDisponibles.Text = t["lblPatentesDisponibles"]?.ToString();
+            lblNombre.Text = t["lblNombre"]?.ToString();
+            lblDescripcion.Text = t["lblDescripcion"]?.ToString();
+            rbPatente.Text = t["rbPatente"]?.ToString();
+            rbFamilia.Text = t["rbFamilia"]?.ToString();
+            btnNuevo.Text = t["btnNuevo"]?.ToString();
+            btnModificar.Text = t["btnModificar"]?.ToString();
+            btnEliminar.Text = t["btnEliminar"]?.ToString();
+            btnAplicar.Text = t["btnAplicar"]?.ToString();
+            btnCancelar.Text = t["btnCancelar"]?.ToString();
+            btnAgregar.Text = t["btnAgregar"]?.ToString();
+            btnQuitar.Text = t["btnQuitar"]?.ToString();
+            btnVolver.Text = t["btnVolver"]?.ToString();
         }
     }
 }
