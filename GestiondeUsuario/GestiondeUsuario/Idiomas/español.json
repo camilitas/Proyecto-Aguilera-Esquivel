@@ -115,5 +115,12 @@
     "lblModoNuevo": "Modo Nuevo",
     "lblModoModificar": "Modo Modificar",
     "lblModoSeleccionado": "Rol seleccionado"
+  },
+  "FormCambiarIdioma": {
+    "tituloForm": "Cambio de idioma",
+    "lblIdiomas": "Idiomas",
+    "btnAceptar": "Aceptar",
+    "btnCancelar": "Cancelar",
+    "btnVolver": "Volver"
   }
 }

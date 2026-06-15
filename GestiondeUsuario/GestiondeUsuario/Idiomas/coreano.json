@@ -115,5 +115,12 @@
     "lblModoNuevo": "새로운 모드",
     "lblModoModificar": "수정 모드",
     "lblModoSeleccionado": "역할 선택됨"
+  },
+  "FormCambiarIdioma": {
+    "tituloForm": "언어 변경",
+    "lblIdiomas": "언어",
+    "btnAceptar": "수락",
+    "btnCancelar": "취소",
+    "btnVolver": "뒤로"
   }
 }

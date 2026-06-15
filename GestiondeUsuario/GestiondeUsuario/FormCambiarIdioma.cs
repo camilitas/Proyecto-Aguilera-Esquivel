@@ -1,4 +1,5 @@
 ﻿using BLL;
+using Newtonsoft.Json.Linq;
 using Servicios;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ using System.Windows.Forms;
 
 namespace GestiondeUsuario
 {
-    public partial class FormCambiarIdioma : Form
+    public partial class FormCambiarIdioma : Form, IObservadorIdioma
     {
         public FormCambiarIdioma()
         {
@@ -21,13 +22,18 @@ namespace GestiondeUsuario
 
         private void FormCambiarIdioma_Load(object sender, EventArgs e)
         {
+            GestorIdioma.Instancia.Suscribir(this);
+            GestorIdioma.Instancia.CambiarIdioma(SessionManager.Instancia.ObtenerIdioma());
+
             cmbIdiomas.Items.Clear();
             cmbIdiomas.Items.Add("español");
             cmbIdiomas.Items.Add("ingles");
             cmbIdiomas.Items.Add("coreano");
-
-            // Seleccionamos el idioma actual
             cmbIdiomas.SelectedItem = SessionManager.Instancia.ObtenerIdioma();
+        }
+        private void FormCambiarIdioma_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            GestorIdioma.Instancia.Desuscribir(this);
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
@@ -74,6 +80,18 @@ namespace GestiondeUsuario
         {
             new FormPrincipal().Show();
             this.Close();
+        }
+
+        public void ActualizarIdioma(JObject traducciones)
+        {
+            var t = traducciones["FormCambiarIdioma"];
+            if (t == null) return;
+
+            this.Text = t["tituloForm"]?.ToString();
+            lblIdiomas.Text = t["lblIdiomas"]?.ToString();
+            btnAceptar.Text = t["btnAceptar"]?.ToString();
+            btnCancelar.Text = t["btnCancelar"]?.ToString();
+            btnVolver.Text = t["btnVolver"]?.ToString();
         }
     }
 }

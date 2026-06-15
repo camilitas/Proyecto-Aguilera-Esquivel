@@ -28,22 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblIdiomas = new System.Windows.Forms.Label();
             this.cmbIdiomas = new System.Windows.Forms.ComboBox();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnVolver = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // label1
+            // lblIdiomas
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(152, 32);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(72, 20);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Idiomas";
+            this.lblIdiomas.AutoSize = true;
+            this.lblIdiomas.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIdiomas.Location = new System.Drawing.Point(152, 32);
+            this.lblIdiomas.Name = "lblIdiomas";
+            this.lblIdiomas.Size = new System.Drawing.Size(72, 20);
+            this.lblIdiomas.TabIndex = 1;
+            this.lblIdiomas.Text = "Idiomas";
             // 
             // cmbIdiomas
             // 
@@ -96,7 +96,7 @@
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.cmbIdiomas);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblIdiomas);
             this.Name = "FormCambiarIdioma";
             this.Text = "FormCambiarIdioma";
             this.Load += new System.EventHandler(this.FormCambiarIdioma_Load);
@@ -107,7 +107,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblIdiomas;
         private System.Windows.Forms.ComboBox cmbIdiomas;
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Button btnCancelar;

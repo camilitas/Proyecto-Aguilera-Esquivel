@@ -144,7 +144,7 @@ namespace GestiondeUsuario
             txtNombreUsuario.BackColor = Color.LightGray;
             txtNombreUsuario.Text = "Se genera automaticamente.";
 
-            btnDeshabilitar.Text = "Deshabilitar"; // resetea el texto
+            btnDeshabilitar.Text = GestorIdioma.Instancia.Obtener("FormGU", "btnDeshabilitar");
             ModoAccion(); // al agregar solo quedan Aplicar y Cancelar
         }
         private void LimpiarCampos()
