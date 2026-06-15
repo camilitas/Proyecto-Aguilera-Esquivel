@@ -103,10 +103,25 @@ namespace DAL
         {
             using (SqlConnection con = new SqlConnection(connectionString))
             {
-                string query = "UPDATE Usuarios SET Activo=0 WHERE Id=@Id";
-                SqlCommand cmd = new SqlCommand(query, con);
-                cmd.Parameters.AddWithValue("@Id", id);
+                // Obtenemos DNI para resetear contraseña
+                string queryDNI = "SELECT DNI FROM Usuarios WHERE Id = @Id";
+                SqlCommand cmdDNI = new SqlCommand(queryDNI, con);
+                cmdDNI.Parameters.AddWithValue("@Id", id);
                 con.Open();
+                object result = cmdDNI.ExecuteScalar();
+                if (result == null) return false;
+                int dni = Convert.ToInt32(result);
+
+                string passReseteada = Servicios.Encriptador.Encriptar(dni.ToString());
+
+                string query = @"UPDATE Usuarios SET 
+                 Activo = 0,
+                 Contraseña = @Contraseña,
+                 PrimerIngreso = 1
+                 WHERE Id = @Id";
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@Contraseña", passReseteada);
+                cmd.Parameters.AddWithValue("@Id", id);
                 return cmd.ExecuteNonQuery() > 0;
             }
         }
