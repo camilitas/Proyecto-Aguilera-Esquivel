@@ -62,7 +62,7 @@ namespace GestiondeUsuario
                 SessionManager.Instancia.ObtenerUsuarioActivo()?.NombreUsuario ?? "Desconocido",
                 "Cambiar Idioma - " + idioma,
                 "Usuarios",
-                1);
+                4);
 
             MessageBox.Show("Idioma cambiado a: " + idioma, "Éxito",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
