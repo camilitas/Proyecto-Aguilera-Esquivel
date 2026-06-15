@@ -1,4 +1,5 @@
-﻿using Servicios;
+﻿using DAL;
+using Servicios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +11,8 @@ namespace BLL
     public class PerfilBLL
     {
         private static PerfilBLL _instancia;
-        private Dictionary<string, Perfil> _perfiles = new Dictionary<string, Perfil>();
 
-        private PerfilBLL()
-        {
-            InicializarPerfiles();
-        }
+        private PerfilBLL() { }
 
         public static PerfilBLL Instancia
         {
@@ -27,30 +24,42 @@ namespace BLL
             }
         }
 
-        private void InicializarPerfiles()
+        public bool TienePermiso(string nombreRol, string nombrePatente)
         {
-            // Perfil General
-            var perfilGeneral = new Perfil("General");
-            perfilGeneral.Agregar(new Permiso("CambiarContraseña"));
-            perfilGeneral.Agregar(new Permiso("VerPrincipal"));
+            var roles = RolBLL.Instancia.ObtenerTodos();
+            var rol = roles.FirstOrDefault(r => r.Nombre == nombreRol);
+            if (rol == null) return false;
 
-            // Perfil Admin contiene todo lo de General + más permisos
-            var perfilAdmin = new Perfil("Admin");
-            perfilAdmin.Agregar(new Permiso("CambiarContraseña"));
-            perfilAdmin.Agregar(new Permiso("VerPrincipal"));
-            perfilAdmin.Agregar(new Permiso("GestionUsuarios"));
-            perfilAdmin.Agregar(new Permiso("VerBitacora"));
-            perfilAdmin.Agregar(perfilGeneral); // Composite: admin incluye general
+            var patentes = RolBLL.Instancia.ObtenerPatentes(rol.Id);
+            if (patentes.Any(p => p.Nombre == nombrePatente))
+                return true;
 
-            _perfiles["General"] = perfilGeneral;
-            _perfiles["Admin"] = perfilAdmin;
+            var familias = RolBLL.Instancia.ObtenerFamilias(rol.Id);
+            foreach (var familia in familias)
+            {
+                if (TienePermisoEnFamilia(familia.Id, nombrePatente))
+                    return true;
+            }
+
+            return false;
         }
 
-        public bool TienePermiso(string rol, string permiso)
+        private bool TienePermisoEnFamilia(int idFamilia, string nombrePatente)
         {
-            if (!_perfiles.ContainsKey(rol))
-                return false;
-            return _perfiles[rol].TieneAcceso(permiso);
+            FamiliaDAL dal = new FamiliaDAL();
+
+            var patentes = dal.ObtenerPatentes(idFamilia);
+            if (patentes.Any(p => p.Nombre == nombrePatente))
+                return true;
+
+            var familiasIntegradas = dal.ObtenerFamiliasIntegradas(idFamilia);
+            foreach (var familia in familiasIntegradas)
+            {
+                if (TienePermisoEnFamilia(familia.Id, nombrePatente))
+                    return true;
+            }
+
+            return false;
         }
     }
 }

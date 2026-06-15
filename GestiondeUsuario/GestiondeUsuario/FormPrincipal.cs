@@ -23,21 +23,16 @@ namespace GestiondeUsuario
         private void FormPrincipal_Load(object sender, EventArgs e)
         {
             GestorIdioma.Instancia.Suscribir(this);
-
             Usuario usuario = SessionManager.Instancia.ObtenerUsuarioActivo();
             lblBienvenida.Text = "Bienvenido, " + usuario.Nombre + "!";
 
-            // Composite: permisos según perfil
+            // Composite, permisos segun perfil desde BD
             menuAdmin.Enabled = PerfilBLL.Instancia.TienePermiso(usuario.Rol, "GestionUsuarios");
-            menuMaestro.Enabled = PerfilBLL.Instancia.TienePermiso(usuario.Rol, "GestionUsuarios");
-            menuVenta.Enabled = PerfilBLL.Instancia.TienePermiso(usuario.Rol, "GestionUsuarios");
-            menuCompras.Enabled = PerfilBLL.Instancia.TienePermiso(usuario.Rol, "GestionUsuarios");
-            menuReporte.Enabled = PerfilBLL.Instancia.TienePermiso(usuario.Rol, "VerBitacora");
-            menuMaestro.Enabled = false;
-            menuVenta.Enabled = false;
-            menuCompras.Enabled = false;
-            menuReporte.Enabled = false;
-            menuAyuda.Enabled = false;
+            menuMaestro.Enabled = PerfilBLL.Instancia.TienePermiso(usuario.Rol, "Maestro");
+            menuVenta.Enabled = PerfilBLL.Instancia.TienePermiso(usuario.Rol, "Ventas");
+            menuCompras.Enabled = PerfilBLL.Instancia.TienePermiso(usuario.Rol, "Compras");
+            menuReporte.Enabled = PerfilBLL.Instancia.TienePermiso(usuario.Rol, "Reporte");
+            menuAyuda.Enabled = PerfilBLL.Instancia.TienePermiso(usuario.Rol, "Ayuda");
             gestionRespaldoToolStripMenuItem.Enabled = false;
 
             GestorIdioma.Instancia.CambiarIdioma(SessionManager.Instancia.ObtenerIdioma());
