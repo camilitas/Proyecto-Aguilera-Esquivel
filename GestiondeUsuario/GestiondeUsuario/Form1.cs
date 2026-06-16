@@ -1,19 +1,24 @@
-﻿using System;
+﻿using BLL;
+using Newtonsoft.Json.Linq;
+using Servicios;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using BLL;
-using Servicios;
+using System.Xml.Linq;
 
 namespace GestiondeUsuario
 {
     public partial class Form1 : Form
     {
+        private JObject _traducciones;
+
         public Form1()
         {
             InitializeComponent();
@@ -21,7 +26,53 @@ namespace GestiondeUsuario
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            // Cargamos los idiomas disponibles
+            cmbIdioma.Items.Clear();
+            cmbIdioma.Items.Add("español");
+            cmbIdioma.Items.Add("ingles");
+            cmbIdioma.Items.Add("coreano");
 
+            // Por defecto español
+            cmbIdioma.SelectedItem = "español";
+            CargarIdioma("español");
+        }
+
+        private void CargarIdioma(string idioma)
+        {
+            try
+            {
+                string ruta = Path.Combine(
+                    AppDomain.CurrentDomain.BaseDirectory,
+                    "Idiomas", idioma + ".json");
+
+                if (!File.Exists(ruta)) return;
+
+                string json = File.ReadAllText(ruta);
+                _traducciones = JObject.Parse(json);
+                AplicarIdioma();
+            }
+            catch { }
+        }
+
+        private void AplicarIdioma()
+        {
+            var t = _traducciones?["Form1"];
+            if (t == null) return;
+
+            this.Text = t["tituloForm"]?.ToString();
+            lblUsuario.Text = t["lblUsuario"]?.ToString();
+            lblContraseña.Text = t["lblContraseña"]?.ToString();
+            btnLogin.Text = t["btnLogin"]?.ToString();
+            lblIdioma.Text = t["lblIdioma"]?.ToString();
+        }
+
+        private void cmbIdioma_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbIdioma.SelectedItem == null) return;
+            string idioma = cmbIdioma.SelectedItem.ToString();
+            CargarIdioma(idioma);
+
+            SessionManager.Instancia.CambiarIdioma(idioma);
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -89,6 +140,9 @@ namespace GestiondeUsuario
             this.Hide();
         }
 
-       
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
