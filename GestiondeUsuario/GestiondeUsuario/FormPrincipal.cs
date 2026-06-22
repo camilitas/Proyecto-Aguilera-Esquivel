@@ -22,10 +22,11 @@ namespace GestiondeUsuario
 
         private void FormPrincipal_Load(object sender, EventArgs e)
         {
+
             GestorIdioma.Instancia.Suscribir(this);
             Usuario usuario = SessionManager.Instancia.ObtenerUsuarioActivo();
             lblBienvenida.Text = "Bienvenido, " + usuario.Nombre + "!";
-
+            // Cada submenú depende de SU propia patente, no de un permiso genérico
             bool tieneGestionUsuarios = PerfilBLL.Instancia.TienePermiso(usuario.Rol, "GestionUsuarios");
             bool tieneGestionPerfiles = PerfilBLL.Instancia.TienePermiso(usuario.Rol, "GestionPerfiles");
             bool tieneVerBitacora = PerfilBLL.Instancia.TienePermiso(usuario.Rol, "VerBitacora");
