@@ -67,11 +67,43 @@ namespace BLL
         public bool AgregarPatente(int idFamilia, int idPatente)
         {
             FamiliaDAL dal = new FamiliaDAL();
-            // Verificamos que no exista ya
+
+            // Verificamos que no esté ya directo en esta familia
             var patentes = dal.ObtenerPatentes(idFamilia);
             if (patentes.Any(p => p.Id == idPatente))
                 throw new Exception("Esta patente ya está en la familia.");
+
+            // Verificamos que ninguna familia integrada ya la tenga
+            var familiasIntegradas = dal.ObtenerFamiliasIntegradas(idFamilia);
+            foreach (var familiaIntegrada in familiasIntegradas)
+            {
+                if (TienePatenteRecursivo(familiaIntegrada.Id, idPatente, dal))
+                {
+                    var patente = PatenteBLL.Instancia.ObtenerTodos()
+                        .FirstOrDefault(p => p.Id == idPatente);
+                    throw new Exception(
+                        $"La patente '{patente?.Nombre}' ya está incluida en la familia integrada '{familiaIntegrada.Nombre}'.");
+                }
+            }
+
+
+
             return dal.AgregarPatente(idFamilia, idPatente);
+        }
+
+        private bool TienePatenteRecursivo(int idFamilia, int idPatente, FamiliaDAL dal)
+        {
+            var patentes = dal.ObtenerPatentes(idFamilia);
+            if (patentes.Any(p => p.Id == idPatente))
+                return true;
+
+            var familiasIntegradas = dal.ObtenerFamiliasIntegradas(idFamilia);
+            foreach (var f in familiasIntegradas)
+            {
+                if (TienePatenteRecursivo(f.Id, idPatente, dal))
+                    return true;
+            }
+            return false;
         }
 
         public bool AgregarFamilia(int idFamilia, int idFamiliaIntegrada)
