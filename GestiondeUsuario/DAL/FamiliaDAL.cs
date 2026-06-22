@@ -75,11 +75,19 @@ namespace DAL
         {
             using (SqlConnection con = new SqlConnection(connectionString))
             {
-                string query = "SELECT COUNT(*) FROM Rol_Fam WHERE IdFamilia=@Id";
+                string query = @"SELECT COUNT(*) FROM Rol_Fam WHERE IdFamilia=@Id
+                        UNION ALL
+                        SELECT COUNT(*) FROM Fam_Fam WHERE IdFamiliaIntegrada=@Id"; //Cuenta cuantos ROLES usan esta familia (Rol_Fam)
+                                                                                    // Cuenta cuantas FAMILIAS tienen esta familia integrada (Fam_Fam)
+                                                                                    // UNION ALL junta los dos resultados en una sola respuesta
                 SqlCommand cmd = new SqlCommand(query, con);
-                cmd.Parameters.AddWithValue("@Id", id);
+                cmd.Parameters.AddWithValue("@Id", id);  //
                 con.Open();
-                return (int)cmd.ExecuteScalar() > 0;
+                // Si alguno de los dos counts es mayor a 0, esta en uso
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                    if (Convert.ToInt32(reader[0]) > 0) return true; // Si el primer count es >0, esta en uso por un rol
+                return false;
             }
         }
 
