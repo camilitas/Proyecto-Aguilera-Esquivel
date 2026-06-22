@@ -64,16 +64,9 @@ namespace GestiondeUsuario
             lblContraseña.Text = t["lblContraseña"]?.ToString();
             btnLogin.Text = t["btnLogin"]?.ToString();
             lblIdioma.Text = t["lblIdioma"]?.ToString();
+            lblBienvenida.Text = t["lblBienvenida"]?.ToString();
         }
 
-        private void cmbIdioma_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cmbIdioma.SelectedItem == null) return;
-            string idioma = cmbIdioma.SelectedItem.ToString();
-            CargarIdioma(idioma);
-
-            SessionManager.Instancia.CambiarIdioma(idioma);
-        }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
@@ -143,6 +136,15 @@ namespace GestiondeUsuario
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void cmbIdioma_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            if (cmbIdioma.SelectedItem == null) return;
+            string idioma = cmbIdioma.SelectedItem.ToString();
+            CargarIdioma(idioma);
+
+            SessionManager.Instancia.CambiarIdioma(idioma);
         }
     }
 }

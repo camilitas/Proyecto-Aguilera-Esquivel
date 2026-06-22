@@ -26,13 +26,25 @@ namespace GestiondeUsuario
             Usuario usuario = SessionManager.Instancia.ObtenerUsuarioActivo();
             lblBienvenida.Text = "Bienvenido, " + usuario.Nombre + "!";
 
-            // Composite, permisos segun perfil desde BD
-            menuAdmin.Enabled = PerfilBLL.Instancia.TienePermiso(usuario.Rol, "GestionUsuarios");
-            menuMaestro.Enabled = PerfilBLL.Instancia.TienePermiso(usuario.Rol, "Maestro");
-            menuVenta.Enabled = PerfilBLL.Instancia.TienePermiso(usuario.Rol, "Ventas");
-            menuCompras.Enabled = PerfilBLL.Instancia.TienePermiso(usuario.Rol, "Compras");
-            menuReporte.Enabled = PerfilBLL.Instancia.TienePermiso(usuario.Rol, "Reporte");
-            menuAyuda.Enabled = PerfilBLL.Instancia.TienePermiso(usuario.Rol, "Ayuda");
+            bool tieneGestionUsuarios = PerfilBLL.Instancia.TienePermiso(usuario.Rol, "GestionUsuarios");
+            bool tieneGestionPerfiles = PerfilBLL.Instancia.TienePermiso(usuario.Rol, "GestionPerfiles");
+            bool tieneVerBitacora = PerfilBLL.Instancia.TienePermiso(usuario.Rol, "VerBitacora");
+            bool tieneMaestro = PerfilBLL.Instancia.TienePermiso(usuario.Rol, "Maestro");
+            bool tieneVentas = PerfilBLL.Instancia.TienePermiso(usuario.Rol, "Ventas");
+            bool tieneCompras = PerfilBLL.Instancia.TienePermiso(usuario.Rol, "Compras");
+            bool tieneReporte = PerfilBLL.Instancia.TienePermiso(usuario.Rol, "Reporte");
+            bool tieneAyuda = PerfilBLL.Instancia.TienePermiso(usuario.Rol, "Ayuda");
+
+            gestionDeUsuariosToolStripMenuItem.Enabled = tieneGestionUsuarios;
+            gestionDePerfilesToolStripMenuItem.Enabled = tieneGestionPerfiles;
+            gestionDeRolesToolStripMenuItem.Enabled = tieneGestionPerfiles;
+            bitacoraEventosToolStripMenuItem.Enabled = tieneVerBitacora;
+
+            menuMaestro.Enabled = tieneMaestro;
+            menuVenta.Enabled = tieneVentas;
+            menuCompras.Enabled = tieneCompras;
+            menuReporte.Enabled = tieneReporte;
+            menuAyuda.Enabled = tieneAyuda;
             gestionRespaldoToolStripMenuItem.Enabled = false;
 
             GestorIdioma.Instancia.CambiarIdioma(SessionManager.Instancia.ObtenerIdioma());

@@ -4,7 +4,8 @@
     "lblUsuario": "사용자 이름",
     "lblContraseña": "비밀번호",
     "btnLogin": "로그인",
-    "lblRecuperar": "비밀번호 복구"
+    "lblRecuperar": "비밀번호 복구",
+    "lblBienvenida": "환영합니다"
   },
   "FormPrincipal": {
     "lblBienvenida": "환영합니다",

@@ -4,7 +4,8 @@
     "lblUsuario": "Username",
     "lblContraseña": "Password",
     "btnLogin": "Login",
-    "lblRecuperar": "Recover password"
+    "lblRecuperar": "Recover password",
+    "lblBienvenida": "Welcome"
   },
   "FormPrincipal": {
     "lblBienvenida": "Welcome",

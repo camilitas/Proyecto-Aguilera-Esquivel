@@ -35,7 +35,7 @@
             this.lblContraseña = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblIdioma = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblBienvenida = new System.Windows.Forms.Label();
             this.cmbIdioma = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -88,7 +88,7 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.lblIdioma);
-            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.lblBienvenida);
             this.panel1.Controls.Add(this.txtNombreUsuario);
             this.panel1.Controls.Add(this.lblContraseña);
             this.panel1.Controls.Add(this.btnLogin);
@@ -110,15 +110,15 @@
             this.lblIdioma.TabIndex = 8;
             this.lblIdioma.Text = "Idioma";
             // 
-            // label3
+            // lblBienvenida
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(123, 37);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(121, 24);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Bienvenido!";
+            this.lblBienvenida.AutoSize = true;
+            this.lblBienvenida.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBienvenida.Location = new System.Drawing.Point(123, 37);
+            this.lblBienvenida.Name = "lblBienvenida";
+            this.lblBienvenida.Size = new System.Drawing.Size(121, 24);
+            this.lblBienvenida.TabIndex = 7;
+            this.lblBienvenida.Text = "Bienvenido!";
             // 
             // cmbIdioma
             // 
@@ -128,6 +128,7 @@
             this.cmbIdioma.Name = "cmbIdioma";
             this.cmbIdioma.Size = new System.Drawing.Size(121, 21);
             this.cmbIdioma.TabIndex = 9;
+            this.cmbIdioma.SelectedIndexChanged += new System.EventHandler(this.cmbIdioma_SelectedIndexChanged_1);
             // 
             // Form1
             // 
@@ -153,7 +154,7 @@
         private System.Windows.Forms.Label lblUsuario;
         private System.Windows.Forms.Label lblContraseña;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblBienvenida;
         private System.Windows.Forms.ComboBox cmbIdioma;
         private System.Windows.Forms.Label lblIdioma;
     }
