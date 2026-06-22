@@ -47,8 +47,10 @@ namespace BLL
         public bool Eliminar(int id)
         {
             FamiliaDAL dal = new FamiliaDAL();
+
             if (dal.EstaEnUso(id))
-                throw new Exception("No se puede eliminar una familia que está siendo utilizada por un rol.");
+                throw new Exception("No se puede eliminar esta familia porque está siendo utilizada por uno o más roles.");
+
             return dal.Eliminar(id);
         }
 
