@@ -78,10 +78,11 @@ namespace GestiondeUsuario
             {
                 cmbModulo.Items.Add("Administrador");
                 cmbModulo.Items.Add("Usuarios");
+                cmbModulo.Items.Add("Roles");
+                cmbModulo.Items.Add("Familias");
             }
             else
             {
-                // Usuario general solo ve su propio módulo
                 cmbModulo.Items.Add("Usuarios");
             }
             cmbModulo.SelectedIndex = 0;
@@ -96,6 +97,16 @@ namespace GestiondeUsuario
                 cmbEvento.Items.Add("Deshabilitar Usuario");
                 cmbEvento.Items.Add("Habilitar Usuario");
                 cmbEvento.Items.Add("Desbloquear Usuario");
+                cmbEvento.Items.Add("Crear Rol");
+                cmbEvento.Items.Add("Modificar Rol");
+                cmbEvento.Items.Add("Eliminar Rol");
+                cmbEvento.Items.Add("Crear Familia");
+                cmbEvento.Items.Add("Modificar Familia");
+                cmbEvento.Items.Add("Eliminar Familia");
+                cmbEvento.Items.Add("Agregar Patente a Familia");
+                cmbEvento.Items.Add("Agregar Familia a Familia");
+                cmbEvento.Items.Add("Agregar Patente a Rol");
+                cmbEvento.Items.Add("Agregar Familia a Rol");
             }
             cmbEvento.Items.Add("Login");
             cmbEvento.Items.Add("Logout");
@@ -103,6 +114,7 @@ namespace GestiondeUsuario
             cmbEvento.Items.Add("Login fallido");
             cmbEvento.Items.Add("Login fallido - usuario no existe");
             cmbEvento.Items.Add("Intento en cuenta bloqueada");
+            cmbEvento.Items.Add("Cambiar Idioma");
             cmbEvento.SelectedIndex = 0;
 
             // Criticidad
