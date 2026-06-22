@@ -30,28 +30,39 @@ namespace BLL
 
         public bool Insertar(Familia f)
         {
-            if (string.IsNullOrEmpty(f.Nombre))
-                return false;
+            if (string.IsNullOrEmpty(f.Nombre)) return false;
             FamiliaDAL dal = new FamiliaDAL();
-            return dal.Insertar(f);
+            bool ok = dal.Insertar(f);
+            if (ok)
+                GestorEventosBLL.Instancia.Notificar(
+                    SessionManager.Instancia.ObtenerUsuarioActivo()?.NombreUsuario ?? "Admin",
+                    "Crear Familia", "Familias", 2);
+            return ok;
         }
 
         public bool Modificar(Familia f)
         {
-            if (string.IsNullOrEmpty(f.Nombre))
-                return false;
+            if (string.IsNullOrEmpty(f.Nombre)) return false;
             FamiliaDAL dal = new FamiliaDAL();
-            return dal.Modificar(f);
+            bool ok = dal.Modificar(f);
+            if (ok)
+                GestorEventosBLL.Instancia.Notificar(
+                    SessionManager.Instancia.ObtenerUsuarioActivo()?.NombreUsuario ?? "Admin",
+                    "Modificar Familia", "Familias", 3);
+            return ok;
         }
 
         public bool Eliminar(int id)
         {
             FamiliaDAL dal = new FamiliaDAL();
-
             if (dal.EstaEnUso(id))
                 throw new Exception("No se puede eliminar esta familia porque está siendo utilizada por uno o más roles.");
-
-            return dal.Eliminar(id);
+            bool ok = dal.Eliminar(id);
+            if (ok)
+                GestorEventosBLL.Instancia.Notificar(
+                    SessionManager.Instancia.ObtenerUsuarioActivo()?.NombreUsuario ?? "Admin",
+                    "Eliminar Familia", "Familias", 2);
+            return ok;
         }
 
         public List<Patente> ObtenerPatentes(int idFamilia)
@@ -75,7 +86,7 @@ namespace BLL
             if (patentes.Any(p => p.Id == idPatente))
                 throw new Exception("Esta patente ya está en la familia.");
 
-            // Verificamos que ninguna familia integrada ya la tenga
+            // Verificamos que ninguna familia integrada (recursivamente) ya la tenga
             var familiasIntegradas = dal.ObtenerFamiliasIntegradas(idFamilia);
             foreach (var familiaIntegrada in familiasIntegradas)
             {
@@ -88,9 +99,12 @@ namespace BLL
                 }
             }
 
-
-
-            return dal.AgregarPatente(idFamilia, idPatente);
+            bool ok = dal.AgregarPatente(idFamilia, idPatente);
+            if (ok)
+                GestorEventosBLL.Instancia.Notificar(
+                    SessionManager.Instancia.ObtenerUsuarioActivo()?.NombreUsuario ?? "Admin",
+                    "Agregar Patente a Familia", "Familias", 3);
+            return ok;
         }
 
         private bool TienePatenteRecursivo(int idFamilia, int idPatente, FamiliaDAL dal)
@@ -118,7 +132,12 @@ namespace BLL
             if (familias.Any(f => f.Id == idFamiliaIntegrada))
                 throw new Exception("Esta familia ya está integrada.");
 
-            return dal.AgregarFamilia(idFamilia, idFamiliaIntegrada);
+            bool ok = dal.AgregarFamilia(idFamilia, idFamiliaIntegrada);
+            if (ok)
+                GestorEventosBLL.Instancia.Notificar(
+                    SessionManager.Instancia.ObtenerUsuarioActivo()?.NombreUsuario ?? "Admin",
+                    "Agregar Familia a Familia", "Familias", 3);
+            return ok;
         }
 
         public bool EliminarPatente(int idFamilia, int idPatente)
