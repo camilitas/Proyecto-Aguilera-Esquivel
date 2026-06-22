@@ -72,7 +72,7 @@
             this.menuAyuda});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(73, 450);
+            this.menuStrip1.Size = new System.Drawing.Size(126, 450);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -84,7 +84,7 @@
             this.cambiarIdiomaToolStripMenuItem,
             this.cerrarSesionToolStripMenuItem});
             this.usuarioToolStripMenuItem.Name = "usuarioToolStripMenuItem";
-            this.usuarioToolStripMenuItem.Size = new System.Drawing.Size(60, 19);
+            this.usuarioToolStripMenuItem.Size = new System.Drawing.Size(113, 19);
             this.usuarioToolStripMenuItem.Text = "Usuario";
             this.usuarioToolStripMenuItem.Click += new System.EventHandler(this.usuarioToolStripMenuItem_Click);
             // 
@@ -125,7 +125,7 @@
             this.gestionRespaldoToolStripMenuItem,
             this.gestionDeRolesToolStripMenuItem});
             this.menuAdmin.Name = "menuAdmin";
-            this.menuAdmin.Size = new System.Drawing.Size(60, 19);
+            this.menuAdmin.Size = new System.Drawing.Size(113, 19);
             this.menuAdmin.Text = "Admin";
             // 
             // gestionDeUsuariosToolStripMenuItem
@@ -139,7 +139,7 @@
             // 
             this.gestionDePerfilesToolStripMenuItem.Name = "gestionDePerfilesToolStripMenuItem";
             this.gestionDePerfilesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.gestionDePerfilesToolStripMenuItem.Text = "Gestion de perfiles";
+            this.gestionDePerfilesToolStripMenuItem.Text = "Gestion de Familias";
             this.gestionDePerfilesToolStripMenuItem.Click += new System.EventHandler(this.gestionDePerfilesToolStripMenuItem_Click);
             // 
             // bitacoraEventosToolStripMenuItem
@@ -165,31 +165,31 @@
             // menuMaestro
             // 
             this.menuMaestro.Name = "menuMaestro";
-            this.menuMaestro.Size = new System.Drawing.Size(60, 19);
+            this.menuMaestro.Size = new System.Drawing.Size(113, 19);
             this.menuMaestro.Text = "Maestro";
             // 
             // menuVenta
             // 
             this.menuVenta.Name = "menuVenta";
-            this.menuVenta.Size = new System.Drawing.Size(60, 19);
+            this.menuVenta.Size = new System.Drawing.Size(113, 19);
             this.menuVenta.Text = "Venta";
             // 
             // menuCompras
             // 
             this.menuCompras.Name = "menuCompras";
-            this.menuCompras.Size = new System.Drawing.Size(60, 19);
+            this.menuCompras.Size = new System.Drawing.Size(113, 19);
             this.menuCompras.Text = "Compras";
             // 
             // menuReporte
             // 
             this.menuReporte.Name = "menuReporte";
-            this.menuReporte.Size = new System.Drawing.Size(60, 19);
+            this.menuReporte.Size = new System.Drawing.Size(113, 19);
             this.menuReporte.Text = "Reporte";
             // 
             // menuAyuda
             // 
             this.menuAyuda.Name = "menuAyuda";
-            this.menuAyuda.Size = new System.Drawing.Size(60, 19);
+            this.menuAyuda.Size = new System.Drawing.Size(113, 19);
             this.menuAyuda.Text = "Ayuda";
             // 
             // FormPrincipal
