@@ -28,9 +28,16 @@ namespace BLL
             UsuarioDAL dal = new UsuarioDAL();
             Usuario usuario = dal.ObtenerPorNombreUsuario(nombreUsuario);
 
+            if (usuario == null)
+            {
+                GestorEventosBLL.Instancia.Notificar(nombreUsuario,
+                    "Login fallido - usuario no existe", "Usuarios", 1);
+                return false;
+            }
+
             if (usuario.Bloqueado)
             {
-                GestorEventosBLL.Instancia.Notificar(nombreUsuario, "Intento en cuenta bloqueada", "Usuarios", 5);
+                GestorEventosBLL.Instancia.Notificar(nombreUsuario, "Intento en cuenta bloqueada", "Usuarios", 1);
                 throw new Exception("Usuario bloqueado");
             }
 
@@ -49,7 +56,7 @@ namespace BLL
                 if (usuario.IntentosFallidos >= 3)
                     usuario.Bloqueado = true;
                 dal.ActualizarIntentos(usuario);
-                GestorEventosBLL.Instancia.Notificar(nombreUsuario, "Login fallido", "Usuarios", 4);
+                GestorEventosBLL.Instancia.Notificar(nombreUsuario, "Login fallido", "Usuarios", 1);
                 return false;
             }
         }
