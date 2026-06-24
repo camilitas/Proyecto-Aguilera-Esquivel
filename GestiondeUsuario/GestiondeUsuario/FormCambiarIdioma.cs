@@ -59,10 +59,10 @@ namespace GestiondeUsuario
 
             // Registramos en bitácora
             GestorEventosBLL.Instancia.Notificar(
-                SessionManager.Instancia.ObtenerUsuarioActivo()?.NombreUsuario ?? "Desconocido",
-                "Cambiar Idioma - " + idioma,
-                "Usuarios",
-                4);
+            SessionManager.Instancia.ObtenerUsuarioActivo()?.NombreUsuario ?? "Desconocido",
+            "Cambiar Idioma",  // sin concatenar el idioma
+            "Usuarios",
+            4);
 
             MessageBox.Show("Idioma cambiado a: " + idioma, "Éxito",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);

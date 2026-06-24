@@ -63,10 +63,23 @@ namespace DAL
         {
             using (SqlConnection con = new SqlConnection(connectionString))
             {
+                con.Open();
+
+                // Borramos primero las relaciones propias de esta familia
+                string queryFamPat = "DELETE FROM Fam_Pat WHERE IdFamilia=@Id";
+                SqlCommand cmdFamPat = new SqlCommand(queryFamPat, con);
+                cmdFamPat.Parameters.AddWithValue("@Id", id);
+                cmdFamPat.ExecuteNonQuery();
+
+                string queryFamFam = "DELETE FROM Fam_Fam WHERE IdFamilia=@Id";
+                SqlCommand cmdFamFam = new SqlCommand(queryFamFam, con);
+                cmdFamFam.Parameters.AddWithValue("@Id", id);
+                cmdFamFam.ExecuteNonQuery();
+
+                // Recién ahora borramos la familia
                 string query = "DELETE FROM Familia WHERE Id=@Id";
                 SqlCommand cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@Id", id);
-                con.Open();
                 return cmd.ExecuteNonQuery() > 0;
             }
         }
@@ -76,17 +89,14 @@ namespace DAL
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 string query = @"SELECT COUNT(*) FROM Rol_Fam WHERE IdFamilia=@Id
-                        UNION ALL
-                        SELECT COUNT(*) FROM Fam_Fam WHERE IdFamiliaIntegrada=@Id"; //Cuenta cuantos ROLES usan esta familia (Rol_Fam)
-                                                                                    // Cuenta cuantas FAMILIAS tienen esta familia integrada (Fam_Fam)
-                                                                                    // UNION ALL junta los dos resultados en una sola respuesta
+                UNION ALL
+                SELECT COUNT(*) FROM Fam_Fam WHERE IdFamiliaIntegrada=@Id";
                 SqlCommand cmd = new SqlCommand(query, con);
-                cmd.Parameters.AddWithValue("@Id", id);  //
+                cmd.Parameters.AddWithValue("@Id", id);
                 con.Open();
-                // Si alguno de los dos counts es mayor a 0, esta en uso
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
-                    if (Convert.ToInt32(reader[0]) > 0) return true; // Si el primer count es >0, esta en uso por un rol
+                    if (Convert.ToInt32(reader[0]) > 0) return true;
                 return false;
             }
         }
