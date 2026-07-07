@@ -25,6 +25,7 @@ namespace GestiondeUsuario
 
         private void FormBitacora_Load(object sender, EventArgs e)
         {
+            var g = GestorIdioma.Instancia;
             GestorIdioma.Instancia.Suscribir(this);
             GestorIdioma.Instancia.CambiarIdioma(SessionManager.Instancia.ObtenerIdioma());
             dtpFechaIni.Checked = false;
@@ -47,8 +48,8 @@ namespace GestiondeUsuario
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar la bitácora: " + ex.Message,
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(g.Obtener("FormBitacora", "msgErrorCargar") + ex.Message,
+                g.Obtener("FormBitacora", "msgError"), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void FormBitacora_FormClosed(object sender, FormClosedEventArgs e)
@@ -123,6 +124,12 @@ namespace GestiondeUsuario
             for (int i = 1; i <= 5; i++)
                 cmbCriticidad.Items.Add(i.ToString());
             cmbCriticidad.SelectedIndex = 0;
+
+            cmbCriticidad.Items.Clear();
+            cmbCriticidad.Items.Add(GestorIdioma.Instancia.Obtener("FormBitacora", "cmbTodasCriticidades"));
+            for (int i = 1; i <= 5; i++)
+                cmbCriticidad.Items.Add(i.ToString());
+            cmbCriticidad.SelectedIndex = 0;
         }
 
         private void CargarGrilla()
@@ -173,6 +180,7 @@ namespace GestiondeUsuario
                 txtNombre.Text = "";
                 txtApellido.Text = "";
             }
+            TraducirColumnas();
         }
 
         private void MostrarNombreApellido()
@@ -204,12 +212,13 @@ namespace GestiondeUsuario
 
         private void btnAplicar_Click(object sender, EventArgs e)
         {
+            var g = GestorIdioma.Instancia;
             if (dtpFechaIni.Checked && dtpFechaFin.Checked)
             {
                 if (dtpFechaIni.Value.Date > dtpFechaFin.Value.Date)
                 {
-                    MessageBox.Show("La fecha de inicio no puede ser mayor a la fecha de fin.",
-                        "Fechas invalidas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(g.Obtener("FormBitacora", "msgFechasInvalidas"),
+                    g.Obtener("FormBitacora", "msgFechasInvalidasTitulo"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
             }
@@ -287,6 +296,7 @@ namespace GestiondeUsuario
 
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
+            var g = GestorIdioma.Instancia;
             try
             {
                 cmbLogin.SelectedIndex = 0;
@@ -301,9 +311,15 @@ namespace GestiondeUsuario
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al limpiar filtros: " + ex.Message,
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(g.Obtener("FormBitacora", "msgErrorLimpiar") + ex.Message,
+                 g.Obtener("FormBitacora", "msgError"), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            cmbCriticidad.Items.Clear();
+            cmbCriticidad.Items.Add(GestorIdioma.Instancia.Obtener("FormBitacora", "cmbTodasCriticidades"));
+            for (int i = 1; i <= 5; i++)
+                cmbCriticidad.Items.Add(i.ToString());
+            cmbCriticidad.SelectedIndex = 0;
         }
 
         public void ActualizarIdioma(JObject traducciones)
@@ -325,6 +341,26 @@ namespace GestiondeUsuario
             btnLimpiar.Text = t["btnLimpiar"]?.ToString();
             btnImprimir.Text = t["btnImprimir"]?.ToString();
             btnSalir.Text = t["btnSalir"]?.ToString();
+            TraducirColumnas();
+
+
+        }
+
+        private void TraducirColumnas()
+        {
+            var g = GestorIdioma.Instancia;
+            if (dgvBitacora.Columns.Contains("Login"))
+                dgvBitacora.Columns["Login"].HeaderText = g.Obtener("FormBitacora", "colLogin");
+            if (dgvBitacora.Columns.Contains("Fecha"))
+                dgvBitacora.Columns["Fecha"].HeaderText = g.Obtener("FormBitacora", "colFecha");
+            if (dgvBitacora.Columns.Contains("Hora"))
+                dgvBitacora.Columns["Hora"].HeaderText = g.Obtener("FormBitacora", "colHora");
+            if (dgvBitacora.Columns.Contains("Modulo"))
+                dgvBitacora.Columns["Modulo"].HeaderText = g.Obtener("FormBitacora", "colModulo");
+            if (dgvBitacora.Columns.Contains("Evento"))
+                dgvBitacora.Columns["Evento"].HeaderText = g.Obtener("FormBitacora", "colEvento");
+            if (dgvBitacora.Columns.Contains("Criticidad"))
+                dgvBitacora.Columns["Criticidad"].HeaderText = g.Obtener("FormBitacora", "colCriticidad");
         }
     }
 }
