@@ -5,7 +5,8 @@
     "lblContraseña": "Contraseña",
     "btnLogin": "Ingresar",
     "lblRecuperar": "Recuperar contraseña",
-    "lblBienvenida": "Bienvenido"
+    "lblBienvenida": "Bienvenido",
+    "lblIdioma": "Idioma"
   },
   "FormPrincipal": {
     "lblBienvenida": "Bienvenido",
@@ -27,6 +28,7 @@
     "gestionRespaldo": "Gestión de Respaldo"
   },
   "FormGU": {
+    "tituloForm": "Gestión de Usuarios",
     "lblDNI": "DNI",
     "lblNombre": "Nombre",
     "lblApellido": "Apellido",
@@ -38,20 +40,46 @@
     "btnModificar": "Modificar",
     "btnDesbloquear": "Desbloquear",
     "btnDeshabilitar": "Deshabilitar",
+    "btnHabilitar": "Habilitar",
     "btnAplicar": "Aplicar",
     "btnCancelar": "Cancelar",
     "btnVolver": "Volver",
     "rbActivos": "Activos",
     "rbTodos": "Todos",
-    "btnHabilitar": "Habilitar",
-    "tituloForm": "Gestión de Usuarios",
     "lblModoInicial": "Seleccioná una opción de la botonera",
     "lblModoAgregar": "Modo Agregar",
     "lblModoModificar": "Modo Modificar",
     "lblModoDesbloquear": "Modo Desbloquear",
     "lblModoDeshabilitar": "Modo Deshabilitar",
     "lblModoHabilitar": "Modo Habilitar",
-    "lblModoSeleccionado": "Usuario seleccionado"
+    "lblModoSeleccionado": "Usuario seleccionado",
+    "colId": "ID",
+    "colNombre": "Nombre",
+    "colApellido": "Apellido",
+    "colNombreUsuario": "Usuario",
+    "colEmail": "Correo",
+    "colDNI": "DNI",
+    "colRol": "Rol",
+    "colActivo": "Activo",
+    "colIdRol": "ID Rol",
+    "colIdioma": "Idioma",
+    "msgCamposVacios": "Completá todos los campos.",
+    "msgDNIInvalido": "El DNI debe ser un número.",
+    "msgUsuarioCreado": "Usuario creado exitosamente.\nNombre de usuario: ",
+    "msgUsuarioModificado": "Usuario modificado exitosamente.",
+    "msgErrorModificar": "Error al modificar el usuario.",
+    "msgConfirmarAccion": "¿Querés ",
+    "msgEsteSuario": " este usuario?",
+    "msgConfirmar": "Confirmar",
+    "msgExito": "Éxito",
+    "msgUsuarioAccion": "Usuario ",
+    "msgDo": "do exitosamente.",
+    "msgSeleccionarPrimero": "Seleccioná un usuario primero.",
+    "msgAtencion": "Atención",
+    "msgError": "Error",
+    "msgUsuarioDesbloqueado": "Usuario desbloqueado exitosamente.",
+    "msgUsuarioNoBloqueado": "El usuario no está bloqueado.",
+    "msgNombreUsuarioAuto": "Se genera automaticamente."
   },
   "FormRecuperar": {
     "tituloForm": "Cambiar Contraseña",
@@ -60,7 +88,16 @@
     "lblNuevaPass": "Nueva Contraseña",
     "lblConfirmarPass": "Confirmar Contraseña",
     "btnRecuperar": "Guardar",
-    "btnVolver": "Volver"
+    "btnVolver": "Volver",
+    "msgCamposVacios": "Completá todos los campos.",
+    "msgAtencion": "Atención",
+    "msgNoCoinciden": "Las contraseñas no coinciden.",
+    "msgError": "Error",
+    "msgContraseñaInsegura": "La contraseña debe tener al menos 8 caracteres, incluyendo mayúsculas, minúsculas y números.",
+    "msgContraseñaInseguraTitulo": "Contraseña insegura",
+    "msgExito": "Contraseña actualizada correctamente.",
+    "msgExitoTitulo": "Éxito",
+    "msgDNIIncorrecto": "DNI o contraseña actual incorrectos."
   },
   "FormBitacora": {
     "tituloForm": "Bitácora de Eventos",
@@ -75,7 +112,19 @@
     "btnAplicar": "Aplicar",
     "btnLimpiar": "Limpiar",
     "btnImprimir": "Imprimir",
-    "btnSalir": "Salir"
+    "btnSalir": "Salir",
+    "colLogin": "Login",
+    "colFecha": "Fecha",
+    "colHora": "Hora",
+    "colModulo": "Módulo",
+    "colEvento": "Evento",
+    "colCriticidad": "Criticidad",
+    "msgFechasInvalidas": "La fecha de inicio no puede ser mayor a la fecha de fin.",
+    "msgFechasInvalidasTitulo": "Fechas inválidas",
+    "msgError": "Error",
+    "msgErrorCargar": "Error al cargar la bitácora: ",
+    "msgErrorLimpiar": "Error al limpiar filtros: ",
+    "cmbTodasCriticidades": "Todas"
   },
   "FormGestionFamilias": {
     "tituloForm": "Gestión de Familias",
@@ -95,7 +144,18 @@
     "lblModoInicial": "Seleccioná una opción",
     "lblModoNuevo": "Modo Nuevo",
     "lblModoModificar": "Modo Modificar",
-    "lblModoSeleccionado": "Familia seleccionada"
+    "lblModoSeleccionado": "Familia seleccionada",
+    "msgSeleccionarPrimero": "Seleccioná una familia primero.",
+    "msgAtencion": "Atención",
+    "msgConfirmarEliminar": "¿Querés eliminar esta familia?",
+    "msgConfirmar": "Confirmar",
+    "msgEliminadaExito": "Familia eliminada exitosamente.",
+    "msgExito": "Éxito",
+    "msgNombreObligatorio": "El nombre es obligatorio.",
+    "msgCreadaExito": "Familia creada exitosamente.",
+    "msgModificadaExito": "Familia modificada exitosamente.",
+    "msgError": "Error",
+    "msgSeleccionarElemento": "Seleccioná un elemento para agregar."
   },
   "FormGestionRoles": {
     "tituloForm": "Gestión de Roles",
@@ -115,13 +175,29 @@
     "lblModoInicial": "Seleccioná una opción",
     "lblModoNuevo": "Modo Nuevo",
     "lblModoModificar": "Modo Modificar",
-    "lblModoSeleccionado": "Rol seleccionado"
+    "lblModoSeleccionado": "Rol seleccionado",
+    "msgSeleccionarPrimero": "Seleccioná un rol primero.",
+    "msgAtencion": "Atención",
+    "msgConfirmarEliminar": "¿Querés eliminar este rol?",
+    "msgConfirmar": "Confirmar",
+    "msgEliminadoExito": "Rol eliminado exitosamente.",
+    "msgExito": "Éxito",
+    "msgNombreObligatorio": "El nombre es obligatorio.",
+    "msgCreadoExito": "Rol creado exitosamente.",
+    "msgModificadoExito": "Rol modificado exitosamente.",
+    "msgError": "Error",
+    "msgSeleccionarElemento": "Seleccioná un elemento para agregar."
   },
   "FormCambiarIdioma": {
     "tituloForm": "Cambio de idioma",
     "lblIdiomas": "Idiomas",
     "btnAceptar": "Aceptar",
     "btnCancelar": "Cancelar",
-    "btnVolver": "Volver"
+    "btnVolver": "Volver",
+    "msgSeleccionarIdioma": "Seleccioná un idioma.",
+    "msgAtencion": "Atención",
+    "msgMismoIdioma": "Ya estás usando ese idioma.",
+    "msgExito": "Idioma cambiado a: ",
+    "msgExitoTitulo": "Éxito"
   }
 }

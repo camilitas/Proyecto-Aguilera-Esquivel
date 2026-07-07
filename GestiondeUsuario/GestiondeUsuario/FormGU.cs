@@ -47,6 +47,31 @@ namespace GestiondeUsuario
             GestorIdioma.Instancia.Desuscribir(this);
         }
 
+        private void TraducirColumnas()
+        {
+            var g = GestorIdioma.Instancia;
+            if (dgvUsuarios.Columns.Contains("Id"))
+                dgvUsuarios.Columns["Id"].HeaderText = g.Obtener("FormGU", "colId");
+            if (dgvUsuarios.Columns.Contains("Nombre"))
+                dgvUsuarios.Columns["Nombre"].HeaderText = g.Obtener("FormGU", "colNombre");
+            if (dgvUsuarios.Columns.Contains("Apellido"))
+                dgvUsuarios.Columns["Apellido"].HeaderText = g.Obtener("FormGU", "colApellido");
+            if (dgvUsuarios.Columns.Contains("NombreUsuario"))
+                dgvUsuarios.Columns["NombreUsuario"].HeaderText = g.Obtener("FormGU", "colNombreUsuario");
+            if (dgvUsuarios.Columns.Contains("Email"))
+                dgvUsuarios.Columns["Email"].HeaderText = g.Obtener("FormGU", "colEmail");
+            if (dgvUsuarios.Columns.Contains("DNI"))
+                dgvUsuarios.Columns["DNI"].HeaderText = g.Obtener("FormGU", "colDNI");
+            if (dgvUsuarios.Columns.Contains("Rol"))
+                dgvUsuarios.Columns["Rol"].HeaderText = g.Obtener("FormGU", "colRol");
+            if (dgvUsuarios.Columns.Contains("Activo"))
+                dgvUsuarios.Columns["Activo"].HeaderText = g.Obtener("FormGU", "colActivo");
+            if (dgvUsuarios.Columns.Contains("IdRol"))
+                dgvUsuarios.Columns["IdRol"].HeaderText = g.Obtener("FormGU", "colIdRol");
+            if (dgvUsuarios.Columns.Contains("Idioma"))
+                dgvUsuarios.Columns["Idioma"].HeaderText = g.Obtener("FormGU", "colIdioma");
+        }
+
         private void ModoAccion()
         {
             btnAgregar.Enabled = false;
@@ -121,9 +146,11 @@ namespace GestiondeUsuario
             _idSeleccionado = -1;
             dgvUsuarios.ClearSelection();
             dgvUsuarios.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells);
+            TraducirColumnas();
         }
         private void MostrarModoAgregar()
         {
+            var g = GestorIdioma.Instancia;
             HabilitarCampos();
             LimpiarCampos();
             _idSeleccionado = -1;
@@ -142,7 +169,7 @@ namespace GestiondeUsuario
 
             txtNombreUsuario.ReadOnly = true;
             txtNombreUsuario.BackColor = Color.LightGray;
-            txtNombreUsuario.Text = "Se genera automaticamente.";
+            txtNombreUsuario.Text = g.Obtener("FormGU", "msgNombreUsuarioAuto");
 
             btnDeshabilitar.Text = GestorIdioma.Instancia.Obtener("FormGU", "btnDeshabilitar");
             ModoAccion(); // al agregar solo quedan Aplicar y Cancelar
@@ -170,19 +197,25 @@ namespace GestiondeUsuario
 
         private void btnAplicar_Click(object sender, EventArgs e)
         {
+            var g = GestorIdioma.Instancia;
             if (string.IsNullOrEmpty(txtNombre.Text) ||
             string.IsNullOrEmpty(txtApellido.Text) ||
             string.IsNullOrEmpty(txtDNI.Text) ||
             string.IsNullOrEmpty(txtCorreo.Text))
             {
-                MessageBox.Show("Completá todos los campos.", "Atención",
+                
+                MessageBox.Show(
+                    g.Obtener("FormGU", "msgCamposVacios"),
+                    g.Obtener("FormGU", "msgAtencion"),
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (!int.TryParse(txtDNI.Text, out int dni))
             {
-                MessageBox.Show("El DNI debe ser un número.", "Error",
+                MessageBox.Show(
+                g.Obtener("FormGU", "msgDNIInvalido"),
+                g.Obtener("FormGU", "msgError"),
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -210,8 +243,9 @@ namespace GestiondeUsuario
 
                     if (ok)
                     {
-                      MessageBox.Show("Usuario creado exitosamente.\nNombre de usuario: " + nuevo.Apellido + dni.ToString(),
-                      "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(
+                        g.Obtener("FormGU", "msgUsuarioCreado") + nuevo.Apellido + dni.ToString(),
+                        g.Obtener("FormGU", "msgExito"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                        CargarGrilla();
                        LimpiarCampos();
                        HabilitarBotonera();
@@ -264,9 +298,12 @@ namespace GestiondeUsuario
 
         private void btnDeshabilitar_Click(object sender, EventArgs e)
         {
+            var g = GestorIdioma.Instancia;
             if (_idSeleccionado == -1)
             {
-                MessageBox.Show("Seleccioná un usuario primero.", "Atención",
+                MessageBox.Show(
+                g.Obtener("FormGU", "msgSeleccionarPrimero"),
+                g.Obtener("FormGU", "msgAtencion"),
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
@@ -275,8 +312,8 @@ namespace GestiondeUsuario
             string accion = estaActivo ? "deshabilitar" : "habilitar";
 
             DialogResult confirm = MessageBox.Show(
-                "¿Queres " + accion + " este usuario?",
-                "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            g.Obtener("FormGU", "msgConfirmarAccion") + accion + g.Obtener("FormGU", "msgEsteSuario"),
+            g.Obtener("FormGU", "msgConfirmar"), MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (confirm == DialogResult.Yes)
             {
@@ -286,7 +323,9 @@ namespace GestiondeUsuario
 
                 if (ok)
                 {
-                    MessageBox.Show("Usuario " + accion + "do exitosamente.", "Éxito",
+                    MessageBox.Show(
+                    g.Obtener("FormGU", "msgUsuarioAccion") + accion + g.Obtener("FormGU", "msgDo"),
+                    g.Obtener("FormGU", "msgExito"),
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                     _usuarioActivo = !estaActivo;
                     CargarGrilla();
@@ -468,6 +507,7 @@ namespace GestiondeUsuario
             btnDeshabilitar.Text = estaActivo
                 ? t["btnDeshabilitar"]?.ToString()
                 : t["btnHabilitar"]?.ToString();
+            TraducirColumnas();
         }
     }
 }

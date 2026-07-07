@@ -5,7 +5,8 @@
     "lblContraseña": "비밀번호",
     "btnLogin": "로그인",
     "lblRecuperar": "비밀번호 복구",
-    "lblBienvenida": "환영합니다"
+    "lblBienvenida": "환영합니다",
+    "lblIdioma": "언어"
   },
   "FormPrincipal": {
     "lblBienvenida": "환영합니다",
@@ -27,6 +28,7 @@
     "gestionRespaldo": "백업 관리"
   },
   "FormGU": {
+    "tituloForm": "사용자 관리",
     "lblDNI": "신분증",
     "lblNombre": "이름",
     "lblApellido": "성",
@@ -38,20 +40,46 @@
     "btnModificar": "수정",
     "btnDesbloquear": "잠금 해제",
     "btnDeshabilitar": "비활성화",
+    "btnHabilitar": "활성화",
     "btnAplicar": "적용",
     "btnCancelar": "취소",
     "btnVolver": "뒤로",
     "rbActivos": "활성",
     "rbTodos": "전체",
-    "btnHabilitar": "활성화",
-    "tituloForm": "사용자 관리",
     "lblModoInicial": "도구 모음에서 옵션을 선택하세요",
     "lblModoAgregar": "추가 모드",
     "lblModoModificar": "수정 모드",
     "lblModoDesbloquear": "잠금 해제 모드",
     "lblModoDeshabilitar": "비활성화 모드",
     "lblModoHabilitar": "활성화 모드",
-    "lblModoSeleccionado": "사용자 선택됨"
+    "lblModoSeleccionado": "사용자 선택됨",
+    "colId": "ID",
+    "colNombre": "이름",
+    "colApellido": "성",
+    "colNombreUsuario": "사용자 이름",
+    "colEmail": "이메일",
+    "colDNI": "신분증",
+    "colRol": "역할",
+    "colActivo": "활성",
+    "colIdRol": "역할 ID",
+    "colIdioma": "언어",
+    "msgCamposVacios": "모든 필드를 입력하세요.",
+    "msgDNIInvalido": "신분증은 숫자여야 합니다.",
+    "msgUsuarioCreado": "사용자가 성공적으로 생성되었습니다.\n사용자 이름: ",
+    "msgUsuarioModificado": "사용자가 성공적으로 수정되었습니다.",
+    "msgErrorModificar": "사용자 수정 오류.",
+    "msgConfirmarAccion": "이 사용자를 ",
+    "msgEsteSuario": "하시겠습니까?",
+    "msgConfirmar": "확인",
+    "msgExito": "성공",
+    "msgUsuarioAccion": "사용자 ",
+    "msgDo": " 성공적으로 완료되었습니다.",
+    "msgSeleccionarPrimero": "먼저 사용자를 선택하세요.",
+    "msgAtencion": "주의",
+    "msgError": "오류",
+    "msgUsuarioDesbloqueado": "사용자 잠금이 해제되었습니다.",
+    "msgUsuarioNoBloqueado": "사용자가 잠겨 있지 않습니다.",
+    "msgNombreUsuarioAuto": "자동으로 생성됩니다."
   },
   "FormRecuperar": {
     "tituloForm": "비밀번호 변경",
@@ -60,7 +88,16 @@
     "lblNuevaPass": "새 비밀번호",
     "lblConfirmarPass": "비밀번호 확인",
     "btnRecuperar": "저장",
-    "btnVolver": "뒤로"
+    "btnVolver": "뒤로",
+    "msgCamposVacios": "모든 필드를 입력하세요.",
+    "msgAtencion": "주의",
+    "msgNoCoinciden": "비밀번호가 일치하지 않습니다.",
+    "msgError": "오류",
+    "msgContraseñaInsegura": "비밀번호는 8자 이상이어야 하며 대문자와 숫자를 포함해야 합니다.",
+    "msgContraseñaInseguraTitulo": "안전하지 않은 비밀번호",
+    "msgExito": "비밀번호가 성공적으로 업데이트되었습니다.",
+    "msgExitoTitulo": "성공",
+    "msgDNIIncorrecto": "신분증 또는 현재 비밀번호가 올바르지 않습니다."
   },
   "FormBitacora": {
     "tituloForm": "이벤트 로그",
@@ -75,7 +112,19 @@
     "btnAplicar": "적용",
     "btnLimpiar": "지우기",
     "btnImprimir": "인쇄",
-    "btnSalir": "나가기"
+    "btnSalir": "나가기",
+    "colLogin": "로그인",
+    "colFecha": "날짜",
+    "colHora": "시간",
+    "colModulo": "모듈",
+    "colEvento": "이벤트",
+    "colCriticidad": "심각도",
+    "msgFechasInvalidas": "시작 날짜는 종료 날짜보다 클 수 없습니다.",
+    "msgFechasInvalidasTitulo": "잘못된 날짜",
+    "msgError": "오류",
+    "msgErrorCargar": "이벤트 로그 로딩 오류: ",
+    "msgErrorLimpiar": "필터 초기화 오류: ",
+    "cmbTodasCriticidades": "전체"
   },
   "FormGestionFamilias": {
     "tituloForm": "가족 관리",
@@ -95,7 +144,18 @@
     "lblModoInicial": "옵션을 선택하세요",
     "lblModoNuevo": "새로운 모드",
     "lblModoModificar": "수정 모드",
-    "lblModoSeleccionado": "가족 선택됨"
+    "lblModoSeleccionado": "가족 선택됨",
+    "msgSeleccionarPrimero": "먼저 가족을 선택하세요.",
+    "msgAtencion": "주의",
+    "msgConfirmarEliminar": "이 가족을 삭제하시겠습니까?",
+    "msgConfirmar": "확인",
+    "msgEliminadaExito": "가족이 성공적으로 삭제되었습니다.",
+    "msgExito": "성공",
+    "msgNombreObligatorio": "이름은 필수입니다.",
+    "msgCreadaExito": "가족이 성공적으로 생성되었습니다.",
+    "msgModificadaExito": "가족이 성공적으로 수정되었습니다.",
+    "msgError": "오류",
+    "msgSeleccionarElemento": "추가할 요소를 선택하세요."
   },
   "FormGestionRoles": {
     "tituloForm": "역할 관리",
@@ -115,13 +175,29 @@
     "lblModoInicial": "옵션을 선택하세요",
     "lblModoNuevo": "새로운 모드",
     "lblModoModificar": "수정 모드",
-    "lblModoSeleccionado": "역할 선택됨"
+    "lblModoSeleccionado": "역할 선택됨",
+    "msgSeleccionarPrimero": "먼저 역할을 선택하세요.",
+    "msgAtencion": "주의",
+    "msgConfirmarEliminar": "이 역할을 삭제하시겠습니까?",
+    "msgConfirmar": "확인",
+    "msgEliminadoExito": "역할이 성공적으로 삭제되었습니다.",
+    "msgExito": "성공",
+    "msgNombreObligatorio": "이름은 필수입니다.",
+    "msgCreadoExito": "역할이 성공적으로 생성되었습니다.",
+    "msgModificadoExito": "역할이 성공적으로 수정되었습니다.",
+    "msgError": "오류",
+    "msgSeleccionarElemento": "추가할 요소를 선택하세요."
   },
   "FormCambiarIdioma": {
     "tituloForm": "언어 변경",
     "lblIdiomas": "언어",
     "btnAceptar": "수락",
     "btnCancelar": "취소",
-    "btnVolver": "뒤로"
+    "btnVolver": "뒤로",
+    "msgSeleccionarIdioma": "언어를 선택하세요.",
+    "msgAtencion": "주의",
+    "msgMismoIdioma": "이미 해당 언어를 사용 중입니다.",
+    "msgExito": "언어가 변경되었습니다: ",
+    "msgExitoTitulo": "성공"
   }
 }
