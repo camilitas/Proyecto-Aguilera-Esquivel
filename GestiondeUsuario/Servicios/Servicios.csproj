@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bitacora.cs" />
+    <Compile Include="DigitoVerificador.cs" />
     <Compile Include="Encriptador.cs" />
     <Compile Include="Familia.cs" />
     <Compile Include="GestorIdioma.cs" />
