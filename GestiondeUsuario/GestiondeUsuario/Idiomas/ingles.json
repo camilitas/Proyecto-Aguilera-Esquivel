@@ -6,7 +6,7 @@
     "btnLogin": "Login",
     "lblRecuperar": "Recover password",
     "lblBienvenida": "Welcome",
-    "lblIdioma": "Language"
+    "lblIdioma": "Language",
       "gestionBackup": "Backup / Restore"
   },
   "FormPrincipal": {
@@ -207,13 +207,20 @@
     "lblMensaje": "A data inconsistency was detected. Please select an option to continue.",
     "btnRecalcular": "Recalculate DV",
     "btnRestore": "Restore DB",
-    "btnSalir": "Exit"
+    "btnSalir": "Exit",
+    "msgRecalculadoOk": "Check digit recalculated successfully. The system accepts the current data as valid."
   },
   "FormRestore": {
     "tituloForm": "Database restore",
     "lblMensaje": "Select the backup you want to restore. The most recent one is recommended to minimize data loss.",
     "lblBackups": "Available backups:",
     "btnRestore": "Restore",
-    "btnSalir": "Back to login"
+    "btnSalir": "Back",
+    "msgSeleccionarBackup": "Please select a backup first.",
+    "msgAtencion": "Warning",
+    "msgConfirmarRestore": "Are you sure? Data created after this backup will be lost.",
+    "msgConfirmar": "Confirm",
+    "msgRestoreOk": "Restore completed successfully.",
+    "msgExito": "Success"
   }
 }

@@ -11,5 +11,6 @@ namespace Servicios
         public string Tabla { get; set; }
         public string DVH { get; set; }
         public string DVV { get; set; }
+
     }
 }

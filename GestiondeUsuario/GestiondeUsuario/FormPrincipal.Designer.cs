@@ -46,6 +46,7 @@
             this.menuCompras = new System.Windows.Forms.ToolStripMenuItem();
             this.menuReporte = new System.Windows.Forms.ToolStripMenuItem();
             this.menuAyuda = new System.Windows.Forms.ToolStripMenuItem();
+            this.gestionRespaldoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -123,7 +124,8 @@
             this.gestionDePerfilesToolStripMenuItem,
             this.bitacoraEventosToolStripMenuItem,
             this.gestionRespaldoToolStripMenuItem,
-            this.gestionDeRolesToolStripMenuItem});
+            this.gestionDeRolesToolStripMenuItem,
+            this.gestionRespaldoToolStripMenuItem1});
             this.menuAdmin.Name = "menuAdmin";
             this.menuAdmin.Size = new System.Drawing.Size(113, 19);
             this.menuAdmin.Text = "Admin";
@@ -192,6 +194,13 @@
             this.menuAyuda.Size = new System.Drawing.Size(113, 19);
             this.menuAyuda.Text = "Ayuda";
             // 
+            // gestionRespaldoToolStripMenuItem1
+            // 
+            this.gestionRespaldoToolStripMenuItem1.Name = "gestionRespaldoToolStripMenuItem1";
+            this.gestionRespaldoToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.gestionRespaldoToolStripMenuItem1.Text = "Gestion Respaldo";
+            this.gestionRespaldoToolStripMenuItem1.Click += new System.EventHandler(this.gestionRespaldoToolStripMenuItem1_Click);
+            // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -229,5 +238,6 @@
         private System.Windows.Forms.ToolStripMenuItem menuReporte;
         private System.Windows.Forms.ToolStripMenuItem menuAyuda;
         private System.Windows.Forms.ToolStripMenuItem gestionDeRolesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gestionRespaldoToolStripMenuItem1;
     }
 }

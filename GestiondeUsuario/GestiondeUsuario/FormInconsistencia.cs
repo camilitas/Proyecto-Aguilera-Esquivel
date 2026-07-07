@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BLL;
+using Newtonsoft.Json.Linq;
+using Servicios;
+using System;
 using System.Windows.Forms;
-using BLL;
 
 namespace GestiondeUsuario
 {
-    public partial class FormInconsistencia : Form
+    public partial class FormInconsistencia : Form, IObservadorIdioma
     {
         public FormInconsistencia()
         {
@@ -20,8 +15,13 @@ namespace GestiondeUsuario
 
         private void FormInconsistencia_Load(object sender, EventArgs e)
         {
-            lblMensaje.Text = "Se detectó una inconsistencia en los datos del sistema.\n" +
-                             "Por favor seleccioná una opción para continuar.";
+            GestorIdioma.Instancia.Suscribir(this);
+            GestorIdioma.Instancia.CambiarIdioma(
+                SessionManager.Instancia.ObtenerIdioma());
+        }
+        private void FormInconsistencia_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            GestorIdioma.Instancia.Desuscribir(this);
         }
 
         private void btnRecalcular_Click(object sender, EventArgs e)
@@ -29,16 +29,17 @@ namespace GestiondeUsuario
             try
             {
                 DigitoVerificadorBLL.Instancia.RecalcularYGuardar();
-                MessageBox.Show("Dígito verificador recalculado correctamente.\n" +
-                                "El sistema aceptará los datos actuales como válidos.",
-                    "Recalculado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(
+                    GestorIdioma.Instancia.Obtener("FormInconsistencia", "msgRecalculadoOk"),
+                    GestorIdioma.Instancia.Obtener("FormInconsistencia", "tituloForm"),
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
                 new Form1().Show();
                 this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al recalcular: " + ex.Message,
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error: " + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -50,7 +51,19 @@ namespace GestiondeUsuario
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            new FormPrincipal().Show();
+            this.Close(); ;
+        }
+
+        public void ActualizarIdioma(JObject traducciones)
+        {
+            var t = traducciones["FormInconsistencia"];
+            if (t == null) return;
+            this.Text = t["tituloForm"]?.ToString();
+            lblMensaje.Text = t["lblMensaje"]?.ToString();
+            btnRecalcular.Text = t["btnRecalcular"]?.ToString();
+            btnRestore.Text = t["btnRestore"]?.ToString();
+            btnSalir.Text = t["btnSalir"]?.ToString();
         }
     }
 }

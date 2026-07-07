@@ -55,6 +55,7 @@ namespace BLL
 
                 return true;
             }
+
             else
             {
                 usuario.IntentosFallidos++;
@@ -101,10 +102,12 @@ namespace BLL
             {
                 bool ok = dal.Insertar(nuevoUsuario);
                 if (ok)
+                {
                     GestorEventosBLL.Instancia.Notificar(
                         SessionManager.Instancia.ObtenerUsuarioActivo()?.NombreUsuario ?? "Admin",
                         "Crear Usuario", "Administrador", 2);
                     DigitoVerificadorBLL.Instancia.RecalcularYGuardar();
+                }
                 return ok;
             }
             catch (SqlException ex)
@@ -138,10 +141,12 @@ namespace BLL
             UsuarioDAL dal = new UsuarioDAL();
             bool ok = dal.Modificar(u);
             if (ok)
+            {
                 GestorEventosBLL.Instancia.Notificar(
                     SessionManager.Instancia.ObtenerUsuarioActivo()?.NombreUsuario ?? "Admin",
                     "Modificar Usuario", "Administrador", 3);
                 DigitoVerificadorBLL.Instancia.RecalcularYGuardar();
+            }
             return ok;
         }
 
@@ -150,10 +155,12 @@ namespace BLL
             UsuarioDAL dal = new UsuarioDAL();
             bool ok = dal.Deshabilitar(id);
             if (ok)
+            {
                 GestorEventosBLL.Instancia.Notificar(
                     SessionManager.Instancia.ObtenerUsuarioActivo()?.NombreUsuario ?? "Admin",
                     "Deshabilitar Usuario", "Administrador", 3);
                 DigitoVerificadorBLL.Instancia.RecalcularYGuardar();
+            }
             return ok;
         }
 
@@ -168,10 +175,12 @@ namespace BLL
 
             bool ok = dal.Habilitar(id, passReseteada);
             if (ok)
+            {
                 GestorEventosBLL.Instancia.Notificar(
                     SessionManager.Instancia.ObtenerUsuarioActivo()?.NombreUsuario ?? "Admin",
                     "Habilitar Usuario", "Administrador", 3);
-                    DigitoVerificadorBLL.Instancia.RecalcularYGuardar();
+                DigitoVerificadorBLL.Instancia.RecalcularYGuardar();
+            }
             return ok;
         }
 
@@ -185,10 +194,12 @@ namespace BLL
             bool ok = dal.Desbloquear(id, passReseteada);
 
             if (ok)
+            {
                 GestorEventosBLL.Instancia.Notificar(
                     SessionManager.Instancia.ObtenerUsuarioActivo()?.NombreUsuario ?? "Admin",
                     "Desbloquear Usuario", "Administrador", 4);
                 DigitoVerificadorBLL.Instancia.RecalcularYGuardar();
+            }
             return ok;
         }
 

@@ -17,9 +17,10 @@ namespace GestiondeUsuario
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
-            // Suscribir la bitácora al gestor de eventos (Observer)
             GestorEventosBLL.Instancia.InicializarObservadores();
+
+            // Si los DV están en cero (primera vez), los inicializamos
+            DigitoVerificadorBLL.Instancia.InicializarSiEsNecesario();
 
             Application.Run(new Form1());
         }

@@ -32,12 +32,13 @@
             this.lstBackups = new System.Windows.Forms.ListBox();
             this.btnRestore = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
+            this.lblBackups = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblMensaje
             // 
             this.lblMensaje.AutoSize = true;
-            this.lblMensaje.Location = new System.Drawing.Point(40, 28);
+            this.lblMensaje.Location = new System.Drawing.Point(40, 25);
             this.lblMensaje.Name = "lblMensaje";
             this.lblMensaje.Size = new System.Drawing.Size(35, 13);
             this.lblMensaje.TabIndex = 0;
@@ -46,14 +47,14 @@
             // lstBackups
             // 
             this.lstBackups.FormattingEnabled = true;
-            this.lstBackups.Location = new System.Drawing.Point(43, 64);
+            this.lstBackups.Location = new System.Drawing.Point(43, 68);
             this.lstBackups.Name = "lstBackups";
             this.lstBackups.Size = new System.Drawing.Size(570, 212);
             this.lstBackups.TabIndex = 1;
             // 
             // btnRestore
             // 
-            this.btnRestore.Location = new System.Drawing.Point(142, 321);
+            this.btnRestore.Location = new System.Drawing.Point(142, 325);
             this.btnRestore.Name = "btnRestore";
             this.btnRestore.Size = new System.Drawing.Size(137, 32);
             this.btnRestore.TabIndex = 2;
@@ -63,7 +64,7 @@
             // 
             // btnSalir
             // 
-            this.btnSalir.Location = new System.Drawing.Point(368, 321);
+            this.btnSalir.Location = new System.Drawing.Point(368, 325);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(137, 32);
             this.btnSalir.TabIndex = 3;
@@ -71,11 +72,21 @@
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
+            // lblBackups
+            // 
+            this.lblBackups.AutoSize = true;
+            this.lblBackups.Location = new System.Drawing.Point(40, 52);
+            this.lblBackups.Name = "lblBackups";
+            this.lblBackups.Size = new System.Drawing.Size(35, 13);
+            this.lblBackups.TabIndex = 4;
+            this.lblBackups.Text = "label1";
+            // 
             // FormRestore
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(660, 427);
+            this.Controls.Add(this.lblBackups);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnRestore);
             this.Controls.Add(this.lstBackups);
@@ -94,5 +105,6 @@
         private System.Windows.Forms.ListBox lstBackups;
         private System.Windows.Forms.Button btnRestore;
         private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.Label lblBackups;
     }
 }

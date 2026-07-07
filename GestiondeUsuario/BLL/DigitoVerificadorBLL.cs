@@ -110,5 +110,15 @@ namespace BLL
 
             return true;
         }
+
+        public void InicializarSiEsNecesario()
+        {
+            var dal = new DigitoVerificadorDAL();
+            var dv = dal.ObtenerDV("Usuarios");
+
+            // Si el DVH es "0" significa que nunca se calculó
+            if (dv == null || dv.DVH == "0")
+                RecalcularYGuardar();
+        }
     }
 }

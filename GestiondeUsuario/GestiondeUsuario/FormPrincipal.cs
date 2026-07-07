@@ -40,13 +40,16 @@ namespace GestiondeUsuario
             gestionDePerfilesToolStripMenuItem.Enabled = tieneGestionPerfiles;
             gestionDeRolesToolStripMenuItem.Enabled = tieneGestionPerfiles;
             bitacoraEventosToolStripMenuItem.Enabled = tieneVerBitacora;
+            gestionRespaldoToolStripMenuItem.Enabled =
+            PerfilBLL.Instancia.TienePermiso(usuario.Rol, "GestionBackup");
 
             menuMaestro.Enabled = tieneMaestro;
             menuVenta.Enabled = tieneVentas;
             menuCompras.Enabled = tieneCompras;
             menuReporte.Enabled = tieneReporte;
             menuAyuda.Enabled = tieneAyuda;
-            gestionRespaldoToolStripMenuItem.Enabled = false;
+            gestionRespaldoToolStripMenuItem1.Enabled =
+             PerfilBLL.Instancia.TienePermiso(usuario.Rol, "GestionBackup");
 
             GestorIdioma.Instancia.CambiarIdioma(SessionManager.Instancia.ObtenerIdioma());
         }
@@ -136,12 +139,19 @@ namespace GestiondeUsuario
             bitacoraEventosToolStripMenuItem.Text = t["bitacoraEventos"]?.ToString();
             gestionDePerfilesToolStripMenuItem.Text = t["gestionPerfiles"]?.ToString();
             gestionDeRolesToolStripMenuItem.Text = t["gestionRoles"]?.ToString();
-            gestionRespaldoToolStripMenuItem.Text = t["gestionRespaldo"]?.ToString();
+            gestionRespaldoToolStripMenuItem1.Text = t["gestionRespaldo"]?.ToString();
         }
         private void FormPrincipal_FormClosed(object sender, FormClosedEventArgs e)
         {
             // Desuscribirse al cerrar
             GestorIdioma.Instancia.Desuscribir(this);
+        }
+
+        private void gestionRespaldoToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            new FormRestore().Show();
+            this.Hide();
+
         }
     }
 }
