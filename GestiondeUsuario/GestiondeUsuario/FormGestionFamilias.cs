@@ -133,9 +133,11 @@ namespace GestiondeUsuario
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
+            var g = GestorIdioma.Instancia;
             if (_idSeleccionado == -1)
             {
-                MessageBox.Show("Seleccioná una familia primero.", "Atención",
+                MessageBox.Show(g.Obtener("FormGestionFamilias", "msgSeleccionarPrimero"),
+                g.Obtener("FormGestionFamilias", "msgAtencion"),
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
@@ -146,16 +148,17 @@ namespace GestiondeUsuario
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
+            var g = GestorIdioma.Instancia;
             if (_idSeleccionado == -1)
             {
-                MessageBox.Show("Seleccioná una familia primero.", "Atención",
+                MessageBox.Show(g.Obtener("FormGestionFamilias", "msgSeleccionarPrimero"),
+                g.Obtener("FormGestionFamilias", "msgAtencion"),
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            DialogResult confirm = MessageBox.Show(
-                "¿Querés eliminar esta familia?",
-                "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult confirm = MessageBox.Show(g.Obtener("FormGestionFamilias", "msgConfirmarEliminar"),
+            g.Obtener("FormGestionFamilias", "msgConfirmar"), MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (confirm == DialogResult.Yes)
             {
@@ -164,7 +167,8 @@ namespace GestiondeUsuario
                     bool ok = FamiliaBLL.Instancia.Eliminar(_idSeleccionado);
                     if (ok)
                     {
-                        MessageBox.Show("Familia eliminada exitosamente.", "Éxito",
+                        MessageBox.Show(g.Obtener("FormGestionFamilias", "msgEliminadaExito"),
+                        g.Obtener("FormGestionFamilias", "msgExito"),
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
                         LimpiarCampos();
                         DeshabilitarCampos();
@@ -184,9 +188,11 @@ namespace GestiondeUsuario
 
         private void btnAplicar_Click(object sender, EventArgs e)
         {
+            var g = GestorIdioma.Instancia;
             if (string.IsNullOrEmpty(txtNombre.Text))
             {
-                MessageBox.Show("El nombre es obligatorio.", "Atención",
+                MessageBox.Show(g.Obtener("FormGestionFamilias", "msgNombreObligatorio"),
+                g.Obtener("FormGestionFamilias", "msgAtencion"),
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
@@ -203,7 +209,8 @@ namespace GestiondeUsuario
                 bool ok = FamiliaBLL.Instancia.Insertar(nueva);
                 if (ok)
                 {
-                    MessageBox.Show("Familia creada exitosamente.", "Éxito",
+                    MessageBox.Show(g.Obtener("FormGestionFamilias", "msgCreadaExito"),
+                        g.Obtener("FormGestionFamilias", "msgExito"),
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                     CargarFamilias();
                     LimpiarCampos();
@@ -225,7 +232,8 @@ namespace GestiondeUsuario
                 bool ok = FamiliaBLL.Instancia.Modificar(modificada);
                 if (ok)
                 {
-                    MessageBox.Show("Familia modificada exitosamente.", "Éxito",
+                    MessageBox.Show(g.Obtener("FormGestionFamilias", "msgModificadaExito"),
+                    g.Obtener("FormGestionFamilias", "msgExito"),
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                     CargarFamilias();
                     LimpiarCampos();
@@ -252,16 +260,19 @@ namespace GestiondeUsuario
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
+            var g = GestorIdioma.Instancia;
             if (_idSeleccionado == -1)
             {
-                MessageBox.Show("Seleccioná una familia primero.", "Atención",
+                MessageBox.Show(g.Obtener("FormGestionFamilias", "msgSeleccionarPrimero"),
+                g.Obtener("FormGestionFamilias", "msgAtencion"),
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (lstDisponibles.SelectedItem == null)
             {
-                MessageBox.Show("Seleccioná un elemento para agregar.", "Atención",
+                MessageBox.Show(g.Obtener("FormGestionFamilias", "msgSeleccionarElemento"),
+                g.Obtener("FormGestionFamilias", "msgAtencion"),
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
@@ -282,7 +293,7 @@ namespace GestiondeUsuario
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error",
+                MessageBox.Show(ex.Message, g.Obtener("FormGestionFamilias", "msgError"),
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

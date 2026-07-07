@@ -38,9 +38,11 @@ namespace GestiondeUsuario
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
+            var g = GestorIdioma.Instancia;
             if (cmbIdiomas.SelectedItem == null)
             {
-                MessageBox.Show("Seleccioná un idioma.", "Atención",
+                MessageBox.Show(g.Obtener("FormCambiarIdioma", "msgSeleccionarIdioma"),
+                g.Obtener("FormCambiarIdioma", "msgAtencion"),
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
@@ -48,7 +50,8 @@ namespace GestiondeUsuario
             string idioma = cmbIdiomas.SelectedItem.ToString();
             if (idioma == SessionManager.Instancia.ObtenerIdioma())
             {
-                MessageBox.Show("Ya estás usando ese idioma.", "Atención",
+                MessageBox.Show(g.Obtener("FormCambiarIdioma", "msgMismoIdioma"),
+                g.Obtener("FormCambiarIdioma", "msgAtencion"),
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
@@ -64,7 +67,8 @@ namespace GestiondeUsuario
             "Usuarios",
             4);
 
-            MessageBox.Show("Idioma cambiado a: " + idioma, "Éxito",
+            MessageBox.Show(g.Obtener("FormCambiarIdioma", "msgExito") + idioma,
+             g.Obtener("FormCambiarIdioma", "msgExitoTitulo"),
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             new FormPrincipal().Show();

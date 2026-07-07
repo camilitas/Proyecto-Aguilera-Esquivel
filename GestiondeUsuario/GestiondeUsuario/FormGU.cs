@@ -339,9 +339,12 @@ namespace GestiondeUsuario
 
         private void btnDesbloquear_Click(object sender, EventArgs e)
         {
+            var g = GestorIdioma.Instancia;
             if (_idSeleccionado == -1)
             {
-                MessageBox.Show("Seleccioná un usuario primero.", "Atención",
+                MessageBox.Show(
+                g.Obtener("FormGU", "msgSeleccionarPrimero"),
+                g.Obtener("FormGU", "msgAtencion"),
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
@@ -434,10 +437,13 @@ namespace GestiondeUsuario
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
+            var g = GestorIdioma.Instancia;
             HabilitarCampos();
             if (_idSeleccionado == -1)
             {
-                MessageBox.Show("Seleccioná un usuario primero.", "Atención",
+                MessageBox.Show(
+                g.Obtener("FormGU", "msgSeleccionarPrimero"),
+                 g.Obtener("FormGU", "msgAtencion"),
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
