@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="BitacoraDAL.cs" />
     <Compile Include="ConexionDAL.cs" />
+    <Compile Include="DigitoVerificadorDAL.cs" />
     <Compile Include="FamiliaDAL.cs" />
     <Compile Include="PatenteDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
