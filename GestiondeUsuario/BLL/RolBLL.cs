@@ -37,6 +37,7 @@ namespace BLL
                 GestorEventosBLL.Instancia.Notificar(
                     SessionManager.Instancia.ObtenerUsuarioActivo()?.NombreUsuario ?? "Admin",
                     "Crear Rol", "Roles", 2);
+            DigitoVerificadorBLL.Instancia.RecalcularYGuardar();
             return ok;
         }
 
@@ -49,6 +50,7 @@ namespace BLL
                 GestorEventosBLL.Instancia.Notificar(
                     SessionManager.Instancia.ObtenerUsuarioActivo()?.NombreUsuario ?? "Admin",
                     "Modificar Rol", "Roles", 3);
+            DigitoVerificadorBLL.Instancia.RecalcularYGuardar();
             return ok;
         }
 
@@ -66,6 +68,7 @@ namespace BLL
                 GestorEventosBLL.Instancia.Notificar(
                     SessionManager.Instancia.ObtenerUsuarioActivo()?.NombreUsuario ?? "Admin",
                     "Eliminar Rol", "Roles", 2);
+            DigitoVerificadorBLL.Instancia.RecalcularYGuardar();
             return ok;
         }
 
@@ -97,6 +100,7 @@ namespace BLL
                 GestorEventosBLL.Instancia.Notificar(
                     SessionManager.Instancia.ObtenerUsuarioActivo()?.NombreUsuario ?? "Admin",
                     "Agregar Patente a Rol", "Roles", 3);
+            DigitoVerificadorBLL.Instancia.RecalcularYGuardar();
             return ok;
         }
         private bool TienePatenteRecursivo(int idFamilia, int idPatente, FamiliaDAL familiaDAL)
@@ -125,6 +129,7 @@ namespace BLL
                 GestorEventosBLL.Instancia.Notificar(
                     SessionManager.Instancia.ObtenerUsuarioActivo()?.NombreUsuario ?? "Admin",
                     "Agregar Familia a Rol", "Roles", 3);
+            DigitoVerificadorBLL.Instancia.RecalcularYGuardar();
             return ok;
         }
 

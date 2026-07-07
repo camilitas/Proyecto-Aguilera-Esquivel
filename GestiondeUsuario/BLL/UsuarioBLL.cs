@@ -99,6 +99,7 @@ namespace BLL
                     GestorEventosBLL.Instancia.Notificar(
                         SessionManager.Instancia.ObtenerUsuarioActivo()?.NombreUsuario ?? "Admin",
                         "Crear Usuario", "Administrador", 2);
+                    DigitoVerificadorBLL.Instancia.RecalcularYGuardar();
                 return ok;
             }
             catch (SqlException ex)
@@ -107,6 +108,7 @@ namespace BLL
                     throw new Exception("Ya existe un usuario con ese DNI o Email.");
                 throw;
             }
+
         }
         public Usuario ObtenerPorNombreUsuario(string nombreUsuario)
         {
@@ -134,6 +136,7 @@ namespace BLL
                 GestorEventosBLL.Instancia.Notificar(
                     SessionManager.Instancia.ObtenerUsuarioActivo()?.NombreUsuario ?? "Admin",
                     "Modificar Usuario", "Administrador", 3);
+                DigitoVerificadorBLL.Instancia.RecalcularYGuardar();
             return ok;
         }
 
@@ -145,6 +148,7 @@ namespace BLL
                 GestorEventosBLL.Instancia.Notificar(
                     SessionManager.Instancia.ObtenerUsuarioActivo()?.NombreUsuario ?? "Admin",
                     "Deshabilitar Usuario", "Administrador", 3);
+                DigitoVerificadorBLL.Instancia.RecalcularYGuardar();
             return ok;
         }
 
@@ -162,6 +166,7 @@ namespace BLL
                 GestorEventosBLL.Instancia.Notificar(
                     SessionManager.Instancia.ObtenerUsuarioActivo()?.NombreUsuario ?? "Admin",
                     "Habilitar Usuario", "Administrador", 3);
+                    DigitoVerificadorBLL.Instancia.RecalcularYGuardar();
             return ok;
         }
 
@@ -178,6 +183,7 @@ namespace BLL
                 GestorEventosBLL.Instancia.Notificar(
                     SessionManager.Instancia.ObtenerUsuarioActivo()?.NombreUsuario ?? "Admin",
                     "Desbloquear Usuario", "Administrador", 4);
+                DigitoVerificadorBLL.Instancia.RecalcularYGuardar();
             return ok;
         }
 

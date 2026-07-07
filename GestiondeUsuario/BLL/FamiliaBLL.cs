@@ -37,6 +37,7 @@ namespace BLL
                 GestorEventosBLL.Instancia.Notificar(
                     SessionManager.Instancia.ObtenerUsuarioActivo()?.NombreUsuario ?? "Admin",
                     "Crear Familia", "Familias", 2);
+            DigitoVerificadorBLL.Instancia.RecalcularYGuardar();
             return ok;
         }
 
@@ -49,6 +50,7 @@ namespace BLL
                 GestorEventosBLL.Instancia.Notificar(
                     SessionManager.Instancia.ObtenerUsuarioActivo()?.NombreUsuario ?? "Admin",
                     "Modificar Familia", "Familias", 3);
+            DigitoVerificadorBLL.Instancia.RecalcularYGuardar();
             return ok;
         }
 
@@ -62,6 +64,7 @@ namespace BLL
                 GestorEventosBLL.Instancia.Notificar(
                     SessionManager.Instancia.ObtenerUsuarioActivo()?.NombreUsuario ?? "Admin",
                     "Eliminar Familia", "Familias", 2);
+            DigitoVerificadorBLL.Instancia.RecalcularYGuardar();
             return ok;
         }
 
@@ -104,6 +107,7 @@ namespace BLL
                 GestorEventosBLL.Instancia.Notificar(
                     SessionManager.Instancia.ObtenerUsuarioActivo()?.NombreUsuario ?? "Admin",
                     "Agregar Patente a Familia", "Familias", 3);
+            DigitoVerificadorBLL.Instancia.RecalcularYGuardar();
             return ok;
         }
 
@@ -137,6 +141,7 @@ namespace BLL
                 GestorEventosBLL.Instancia.Notificar(
                     SessionManager.Instancia.ObtenerUsuarioActivo()?.NombreUsuario ?? "Admin",
                     "Agregar Familia a Familia", "Familias", 3);
+            DigitoVerificadorBLL.Instancia.RecalcularYGuardar();
             return ok;
         }
 
