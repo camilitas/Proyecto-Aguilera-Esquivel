@@ -48,6 +48,11 @@ namespace BLL
                 SessionManager.Instancia.IniciarSesion(usuario);
                 GestorIdioma.Instancia.CambiarIdioma(usuario.Idioma ?? "español");
                 GestorEventosBLL.Instancia.Notificar(nombreUsuario, "Login", "Usuarios", 1);
+
+                // si es Admin verificamos integridad de datos
+                if (usuario.Rol == "Admin" && !DigitoVerificadorBLL.Instancia.Verificar())
+                    throw new Exception("INCONSISTENCIA_DV");
+
                 return true;
             }
             else

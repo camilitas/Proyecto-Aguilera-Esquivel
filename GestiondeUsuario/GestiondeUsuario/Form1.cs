@@ -107,8 +107,16 @@ namespace GestiondeUsuario
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message + "\nConsulte con el administrador.", "Cuenta bloqueada",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                if (ex.Message == "INCONSISTENCIA_DV")
+                {
+                    new FormInconsistencia().Show();
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show(ex.Message + "\nConsulte con el administrador.",
+                        "Cuenta bloqueada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
         }
 
