@@ -25,7 +25,8 @@
     "bitacoraEventos": "Bitácora de Eventos",
     "gestionPerfiles": "Gestión de Familias",
     "gestionRoles": "Gestión de Roles",
-    "gestionRespaldo": "Gestión de Respaldo"
+    "gestionRespaldo": "Gestión de Respaldo",
+    "gestionBackup": "Backup / Restore"
   },
   "FormGU": {
     "tituloForm": "Gestión de Usuarios",
@@ -199,5 +200,19 @@
     "msgMismoIdioma": "Ya estás usando ese idioma.",
     "msgExito": "Idioma cambiado a: ",
     "msgExitoTitulo": "Éxito"
+  },
+  "FormInconsistencia": {
+    "tituloForm": "Inconsistencia detectada",
+    "lblMensaje": "Se detectó una inconsistencia en los datos del sistema. Seleccioná una opción para continuar.",
+    "btnRecalcular": "Recalcular DV",
+    "btnRestore": "Restore BD",
+    "btnSalir": "Salir"
+  },
+  "FormRestore": {
+    "tituloForm": "Restore de base de datos",
+    "lblMensaje": "Seleccioná el backup que querés restaurar. Se recomienda el más reciente para minimizar la pérdida de datos.",
+    "lblBackups": "Backups disponibles:",
+    "btnRestore": "Restaurar",
+    "btnSalir": "Volver al login"
   }
 }

@@ -7,6 +7,7 @@
     "lblRecuperar": "Recover password",
     "lblBienvenida": "Welcome",
     "lblIdioma": "Language"
+      "gestionBackup": "Backup / Restore"
   },
   "FormPrincipal": {
     "lblBienvenida": "Welcome",
@@ -25,7 +26,8 @@
     "bitacoraEventos": "Event Log",
     "gestionPerfiles": "Family Management",
     "gestionRoles": "Role Management",
-    "gestionRespaldo": "Backup Management"
+    "gestionRespaldo": "Backup Management",
+    "gestionBackup": "Backup / Restore"
   },
   "FormGU": {
     "tituloForm": "User Management",
@@ -199,5 +201,19 @@
     "msgMismoIdioma": "You are already using that language.",
     "msgExito": "Language changed to: ",
     "msgExitoTitulo": "Success"
+  },
+  "FormInconsistencia": {
+    "tituloForm": "Inconsistency detected",
+    "lblMensaje": "A data inconsistency was detected. Please select an option to continue.",
+    "btnRecalcular": "Recalculate DV",
+    "btnRestore": "Restore DB",
+    "btnSalir": "Exit"
+  },
+  "FormRestore": {
+    "tituloForm": "Database restore",
+    "lblMensaje": "Select the backup you want to restore. The most recent one is recommended to minimize data loss.",
+    "lblBackups": "Available backups:",
+    "btnRestore": "Restore",
+    "btnSalir": "Back to login"
   }
 }
