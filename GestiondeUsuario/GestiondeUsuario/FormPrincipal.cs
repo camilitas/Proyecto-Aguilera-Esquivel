@@ -40,7 +40,6 @@ namespace GestiondeUsuario
             gestionDePerfilesToolStripMenuItem.Enabled = tieneGestionPerfiles;
             gestionDeRolesToolStripMenuItem.Enabled = tieneGestionPerfiles;
             bitacoraEventosToolStripMenuItem.Enabled = tieneVerBitacora;
-            gestionRespaldoToolStripMenuItem.Enabled =
             PerfilBLL.Instancia.TienePermiso(usuario.Rol, "GestionBackup");
 
             menuMaestro.Enabled = tieneMaestro;

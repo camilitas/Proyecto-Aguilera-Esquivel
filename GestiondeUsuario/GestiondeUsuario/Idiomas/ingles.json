@@ -7,7 +7,7 @@
     "lblRecuperar": "Recover password",
     "lblBienvenida": "Welcome",
     "lblIdioma": "Language",
-      "gestionBackup": "Backup / Restore"
+    "gestionBackup": "Backup / Restore"
   },
   "FormPrincipal": {
     "lblBienvenida": "Welcome",
@@ -27,7 +27,6 @@
     "gestionPerfiles": "Family Management",
     "gestionRoles": "Role Management",
     "gestionRespaldo": "Backup Management",
-    "gestionBackup": "Backup / Restore"
   },
   "FormGU": {
     "tituloForm": "User Management",
@@ -220,6 +219,20 @@
     "msgAtencion": "Warning",
     "msgConfirmarRestore": "Are you sure? Data created after this backup will be lost.",
     "msgConfirmar": "Confirm",
+    "msgRestoreOk": "Restore completed successfully.",
+    "msgExito": "Success"
+  },
+  "FormGestionRespaldo": {
+    "tituloForm": "Backup Management",
+    "lblTitulo": "Backup Management",
+    "Backup": "BackUp",
+    "Restore": "Restore",
+    "Volver": "Back",
+    "msgSeleccionarCarpeta": "Select the folder to save the backup",
+    "msgSeleccionarArchivo": "Select the backup file",
+    "msgConfirmarRestore": "Are you sure? Data after this backup will be lost.",
+    "msgConfirmar": "Confirm",
+    "msgBackupOk": "BackUp completed successfully.",
     "msgRestoreOk": "Restore completed successfully.",
     "msgExito": "Success"
   }

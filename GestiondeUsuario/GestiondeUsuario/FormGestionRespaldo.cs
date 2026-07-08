@@ -1,4 +1,6 @@
 ﻿using BLL;
+using Newtonsoft.Json.Linq;
+using Servicios;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,7 +13,7 @@ using System.Windows.Forms;
 
 namespace GestiondeUsuario
 {
-    public partial class FormGestionRespaldo : Form
+    public partial class FormGestionRespaldo : Form, IObservadorIdioma
     {
         public FormGestionRespaldo()
         {
@@ -21,13 +23,15 @@ namespace GestiondeUsuario
         private void BackUp_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog fbd = new FolderBrowserDialog();
-            fbd.Description = "Seleccioná la carpeta donde guardar el backup";
+            fbd.Description = GestorIdioma.Instancia.Obtener("FormGestionRespaldo", "msgSeleccionarCarpeta");
             if (fbd.ShowDialog() == DialogResult.OK)
             {
                 try
                 {
                     BackUpRestoreBLL.Instancia.RealizarBackUp(fbd.SelectedPath);
-                    MessageBox.Show("Se realizó BackUp con éxito.", "Éxito",
+                    MessageBox.Show(
+                        GestorIdioma.Instancia.Obtener("FormGestionRespaldo", "msgBackupOk"),
+                        GestorIdioma.Instancia.Obtener("FormGestionRespaldo", "msgExito"),
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
@@ -42,20 +46,23 @@ namespace GestiondeUsuario
         {
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = "Backup files (*.bak)|*.bak";
-            ofd.Title = "Seleccioná el archivo de backup";
+            ofd.Title = GestorIdioma.Instancia.Obtener("FormGestionRespaldo", "msgSeleccionarArchivo");
 
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 DialogResult confirm = MessageBox.Show(
-                    "¿Estás seguro que querés restaurar este backup?\nSe perderán todos los datos posteriores.",
-                    "Confirmar Restore", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    GestorIdioma.Instancia.Obtener("FormGestionRespaldo", "msgConfirmarRestore"),
+                    GestorIdioma.Instancia.Obtener("FormGestionRespaldo", "msgConfirmar"),
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
                 if (confirm == DialogResult.Yes)
                 {
                     try
                     {
                         BackUpRestoreBLL.Instancia.RealizarRestore(ofd.FileName);
-                        MessageBox.Show("Se realizó Restore con éxito.", "Éxito",
+                        MessageBox.Show(
+                            GestorIdioma.Instancia.Obtener("FormGestionRespaldo", "msgRestoreOk"),
+                            GestorIdioma.Instancia.Obtener("FormGestionRespaldo", "msgExito"),
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
                         new Form1().Show();
                         this.Close();
@@ -73,6 +80,26 @@ namespace GestiondeUsuario
         {
             new FormPrincipal().Show();
             this.Close();
+        }
+        public void ActualizarIdioma(JObject traducciones)
+        {
+            var t = traducciones["FormGestionRespaldo"];
+            if (t == null) return;
+            this.Text = t["tituloForm"]?.ToString();
+            lblTitulo.Text = t["lblTitulo"]?.ToString();
+            BackUp.Text = t["Backup"]?.ToString();
+            Restore.Text = t["Restore"]?.ToString();
+            Volver.Text = t["Volver"]?.ToString();
+        }
+
+        private void FormGestionRespaldo_Load(object sender, EventArgs e)
+        {
+            GestorIdioma.Instancia.Suscribir(this);
+            GestorIdioma.Instancia.CambiarIdioma(SessionManager.Instancia.ObtenerIdioma());
+        }
+        private void FormGestionRespaldo_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            GestorIdioma.Instancia.Desuscribir(this);
         }
     }
 }

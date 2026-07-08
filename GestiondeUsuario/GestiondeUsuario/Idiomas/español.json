@@ -221,5 +221,19 @@
     "msgConfirmar": "Confirmar",
     "msgRestoreOk": "Restore ejecutado correctamente.",
     "msgExito": "Éxito"
+  },
+  "FormGestionRespaldo": {
+    "tituloForm": "Gestión de Respaldo",
+    "lblTitulo": "Gestión de Respaldo",
+    "Backup": "BackUp",
+    "Restore": "Restore",
+    "Volver": "Volver",
+    "msgSeleccionarCarpeta": "Seleccioná la carpeta donde guardar el backup",
+    "msgSeleccionarArchivo": "Seleccioná el archivo de backup",
+    "msgConfirmarRestore": "¿Estás seguro? Se perderán los datos posteriores al backup.",
+    "msgConfirmar": "Confirmar",
+    "msgBackupOk": "Se realizó BackUp con éxito.",
+    "msgRestoreOk": "Se realizó Restore con éxito.",
+    "msgExito": "Éxito"
   }
 }
