@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,8 +23,18 @@ namespace GestiondeUsuario
 
         private void BackUp_Click(object sender, EventArgs e)
         {
+
+            var g = GestorIdioma.Instancia;
             FolderBrowserDialog fbd = new FolderBrowserDialog();
-            fbd.Description = GestorIdioma.Instancia.Obtener("FormGestionRespaldo", "msgSeleccionarCarpeta");
+            fbd.Description = g.Obtener("FormGestionRespaldo", "fbd_descripcion");
+
+            // Iniciamos en AppData para evitar problemas de permisos
+            fbd.SelectedPath = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+                "GestionUsuarios", "Backups");
+
+            if (!Directory.Exists(fbd.SelectedPath))
+                Directory.CreateDirectory(fbd.SelectedPath);
             if (fbd.ShowDialog() == DialogResult.OK)
             {
                 try
