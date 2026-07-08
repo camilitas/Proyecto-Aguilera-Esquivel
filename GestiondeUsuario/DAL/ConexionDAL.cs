@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Configuration;
 
-namespace DAL
+public static class ConexionDAL
 {
-    public static class ConexionDAL
-    {
-        public static string ConnectionString =
-             "Data Source=.\\SQLEXPRESS;Initial Catalog=GestionUsuarios;Integrated Security=True";
-    }
+    public static string ConnectionString =
+        ConfigurationManager.ConnectionStrings["GestionUsuarios"].ConnectionString;
 }

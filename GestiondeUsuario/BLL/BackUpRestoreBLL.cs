@@ -24,8 +24,16 @@ namespace BLL
 
         public void RealizarBackUp(string carpeta)
         {
+            if (string.IsNullOrEmpty(carpeta))
+            {
+                carpeta = Path.Combine(
+                    Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+                    "GestionUsuarios", "Backups");
+            }
+
             if (!Directory.Exists(carpeta))
                 Directory.CreateDirectory(carpeta);
+
             string nombreArchivo = $"GestionUsuarios_{DateTime.Now:yyyyMMdd_HHmmss}.bak";
             string rutaCompleta = Path.Combine(carpeta, nombreArchivo);
             BackUpRestoreDAL dal = new BackUpRestoreDAL();
