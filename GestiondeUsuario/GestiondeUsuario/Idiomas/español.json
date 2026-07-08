@@ -172,11 +172,12 @@
     "msgCreadaExito": "Familia creada exitosamente.",
     "msgModificadaExito": "Familia modificada exitosamente.",
     "msgError": "Error",
-    "msgSeleccionarElemento": "Seleccioná un elemento para agregar."
+    "msgSeleccionarElemento": "Seleccioná un elemento para agregar.",
+    "msgNombreRepetido": "Ya existe una familia con ese nombre."
   },
   "FormGestionRoles": {
     "tituloForm": "Gestión de Roles",
-    "lblTitulo": "Gestión de Roles", 
+    "lblTitulo": "Gestión de Roles",
     "lblPatentesDisponibles": "Patentes y Familias disponibles",
     "lblNombre": "Nombre",
     "lblDescripcion": "Descripcion",
@@ -204,7 +205,8 @@
     "msgCreadoExito": "Rol creado exitosamente.",
     "msgModificadoExito": "Rol modificado exitosamente.",
     "msgError": "Error",
-    "msgSeleccionarElemento": "Seleccioná un elemento para agregar."
+    "msgSeleccionarElemento": "Seleccioná un elemento para agregar.",
+    "msgNombreRepetido": "Ya existe un rol con ese nombre."
   },
   "FormCambiarIdioma": {
     "tituloForm": "Cambio de idioma",

@@ -1,15 +1,16 @@
 ﻿using BLL;
+using Newtonsoft.Json.Linq;
 using Servicios;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Newtonsoft.Json.Linq;
 
 namespace GestiondeUsuario
 {
@@ -192,34 +193,28 @@ namespace GestiondeUsuario
             if (string.IsNullOrEmpty(txtNombre.Text))
             {
                 MessageBox.Show(g.Obtener("FormGestionFamilias", "msgNombreObligatorio"),
-                g.Obtener("FormGestionFamilias", "msgAtencion"),
+                    g.Obtener("FormGestionFamilias", "msgAtencion"),
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
-            if (_idSeleccionado == -1)
+            try
             {
-                // MODO NUEVO
-                Familia nueva = new Familia
+                if (_idSeleccionado == -1)
                 {
-                    Nombre = txtNombre.Text,
-                    Descripcion = txtDescripcion.Text
-                };
-
-                bool ok = FamiliaBLL.Instancia.Insertar(nueva);
-                if (ok)
-                {
-                    MessageBox.Show(g.Obtener("FormGestionFamilias", "msgCreadaExito"),
-                        g.Obtener("FormGestionFamilias", "msgExito"),
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    CargarFamilias();
-                    LimpiarCampos();
-                    DeshabilitarCampos();
-                    HabilitarBotonera();
-                    lblModo.Text = GestorIdioma.Instancia.Obtener("FormGestionFamilias", "lblModoInicial");
+                    Familia nueva = new Familia { Nombre = txtNombre.Text, Descripcion = txtDescripcion.Text };
+                    bool ok = FamiliaBLL.Instancia.Insertar(nueva);
+                    if (ok)
+                    {
+                        MessageBox.Show(g.Obtener("FormGestionFamilias", "msgCreadoExito"),
+                            g.Obtener("FormGestionFamilias", "msgExito"),
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        CargarFamilias();
+                        LimpiarCampos();
+                        DeshabilitarCampos();
+                        HabilitarBotonera();
+                    }
                 }
-            }
-            else
+                else
             {
                 // MODO MODIFICAR
                 Familia modificada = new Familia
@@ -241,6 +236,19 @@ namespace GestiondeUsuario
                     HabilitarBotonera();
                     lblModo.Text = GestorIdioma.Instancia.Obtener("FormGestionFamilias", "lblModoInicial");
                 }
+            }
+            }
+            catch (SqlException ex) when (ex.Number == 2627)
+            {
+                //
+                MessageBox.Show(g.Obtener("FormGestionFamilias", "msgNombreRepetido"),
+                    g.Obtener("FormGestionFamilias", "msgError"),
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, g.Obtener("FormGestionFamilias", "msgError"),
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

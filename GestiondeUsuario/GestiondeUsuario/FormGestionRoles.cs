@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -193,37 +194,46 @@ namespace GestiondeUsuario
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if (_idSeleccionado == -1)
+            try
             {
-                Rol nuevo = new Rol { Nombre = txtNombre.Text, Descripcion = txtDescripcion.Text };
-                bool ok = RolBLL.Instancia.Insertar(nuevo);
-                if (ok)
+                if (_idSeleccionado == -1)
                 {
-                    MessageBox.Show(g.Obtener("FormGestionRoles", "msgCreadoExito"),
-                        g.Obtener("FormGestionRoles", "msgExito"),
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    CargarRoles();
-                    LimpiarCampos();
-                    DeshabilitarCampos();
-                    HabilitarBotonera();
-                    lblModo.Text = g.Obtener("FormGestionRoles", "lblModoInicial");
+                    Rol nuevo = new Rol { Nombre = txtNombre.Text, Descripcion = txtDescripcion.Text };
+                    bool ok = RolBLL.Instancia.Insertar(nuevo);
+                    if (ok)
+                    {
+                        MessageBox.Show(g.Obtener("FormGestionRoles", "msgCreadoExito"),
+                            g.Obtener("FormGestionRoles", "msgExito"),
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        CargarRoles();
+                        LimpiarCampos();
+                        DeshabilitarCampos();
+                        HabilitarBotonera();
+                        lblModo.Text = g.Obtener("FormGestionRoles", "lblModoInicial");
+                    }
+                }
+                else
+                {
+                    Rol modificado = new Rol { Id = _idSeleccionado, Nombre = txtNombre.Text, Descripcion = txtDescripcion.Text };
+                    bool ok = RolBLL.Instancia.Modificar(modificado);
+                    if (ok)
+                    {
+                        MessageBox.Show(g.Obtener("FormGestionRoles", "msgModificadoExito"),
+                            g.Obtener("FormGestionRoles", "msgExito"),
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        CargarRoles();
+                        LimpiarCampos();
+                        DeshabilitarCampos();
+                        HabilitarBotonera();
+                        lblModo.Text = g.Obtener("FormGestionRoles", "lblModoInicial");
+                    }
                 }
             }
-            else
+            catch (SqlException ex) when (ex.Number == 2627)
             {
-                Rol modificado = new Rol { Id = _idSeleccionado, Nombre = txtNombre.Text, Descripcion = txtDescripcion.Text };
-                bool ok = RolBLL.Instancia.Modificar(modificado);
-                if (ok)
-                {
-                    MessageBox.Show(g.Obtener("FormGestionRoles", "msgModificadoExito"),
-                        g.Obtener("FormGestionRoles", "msgExito"),
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    CargarRoles();
-                    LimpiarCampos();
-                    DeshabilitarCampos();
-                    HabilitarBotonera();
-                    lblModo.Text = g.Obtener("FormGestionRoles", "lblModoInicial");
-                }
+                MessageBox.Show(g.Obtener("FormGestionRoles", "msgNombreRepetido"),
+                    g.Obtener("FormGestionRoles", "msgError"),
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

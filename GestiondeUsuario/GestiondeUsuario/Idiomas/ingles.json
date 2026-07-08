@@ -173,7 +173,8 @@
     "msgCreadaExito": "Family created successfully.",
     "msgModificadaExito": "Family modified successfully.",
     "msgError": "Error",
-    "msgSeleccionarElemento": "Please select an element to add."
+    "msgSeleccionarElemento": "Please select an element to add.",
+    "msgNombreRepetido": "A family with that name already exists."
   },
   "FormGestionRoles": {
     "tituloForm": "Role Management",
@@ -205,6 +206,7 @@
     "msgCreadoExito": "Role created successfully.",
     "msgModificadoExito": "Role modified successfully.",
     "msgError": "Error",
+    "msgNombreRepetido": "A role with that name already exists.",
     "msgSeleccionarElemento": "Please select an element to add."
   },
   "FormCambiarIdioma": {
