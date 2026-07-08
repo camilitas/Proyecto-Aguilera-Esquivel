@@ -49,9 +49,14 @@ namespace BLL
                 GestorIdioma.Instancia.CambiarIdioma(usuario.Idioma ?? "español");
                 GestorEventosBLL.Instancia.Notificar(nombreUsuario, "Login", "Usuarios", 1);
 
-                // si es Admin verificamos integridad de datos
-                if (usuario.Rol == "Admin" && !DigitoVerificadorBLL.Instancia.Verificar())
-                    throw new Exception("INCONSISTENCIA_DV");
+                // Verificamos integridad de datos
+                if (!DigitoVerificadorBLL.Instancia.Verificar())
+                {
+                    if (usuario.Rol == "Admin")
+                        throw new Exception("INCONSISTENCIA_DV"); // Admin ve FormInconsistencia
+                    else
+                        throw new Exception("SISTEMA_NO_DISPONIBLE"); // Usuario ve mensaje generico
+                }
 
                 return true;
             }

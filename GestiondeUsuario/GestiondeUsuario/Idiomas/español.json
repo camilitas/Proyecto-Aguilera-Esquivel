@@ -16,7 +16,8 @@
     "msgCredencialesIncorrectas": "Usuario o contraseña incorrectos.",
     "msgError": "Error",
     "msgCuentaBloqueada": "Consulte con el administrador.",
-    "msgCuentaBloqueadaTitulo": "Cuenta bloqueada"
+    "msgCuentaBloqueadaTitulo": "Cuenta bloqueada",
+    "msgSistemaNoDisponible": "Sistema no disponible en este momento."
   },
   "FormPrincipal": {
     "lblBienvenida": "Bienvenido",

@@ -118,6 +118,15 @@ namespace GestiondeUsuario
                     new FormInconsistencia().Show();
                     this.Hide();
                 }
+                else if (ex.Message == "SISTEMA_NO_DISPONIBLE")
+                {
+                    MessageBox.Show(
+                        _traducciones?["Form1"]?["msgSistemaNoDisponible"]?.ToString()
+                            ?? "Sistema no disponible en este momento.",
+                        _traducciones?["Form1"]?["msgAtencion"]?.ToString()
+                            ?? "Atención",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
                 else
                 {
                     MessageBox.Show(

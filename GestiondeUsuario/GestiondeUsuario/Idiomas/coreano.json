@@ -16,7 +16,8 @@
     "msgCredencialesIncorrectas": "사용자 이름 또는 비밀번호가 올바르지 않습니다.",
     "msgError": "오류",
     "msgCuentaBloqueada": "관리자에게 문의하세요.",
-    "msgCuentaBloqueadaTitulo": "계정 잠금"
+    "msgCuentaBloqueadaTitulo": "계정 잠금",
+    "msgSistemaNoDisponible": "현재 시스템을 사용할 수 없습니다."
   },
   "FormPrincipal": {
     "lblBienvenida": "환영합니다",
