@@ -29,6 +29,13 @@ namespace GestiondeUsuario
             try
             {
                 DigitoVerificadorBLL.Instancia.RecalcularYGuardar();
+
+                // Registramos en bitacora
+                GestorEventosBLL.Instancia.Notificar(
+                    SessionManager.Instancia.ObtenerUsuarioActivo()?.NombreUsuario ?? "Admin",
+                    "Recálculo de dígito verificador",
+                    "Administrador", 5);
+
                 MessageBox.Show(
                     GestorIdioma.Instancia.Obtener("FormInconsistencia", "msgRecalculadoOk"),
                     GestorIdioma.Instancia.Obtener("FormInconsistencia", "tituloForm"),
