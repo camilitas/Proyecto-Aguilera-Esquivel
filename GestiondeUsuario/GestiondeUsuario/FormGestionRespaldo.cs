@@ -36,8 +36,10 @@ namespace GestiondeUsuario
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error al realizar backup: " + ex.Message,
-                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(
+                        GestorIdioma.Instancia.Obtener("FormGestionRespaldo", "msgErrorBackup") + ex.Message,
+                        GestorIdioma.Instancia.Obtener("FormGestionRespaldo", "msgError"),
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -69,8 +71,10 @@ namespace GestiondeUsuario
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Error al realizar restore: " + ex.Message,
-                            "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(
+                            GestorIdioma.Instancia.Obtener("FormGestionRespaldo", "msgErrorRestore") + ex.Message,
+                            GestorIdioma.Instancia.Obtener("FormGestionRespaldo", "msgError"),
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }

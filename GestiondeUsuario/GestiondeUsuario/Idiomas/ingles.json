@@ -7,7 +7,17 @@
     "lblRecuperar": "Recover password",
     "lblBienvenida": "Welcome",
     "lblIdioma": "Language",
-    "gestionBackup": "Backup / Restore"
+    "gestionBackup": "Backup / Restore",
+    "msgCamposVacios": "Please fill in all fields.",
+    "msgAtencion": "Attention",
+    "msgPrimerIngreso": "Welcome! Since this is your first login, you must change your password.",
+    "msgPrimerIngresoTitulo": "First login",
+    "msgBienvenido": "Welcome!",
+    "msgExito": "Success",
+    "msgCredencialesIncorrectas": "Incorrect username or password.",
+    "msgError": "Error",
+    "msgCuentaBloqueada": "Please contact the administrator.",
+    "msgCuentaBloqueadaTitulo": "Account blocked"
   },
   "FormPrincipal": {
     "lblBienvenida": "Welcome",
@@ -27,6 +37,10 @@
     "gestionPerfiles": "Family Management",
     "gestionRoles": "Role Management",
     "gestionRespaldo": "Backup Management",
+    "msgCerrarSesion": "Are you sure you want to log out?",
+    "msgCerrarSesionTitulo": "Log out",
+    "msgSesionActiva": "There is already an active session: ",
+    "msgSesionActivaTitulo": "Active session"
   },
   "FormGU": {
     "tituloForm": "User Management",
@@ -99,6 +113,7 @@
     "msgExito": "Password updated successfully.",
     "msgExitoTitulo": "Success",
     "msgDNIIncorrecto": "Incorrect ID or current password."
+
   },
   "FormBitacora": {
     "tituloForm": "Event Log",
@@ -129,6 +144,7 @@
   },
   "FormGestionFamilias": {
     "tituloForm": "Family Management",
+    "lblTitulo": "Family Management",
     "lblPatentesDisponibles": "Available Patents and Families",
     "lblNombre": "Name",
     "lblDescripcion": "Description",
@@ -160,6 +176,7 @@
   },
   "FormGestionRoles": {
     "tituloForm": "Role Management",
+    "lblTitulo": "Role Management",
     "lblPatentesDisponibles": "Available Patents and Families",
     "lblNombre": "Name",
     "lblDescripcion": "Description",
@@ -220,7 +237,8 @@
     "msgConfirmarRestore": "Are you sure? Data created after this backup will be lost.",
     "msgConfirmar": "Confirm",
     "msgRestoreOk": "Restore completed successfully.",
-    "msgExito": "Success"
+    "msgExito": "Success",
+    "msgSeleccionarArchivoTitle": "Select the backup file"
   },
   "FormGestionRespaldo": {
     "tituloForm": "Backup Management",
@@ -234,6 +252,10 @@
     "msgConfirmar": "Confirm",
     "msgBackupOk": "BackUp completed successfully.",
     "msgRestoreOk": "Restore completed successfully.",
-    "msgExito": "Success"
+    "msgExito": "Success",
+    "msgErrorBackup": "Error performing backup: ",
+    "msgErrorRestore": "Error performing restore: ",
+    "msgError": "Error",
+    "msgSeleccionarArchivoRestore": "Select the backup file"
   }
 }

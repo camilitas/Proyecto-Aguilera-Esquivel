@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblTitulo = new System.Windows.Forms.Label();
             this.lstFamilias = new System.Windows.Forms.ListBox();
             this.lstContenido = new System.Windows.Forms.ListBox();
             this.lblPatentesDisponibles = new System.Windows.Forms.Label();
@@ -52,15 +52,15 @@
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // label1
+            // lblTitulo
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(303, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(168, 20);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Gestion de Familias";
+            this.lblTitulo.AutoSize = true;
+            this.lblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitulo.Location = new System.Drawing.Point(301, 18);
+            this.lblTitulo.Name = "lblTitulo";
+            this.lblTitulo.Size = new System.Drawing.Size(168, 20);
+            this.lblTitulo.TabIndex = 1;
+            this.lblTitulo.Text = "Gestion de Familias";
             // 
             // lstFamilias
             // 
@@ -273,7 +273,7 @@
             this.Controls.Add(this.lblPatentesDisponibles);
             this.Controls.Add(this.lstContenido);
             this.Controls.Add(this.lstFamilias);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblTitulo);
             this.Name = "FormGestionFamilias";
             this.Text = "FormGestionFamilias";
             this.Load += new System.EventHandler(this.FormGestionFamilias_Load);
@@ -286,7 +286,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.ListBox lstFamilias;
         private System.Windows.Forms.ListBox lstContenido;
         private System.Windows.Forms.Label lblPatentesDisponibles;

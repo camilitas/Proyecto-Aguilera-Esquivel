@@ -347,6 +347,7 @@ namespace GestiondeUsuario
             if (t == null) return;
 
             this.Text = t["tituloForm"]?.ToString();
+            lblTitulo.Text = t["lblTitulo"]?.ToString();
             lblPatentesDisponibles.Text = t["lblPatentesDisponibles"]?.ToString();
             lblNombre.Text = t["lblNombre"]?.ToString();
             lblDescripcion.Text = t["lblDescripcion"]?.ToString();

@@ -6,7 +6,17 @@
     "btnLogin": "로그인",
     "lblRecuperar": "비밀번호 복구",
     "lblBienvenida": "환영합니다",
-    "lblIdioma": "언어"
+    "lblIdioma": "언어",
+    "msgCamposVacios": "모든 필드를 입력하세요.",
+    "msgAtencion": "주의",
+    "msgPrimerIngreso": "환영합니다! 첫 로그인이므로 비밀번호를 변경해야 합니다.",
+    "msgPrimerIngresoTitulo": "첫 로그인",
+    "msgBienvenido": "환영합니다!",
+    "msgExito": "성공",
+    "msgCredencialesIncorrectas": "사용자 이름 또는 비밀번호가 올바르지 않습니다.",
+    "msgError": "오류",
+    "msgCuentaBloqueada": "관리자에게 문의하세요.",
+    "msgCuentaBloqueadaTitulo": "계정 잠금"
   },
   "FormPrincipal": {
     "lblBienvenida": "환영합니다",
@@ -26,7 +36,11 @@
     "gestionPerfiles": "가족 관리",
     "gestionRoles": "역할 관리",
     "gestionRespaldo": "백업 관리",
-    "gestionBackup": "백업 / 복원"
+    "gestionBackup": "백업 / 복원",
+    "msgCerrarSesion": "로그아웃하시겠습니까?",
+    "msgCerrarSesionTitulo": "로그아웃",
+    "msgSesionActiva": "이미 활성 세션이 있습니다: ",
+    "msgSesionActivaTitulo": "활성 세션"
   },
   "FormGU": {
     "tituloForm": "사용자 관리",
@@ -129,6 +143,7 @@
   },
   "FormGestionFamilias": {
     "tituloForm": "가족 관리",
+    "lblTitulo": "가족 관리",
     "lblPatentesDisponibles": "사용 가능한 특허 및 가족",
     "lblNombre": "이름",
     "lblDescripcion": "설명",
@@ -160,6 +175,7 @@
   },
   "FormGestionRoles": {
     "tituloForm": "역할 관리",
+    "lblTitulo": "역할 관리",
     "lblPatentesDisponibles": "사용 가능한 특허 및 가족",
     "lblNombre": "이름",
     "lblDescripcion": "설명",
@@ -220,7 +236,8 @@
     "msgConfirmarRestore": "정말 복원하시겠습니까? 이 백업 이후의 데이터는 손실됩니다.",
     "msgConfirmar": "확인",
     "msgRestoreOk": "복원이 성공적으로 완료되었습니다.",
-    "msgExito": "성공"
+    "msgExito": "성공",
+    "msgSeleccionarArchivoTitle": "백업 파일을 선택하세요"
   },
   "FormGestionRespaldo": {
     "tituloForm": "백업 관리",
@@ -234,6 +251,10 @@
     "msgConfirmar": "확인",
     "msgBackupOk": "백업이 성공적으로 완료되었습니다.",
     "msgRestoreOk": "복원이 성공적으로 완료되었습니다.",
-    "msgExito": "성공"
+    "msgExito": "성공",
+    "msgErrorBackup": "백업 오류: ",
+    "msgErrorRestore": "복원 오류: ",
+    "msgError": "오류",
+    "msgSeleccionarArchivoRestore": "백업 파일을 선택하세요"
   }
 }

@@ -40,57 +40,56 @@ namespace GestiondeUsuario
 
         private void btnRecuperar_Click(object sender, EventArgs e)
         {
-            // Validación: campos vacíos
+            var g = GestorIdioma.Instancia;
             if (string.IsNullOrEmpty(txtDNI.Text) ||
                 string.IsNullOrEmpty(txtNuevaPass.Text) ||
                 string.IsNullOrEmpty(txtConfirmarPass.Text))
             {
-                MessageBox.Show("Completá todos los campos.", "Atención",
+                MessageBox.Show(g.Obtener("FormRecuperar", "msgCamposVacios"),
+                    g.Obtener("FormRecuperar", "msgAtencion"),
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
-            // Validación: contraseñas iguales
             if (txtNuevaPass.Text != txtConfirmarPass.Text)
             {
-                MessageBox.Show("Las contraseñas no coinciden.", "Error",
+                MessageBox.Show(g.Obtener("FormRecuperar", "msgNoCoinciden"),
+                    g.Obtener("FormRecuperar", "msgError"),
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
-            if(!Encriptador.ContraseñaSegura(txtNuevaPass.Text))
+            if (!Encriptador.ContraseñaSegura(txtNuevaPass.Text))
             {
-                MessageBox.Show("La contraseña debe tener al menos 8 caracteres, incluyendo mayúsculas, minúsculas y números.", "Contraseña insegura", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(g.Obtener("FormRecuperar", "msgContraseñaInsegura"),
+                    g.Obtener("FormRecuperar", "msgContraseñaInseguraTitulo"),
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
-            // Llamada a BLL
             try
             {
                 bool ok = UsuarioBLL.Instancia.CambiarContraseña(
                     Convert.ToInt32(txtDNI.Text),
                     txtContraseñaActual.Text,
-                    txtNuevaPass.Text
-                );
+                    txtNuevaPass.Text);
                 if (ok)
                 {
-                    MessageBox.Show("Contraseña actualizada correctamente.", "Éxito",
+                    MessageBox.Show(g.Obtener("FormRecuperar", "msgExito"),
+                        g.Obtener("FormRecuperar", "msgExitoTitulo"),
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                     new Form1().Show();
                     this.Close();
                 }
                 else
                 {
-                    MessageBox.Show("DNI o contraseña actual incorrectos.", "Error",
+                    MessageBox.Show(g.Obtener("FormRecuperar", "msgDNIIncorrecto"),
+                        g.Obtener("FormRecuperar", "msgError"),
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error",
+                MessageBox.Show(ex.Message, g.Obtener("FormRecuperar", "msgError"),
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-
         }
 
         private void btnVolver_Click(object sender, EventArgs e)

@@ -70,30 +70,34 @@ namespace GestiondeUsuario
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtNombreUsuario.Text) || string.IsNullOrEmpty(txtContraseña.Text))
+            if(string.IsNullOrEmpty(txtNombreUsuario.Text) || string.IsNullOrEmpty(txtContraseña.Text))
             {
-                MessageBox.Show("Completá todos los campos.", "Atención",
+                MessageBox.Show(
+                    _traducciones?["Form1"]?["msgCamposVacios"]?.ToString() ?? "Completá todos los campos.",
+                    _traducciones?["Form1"]?["msgAtencion"]?.ToString() ?? "Atención",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             try
             {
-
                 bool acceso = UsuarioBLL.Instancia.Login(txtNombreUsuario.Text, txtContraseña.Text);
-
                 if (acceso)
                 {
                     Usuario usuarioActivo = SessionManager.Instancia.ObtenerUsuarioActivo();
                     if (usuarioActivo.PrimerIngreso)
                     {
-                        MessageBox.Show("Bienvenido! Por ser tu primer ingreso debés cambiar tu contraseña.",
-                            "Primer ingreso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(
+                            _traducciones?["Form1"]?["msgPrimerIngreso"]?.ToString(),
+                            _traducciones?["Form1"]?["msgPrimerIngresoTitulo"]?.ToString(),
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
                         new FormRecuperar().Show();
                         this.Hide();
                     }
                     else
                     {
-                        MessageBox.Show("¡Bienvenido!", "Éxito",
+                        MessageBox.Show(
+                            _traducciones?["Form1"]?["msgBienvenido"]?.ToString(),
+                            _traducciones?["Form1"]?["msgExito"]?.ToString(),
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
                         new FormPrincipal().Show();
                         this.Hide();
@@ -101,7 +105,9 @@ namespace GestiondeUsuario
                 }
                 else
                 {
-                    MessageBox.Show("Usuario o contraseña incorrectos.", "Error",
+                    MessageBox.Show(
+                        _traducciones?["Form1"]?["msgCredencialesIncorrectas"]?.ToString(),
+                        _traducciones?["Form1"]?["msgError"]?.ToString(),
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -114,8 +120,10 @@ namespace GestiondeUsuario
                 }
                 else
                 {
-                    MessageBox.Show(ex.Message + "\nConsulte con el administrador.",
-                        "Cuenta bloqueada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(
+                        ex.Message + "\n" + _traducciones?["Form1"]?["msgCuentaBloqueada"]?.ToString(),
+                        _traducciones?["Form1"]?["msgCuentaBloqueadaTitulo"]?.ToString(),
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }

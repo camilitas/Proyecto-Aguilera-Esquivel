@@ -45,7 +45,7 @@
             // 
             // btnRecalcular
             // 
-            this.btnRecalcular.Location = new System.Drawing.Point(69, 116);
+            this.btnRecalcular.Location = new System.Drawing.Point(128, 114);
             this.btnRecalcular.Name = "btnRecalcular";
             this.btnRecalcular.Size = new System.Drawing.Size(75, 40);
             this.btnRecalcular.TabIndex = 1;
@@ -55,7 +55,7 @@
             // 
             // btnRestore
             // 
-            this.btnRestore.Location = new System.Drawing.Point(194, 116);
+            this.btnRestore.Location = new System.Drawing.Point(253, 114);
             this.btnRestore.Name = "btnRestore";
             this.btnRestore.Size = new System.Drawing.Size(75, 40);
             this.btnRestore.TabIndex = 2;
@@ -65,7 +65,7 @@
             // 
             // btnSalir
             // 
-            this.btnSalir.Location = new System.Drawing.Point(321, 116);
+            this.btnSalir.Location = new System.Drawing.Point(380, 114);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(75, 40);
             this.btnSalir.TabIndex = 3;
@@ -77,7 +77,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(469, 188);
+            this.ClientSize = new System.Drawing.Size(664, 188);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnRestore);
             this.Controls.Add(this.btnRecalcular);

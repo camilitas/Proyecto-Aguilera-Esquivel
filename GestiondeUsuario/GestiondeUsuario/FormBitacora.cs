@@ -343,9 +343,7 @@ namespace GestiondeUsuario
             btnSalir.Text = t["btnSalir"]?.ToString();
             TraducirColumnas();
 
-
         }
-
         private void TraducirColumnas()
         {
             var g = GestorIdioma.Instancia;

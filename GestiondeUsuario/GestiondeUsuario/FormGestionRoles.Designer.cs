@@ -46,7 +46,7 @@
             this.lblPatentesDisponibles = new System.Windows.Forms.Label();
             this.lstContenido = new System.Windows.Forms.ListBox();
             this.lstRoles = new System.Windows.Forms.ListBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblTitulo = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblDescripcion = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
@@ -223,15 +223,15 @@
             this.lstRoles.TabIndex = 22;
             this.lstRoles.SelectedIndexChanged += new System.EventHandler(this.lstRoles_SelectedIndexChanged);
             // 
-            // label1
+            // lblTitulo
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(316, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(148, 20);
-            this.label1.TabIndex = 21;
-            this.label1.Text = "Gestion de Roles";
+            this.lblTitulo.AutoSize = true;
+            this.lblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitulo.Location = new System.Drawing.Point(316, 9);
+            this.lblTitulo.Name = "lblTitulo";
+            this.lblTitulo.Size = new System.Drawing.Size(148, 20);
+            this.lblTitulo.TabIndex = 21;
+            this.lblTitulo.Text = "Gestion de Roles";
             // 
             // panel1
             // 
@@ -273,7 +273,7 @@
             this.Controls.Add(this.lblPatentesDisponibles);
             this.Controls.Add(this.lstContenido);
             this.Controls.Add(this.lstRoles);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblTitulo);
             this.Controls.Add(this.panel1);
             this.Name = "FormGestionRoles";
             this.Text = "FormGestionRoles";
@@ -305,7 +305,7 @@
         private System.Windows.Forms.Label lblPatentesDisponibles;
         private System.Windows.Forms.ListBox lstContenido;
         private System.Windows.Forms.ListBox lstRoles;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblDescripcion;
     }

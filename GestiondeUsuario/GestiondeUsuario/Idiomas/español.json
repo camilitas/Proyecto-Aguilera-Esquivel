@@ -6,7 +6,17 @@
     "btnLogin": "Ingresar",
     "lblRecuperar": "Recuperar contraseña",
     "lblBienvenida": "Bienvenido",
-    "lblIdioma": "Idioma"
+    "lblIdioma": "Idioma",
+    "msgCamposVacios": "Completá todos los campos.",
+    "msgAtencion": "Atención",
+    "msgPrimerIngreso": "Bienvenido! Por ser tu primer ingreso debés cambiar tu contraseña.",
+    "msgPrimerIngresoTitulo": "Primer ingreso",
+    "msgBienvenido": "¡Bienvenido!",
+    "msgExito": "Éxito",
+    "msgCredencialesIncorrectas": "Usuario o contraseña incorrectos.",
+    "msgError": "Error",
+    "msgCuentaBloqueada": "Consulte con el administrador.",
+    "msgCuentaBloqueadaTitulo": "Cuenta bloqueada"
   },
   "FormPrincipal": {
     "lblBienvenida": "Bienvenido",
@@ -26,7 +36,11 @@
     "gestionPerfiles": "Gestión de Familias",
     "gestionRoles": "Gestión de Roles",
     "gestionRespaldo": "Gestión de Respaldo",
-    "gestionBackup": "Backup / Restore"
+    "gestionBackup": "Backup / Restore",
+    "msgCerrarSesion": "¿Estás seguro que querés cerrar sesión?",
+    "msgCerrarSesionTitulo": "Cerrar sesión",
+    "msgSesionActiva": "Ya hay una sesión activa: ",
+    "msgSesionActivaTitulo": "Sesión activa"
   },
   "FormGU": {
     "tituloForm": "Gestión de Usuarios",
@@ -129,6 +143,7 @@
   },
   "FormGestionFamilias": {
     "tituloForm": "Gestión de Familias",
+    "lblTitulo": "Gestión de Familias",
     "lblPatentesDisponibles": "Patentes y Familias disponibles",
     "lblNombre": "Nombre",
     "lblDescripcion": "Descripcion",
@@ -160,6 +175,7 @@
   },
   "FormGestionRoles": {
     "tituloForm": "Gestión de Roles",
+    "lblTitulo": "Gestión de Roles", 
     "lblPatentesDisponibles": "Patentes y Familias disponibles",
     "lblNombre": "Nombre",
     "lblDescripcion": "Descripcion",
@@ -220,7 +236,8 @@
     "msgConfirmarRestore": "¿Estás seguro? Se perderán los datos posteriores al backup.",
     "msgConfirmar": "Confirmar",
     "msgRestoreOk": "Restore ejecutado correctamente.",
-    "msgExito": "Éxito"
+    "msgExito": "Éxito",
+    "msgSeleccionarArchivoTitle": "Seleccioná el archivo de backup"
   },
   "FormGestionRespaldo": {
     "tituloForm": "Gestión de Respaldo",
@@ -234,6 +251,10 @@
     "msgConfirmar": "Confirmar",
     "msgBackupOk": "Se realizó BackUp con éxito.",
     "msgRestoreOk": "Se realizó Restore con éxito.",
-    "msgExito": "Éxito"
+    "msgExito": "Éxito",
+    "msgErrorBackup": "Error al realizar backup: ",
+    "msgErrorRestore": "Error al realizar restore: ",
+    "msgError": "Error",
+    "msgSeleccionarArchivoRestore": "Seleccioná el archivo de backup"
   }
 }

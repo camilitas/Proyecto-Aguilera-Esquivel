@@ -39,7 +39,7 @@ namespace GestiondeUsuario
             lstBackups.Items.Clear();
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = "Backup files (*.bak)|*.bak";
-            ofd.Title = "Seleccioná el archivo de backup";
+            ofd.Title = GestorIdioma.Instancia.Obtener("FormRestore", "msgSeleccionarArchivoTitle");
             if (ofd.ShowDialog() == DialogResult.OK)
                 lstBackups.Items.Add(ofd.FileName);
         }

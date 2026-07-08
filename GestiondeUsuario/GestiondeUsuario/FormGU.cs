@@ -280,7 +280,9 @@ namespace GestiondeUsuario
 
                 if (ok)
                 {
-                    MessageBox.Show("Usuario modificado exitosamente.", "Éxito",
+                    MessageBox.Show(
+                        g.Obtener("FormGU", "msgUsuarioModificado"),
+                        g.Obtener("FormGU", "msgExito"),
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                     CargarGrilla();
                     LimpiarCampos();
@@ -290,7 +292,9 @@ namespace GestiondeUsuario
                 }
                 else
                 {
-                    MessageBox.Show("Error al modificar el usuario.", "Error",
+                    MessageBox.Show(
+                        g.Obtener("FormGU", "msgErrorModificar"),
+                        g.Obtener("FormGU", "msgError"),
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -352,9 +356,11 @@ namespace GestiondeUsuario
             DataGridViewRow fila = dgvUsuarios.SelectedRows[0];
             bool estaBloqueado = Convert.ToBoolean(fila.Cells["Bloqueado"].Value);
 
-            if (!estaBloqueado)
-            {
-                MessageBox.Show("El usuario ya estaba desbloqueado.", "Atención",
+            if(!estaBloqueado)
+{
+                MessageBox.Show(
+                    g.Obtener("FormGU", "msgUsuarioNoBloqueado"),
+                    g.Obtener("FormGU", "msgAtencion"),
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
@@ -364,8 +370,7 @@ namespace GestiondeUsuario
             bool ok = UsuarioBLL.Instancia.Desbloquear(_idSeleccionado);
             if (ok)
             {
-                MessageBox.Show("Usuario desbloqueado exitosamente.", "Éxito",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(g.Obtener("FormGU", "msgUsuarioDesbloqueado"), g.Obtener("FormGU", "msgExito"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                 CargarGrilla();
                 HabilitarBotonera();
                 LimpiarCampos();

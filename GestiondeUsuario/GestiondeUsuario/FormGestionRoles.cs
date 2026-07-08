@@ -130,30 +130,33 @@ namespace GestiondeUsuario
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
+            var g = GestorIdioma.Instancia;
             if (_idSeleccionado == -1)
             {
-                MessageBox.Show("Seleccioná un rol primero.", "Atención",
+                MessageBox.Show(g.Obtener("FormGestionRoles", "msgSeleccionarPrimero"),
+                    g.Obtener("FormGestionRoles", "msgAtencion"),
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             HabilitarCampos();
             ModoAccion();
-            lblModo.Text = GestorIdioma.Instancia.Obtener("FormGestionRoles", "lblModoModificar");
+            lblModo.Text = g.Obtener("FormGestionRoles", "lblModoModificar");
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
+            var g = GestorIdioma.Instancia;
             if (_idSeleccionado == -1)
             {
-                MessageBox.Show("Seleccioná un rol primero.", "Atención",
+                MessageBox.Show(g.Obtener("FormGestionRoles", "msgSeleccionarPrimero"),
+                    g.Obtener("FormGestionRoles", "msgAtencion"),
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
             DialogResult confirm = MessageBox.Show(
-                "¿Querés eliminar este rol?",
-                "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
+                g.Obtener("FormGestionRoles", "msgConfirmarEliminar"),
+                g.Obtener("FormGestionRoles", "msgConfirmar"),
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (confirm == DialogResult.Yes)
             {
                 try
@@ -161,19 +164,20 @@ namespace GestiondeUsuario
                     bool ok = RolBLL.Instancia.Eliminar(_idSeleccionado);
                     if (ok)
                     {
-                        MessageBox.Show("Rol eliminado exitosamente.", "Éxito",
+                        MessageBox.Show(g.Obtener("FormGestionRoles", "msgEliminadoExito"),
+                            g.Obtener("FormGestionRoles", "msgExito"),
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
                         LimpiarCampos();
                         DeshabilitarCampos();
                         HabilitarBotonera();
                         _idSeleccionado = -1;
                         CargarRoles();
-                        lblModo.Text = GestorIdioma.Instancia.Obtener("FormGestionRoles", "lblModoInicial");
+                        lblModo.Text = g.Obtener("FormGestionRoles", "lblModoInicial");
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Error",
+                    MessageBox.Show(ex.Message, g.Obtener("FormGestionRoles", "msgError"),
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -181,54 +185,44 @@ namespace GestiondeUsuario
 
         private void btnAplicar_Click(object sender, EventArgs e)
         {
+            var g = GestorIdioma.Instancia;
             if (string.IsNullOrEmpty(txtNombre.Text))
             {
-                MessageBox.Show("El nombre es obligatorio.", "Atención",
+                MessageBox.Show(g.Obtener("FormGestionRoles", "msgNombreObligatorio"),
+                    g.Obtener("FormGestionRoles", "msgAtencion"),
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
             if (_idSeleccionado == -1)
             {
-                // MODO NUEVO
-                Rol nuevo = new Rol
-                {
-                    Nombre = txtNombre.Text,
-                    Descripcion = txtDescripcion.Text
-                };
-
+                Rol nuevo = new Rol { Nombre = txtNombre.Text, Descripcion = txtDescripcion.Text };
                 bool ok = RolBLL.Instancia.Insertar(nuevo);
                 if (ok)
                 {
-                    MessageBox.Show("Rol creado exitosamente.", "Éxito",
+                    MessageBox.Show(g.Obtener("FormGestionRoles", "msgCreadoExito"),
+                        g.Obtener("FormGestionRoles", "msgExito"),
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                     CargarRoles();
                     LimpiarCampos();
                     DeshabilitarCampos();
                     HabilitarBotonera();
-                    lblModo.Text = GestorIdioma.Instancia.Obtener("FormGestionRoles", "lblModoInicial");
+                    lblModo.Text = g.Obtener("FormGestionRoles", "lblModoInicial");
                 }
             }
             else
             {
-                // MODO MODIFICAR
-                Rol modificado = new Rol
-                {
-                    Id = _idSeleccionado,
-                    Nombre = txtNombre.Text,
-                    Descripcion = txtDescripcion.Text
-                };
-
+                Rol modificado = new Rol { Id = _idSeleccionado, Nombre = txtNombre.Text, Descripcion = txtDescripcion.Text };
                 bool ok = RolBLL.Instancia.Modificar(modificado);
                 if (ok)
                 {
-                    MessageBox.Show("Rol modificado exitosamente.", "Éxito",
+                    MessageBox.Show(g.Obtener("FormGestionRoles", "msgModificadoExito"),
+                        g.Obtener("FormGestionRoles", "msgExito"),
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                     CargarRoles();
                     LimpiarCampos();
                     DeshabilitarCampos();
                     HabilitarBotonera();
-                    lblModo.Text = GestorIdioma.Instancia.Obtener("FormGestionRoles", "lblModoInicial");
+                    lblModo.Text = g.Obtener("FormGestionRoles", "lblModoInicial");
                 }
             }
         }
@@ -249,20 +243,21 @@ namespace GestiondeUsuario
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
+            var g = GestorIdioma.Instancia;
             if (_idSeleccionado == -1)
             {
-                MessageBox.Show("Seleccioná un rol primero.", "Atención",
+                MessageBox.Show(g.Obtener("FormGestionRoles", "msgSeleccionarPrimero"),
+                    g.Obtener("FormGestionRoles", "msgAtencion"),
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
             if (lstDisponibles.SelectedItem == null)
             {
-                MessageBox.Show("Seleccioná un elemento para agregar.", "Atención",
+                MessageBox.Show(g.Obtener("FormGestionRoles", "msgSeleccionarElemento"),
+                    g.Obtener("FormGestionRoles", "msgAtencion"),
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
             try
             {
                 if (rbPatente.Checked)
@@ -279,7 +274,7 @@ namespace GestiondeUsuario
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error",
+                MessageBox.Show(ex.Message, g.Obtener("FormGestionRoles", "msgError"),
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -338,6 +333,7 @@ namespace GestiondeUsuario
             if (t == null) return;
 
             this.Text = t["tituloForm"]?.ToString();
+            lblTitulo.Text = t["lblTitulo"]?.ToString();
             lblPatentesDisponibles.Text = t["lblPatentesDisponibles"]?.ToString();
             lblNombre.Text = t["lblNombre"]?.ToString();
             lblDescripcion.Text = t["lblDescripcion"]?.ToString();

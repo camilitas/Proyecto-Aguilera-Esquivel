@@ -55,10 +55,13 @@ namespace GestiondeUsuario
 
         private void iniciarSesionToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            var g = GestorIdioma.Instancia;
             if (SessionManager.Instancia.HaySesionActiva())
-                MessageBox.Show("Ya hay una sesión activa: " +
+                MessageBox.Show(
+                    g.Obtener("FormPrincipal", "msgSesionActiva") +
                     SessionManager.Instancia.ObtenerUsuarioActivo().NombreUsuario,
-                    "Sesión activa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    g.Obtener("FormPrincipal", "msgSesionActivaTitulo"),
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void cambiarContraseñaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -69,13 +72,14 @@ namespace GestiondeUsuario
 
         private void cerrarSesionToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            var g = GestorIdioma.Instancia;
             DialogResult confirm = MessageBox.Show(
-               "¿Estás seguro que querés cerrar sesión?",
-               "Cerrar sesión", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
+                g.Obtener("FormPrincipal", "msgCerrarSesion"),
+                g.Obtener("FormPrincipal", "msgCerrarSesionTitulo"),
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (confirm == DialogResult.Yes)
             {
-                UsuarioBLL.Instancia.Logout(); // usa el método que registra en bitácora
+                UsuarioBLL.Instancia.Logout();
                 new Form1().Show();
                 this.Close();
             }
