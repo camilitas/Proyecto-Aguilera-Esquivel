@@ -51,8 +51,7 @@ namespace GestiondeUsuario
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            new FormPrincipal().Show();
-            this.Close(); ;
+            Application.Exit();
         }
 
         public void ActualizarIdioma(JObject traducciones)

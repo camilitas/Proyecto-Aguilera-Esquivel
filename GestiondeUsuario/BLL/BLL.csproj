@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BackUpRestoreBLL.cs" />
     <Compile Include="BitacoraBLL.cs" />
     <Compile Include="DigitoVerificadorBLL.cs" />
     <Compile Include="FamiliaBLL.cs" />

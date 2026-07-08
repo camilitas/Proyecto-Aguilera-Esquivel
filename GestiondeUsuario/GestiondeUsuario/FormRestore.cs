@@ -37,23 +37,16 @@ namespace GestiondeUsuario
         private void CargarBackups()
         {
             lstBackups.Items.Clear();
-            string carpeta = Path.Combine(
-                AppDomain.CurrentDomain.BaseDirectory, "Backups");
-
-            if (!Directory.Exists(carpeta))
-            {
-                Directory.CreateDirectory(carpeta);
-                return;
-            }
-
-            foreach (var archivo in Directory.GetFiles(carpeta, "*.bak"))
-                lstBackups.Items.Add(Path.GetFileName(archivo));
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Backup files (*.bak)|*.bak";
+            ofd.Title = "Seleccioná el archivo de backup";
+            if (ofd.ShowDialog() == DialogResult.OK)
+                lstBackups.Items.Add(ofd.FileName);
         }
 
         private void btnRestore_Click(object sender, EventArgs e)
         {
             var g = GestorIdioma.Instancia;
-
             if (lstBackups.SelectedItem == null)
             {
                 MessageBox.Show(
@@ -62,7 +55,6 @@ namespace GestiondeUsuario
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
             DialogResult confirm = MessageBox.Show(
                 g.Obtener("FormRestore", "msgConfirmarRestore"),
                 g.Obtener("FormRestore", "msgConfirmar"),
@@ -72,19 +64,15 @@ namespace GestiondeUsuario
             {
                 try
                 {
-                    // Aquí iría la lógica real de restore con SQL Server
-                    // Por ahora recalculamos el DV para normalizar
-                    DigitoVerificadorBLL.Instancia.RecalcularYGuardar();
-
+                    string rutaCompleta = lstBackups.SelectedItem.ToString();
+                    BackUpRestoreBLL.Instancia.RealizarRestore(rutaCompleta);
                     GestorEventosBLL.Instancia.Notificar(
                         SessionManager.Instancia.ObtenerUsuarioActivo()?.NombreUsuario ?? "Admin",
                         "Restore BD", "Administrador", 5);
-
                     MessageBox.Show(
                         g.Obtener("FormRestore", "msgRestoreOk"),
                         g.Obtener("FormRestore", "msgExito"),
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                     new Form1().Show();
                     this.Close();
                 }
@@ -98,7 +86,7 @@ namespace GestiondeUsuario
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            new FormPrincipal().Show();
+            new FormInconsistencia().Show();
             this.Close();
         }
 

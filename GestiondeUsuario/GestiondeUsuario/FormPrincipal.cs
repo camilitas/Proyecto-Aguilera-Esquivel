@@ -149,9 +149,8 @@ namespace GestiondeUsuario
 
         private void gestionRespaldoToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            new FormRestore().Show();
+            new FormGestionRespaldo().Show();
             this.Hide();
-
         }
     }
 }
